@@ -1,0 +1,15 @@
+{
+    "name": "guitar-tools.t-mon",
+    "description": "Guitar tools is a mobile application containing tools for guitar players like a tuner, a guitar player, a metronome and much more.",
+    "architecture": "@CLICK_ARCH@",
+    "title": "Guitar tools",
+    "hooks": {
+        "guitar-tools": {
+            "apparmor": "guitar-tools/guitar-tools.apparmor",
+            "desktop": "guitar-tools/guitar-tools.desktop"
+        }
+    },
+    "version": "0.5.1",
+    "maintainer": "Simon Stürz <stuerz.simon@gmail.com>",
+    "framework": "ubuntu-sdk-15.04.6"
+}

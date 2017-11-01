@@ -1,0 +1,330 @@
+{
+    "bpm": 170,
+    "enableMetronome": false,
+    "measureCount": 12,
+    "notes": [
+        {
+            "note": 4,
+            "source": "E4-12.wav",
+            "x": 0,
+            "y": 0
+        },
+        {
+            "note": 3,
+            "source": "E4-11.wav",
+            "x": 1,
+            "y": 1
+        },
+        {
+            "note": 4,
+            "source": "E4-12.wav",
+            "x": 2,
+            "y": 0
+        },
+        {
+            "note": 3,
+            "source": "E4-11.wav",
+            "x": 3,
+            "y": 1
+        },
+        {
+            "note": 4,
+            "source": "E4-12.wav",
+            "x": 4,
+            "y": 0
+        },
+        {
+            "note": 11,
+            "source": "E4-7.wav",
+            "x": 5,
+            "y": 1
+        },
+        {
+            "note": 2,
+            "source": "E4-10.wav",
+            "x": 6,
+            "y": 0
+        },
+        {
+            "note": 0,
+            "source": "E4-8.wav",
+            "x": 7,
+            "y": 1
+        },
+        {
+            "note": 9,
+            "source": "E4-5.wav",
+            "x": 8,
+            "y": 0
+        },
+        {
+            "note": 9,
+            "source": "A-0.wav",
+            "x": 8,
+            "y": 5
+        },
+        {
+            "note": 4,
+            "source": "D-2.wav",
+            "x": 9,
+            "y": 4
+        },
+        {
+            "note": 9,
+            "source": "G-2.wav",
+            "x": 10,
+            "y": 3
+        },
+        {
+            "note": 0,
+            "source": "B-1.wav",
+            "x": 11,
+            "y": 2
+        },
+        {
+            "note": 4,
+            "source": "E4-0.wav",
+            "x": 12,
+            "y": 1
+        },
+        {
+            "note": 9,
+            "source": "E4-5.wav",
+            "x": 13,
+            "y": 0
+        },
+        {
+            "note": 11,
+            "source": "E4-7.wav",
+            "x": 14,
+            "y": 1
+        },
+        {
+            "note": 4,
+            "source": "E2-0.wav",
+            "x": 14,
+            "y": 5
+        },
+        {
+            "note": 4,
+            "source": "D-2.wav",
+            "x": 15,
+            "y": 4
+        },
+        {
+            "note": 8,
+            "source": "G-1.wav",
+            "x": 16,
+            "y": 3
+        },
+        {
+            "note": 4,
+            "source": "E4-0.wav",
+            "x": 17,
+            "y": 2
+        },
+        {
+            "note": 8,
+            "source": "E4-4.wav",
+            "x": 18,
+            "y": 1
+        },
+        {
+            "note": 11,
+            "source": "E4-7.wav",
+            "x": 19,
+            "y": 0
+        },
+        {
+            "note": 0,
+            "source": "E4-8.wav",
+            "x": 20,
+            "y": 0
+        },
+        {
+            "note": 9,
+            "source": "A-0.wav",
+            "x": 20,
+            "y": 5
+        },
+        {
+            "note": 4,
+            "source": "D-2.wav",
+            "x": 21,
+            "y": 4
+        },
+        {
+            "note": 9,
+            "source": "G-2.wav",
+            "x": 22,
+            "y": 3
+        },
+        {
+            "note": 4,
+            "source": "E4-0.wav",
+            "x": 23,
+            "y": 0
+        },
+        {
+            "note": 4,
+            "source": "E4-12.wav",
+            "x": 24,
+            "y": 0
+        },
+        {
+            "note": 3,
+            "source": "E4-11.wav",
+            "x": 25,
+            "y": 1
+        },
+        {
+            "note": 4,
+            "source": "E4-12.wav",
+            "x": 26,
+            "y": 0
+        },
+        {
+            "note": 3,
+            "source": "E4-11.wav",
+            "x": 27,
+            "y": 1
+        },
+        {
+            "note": 4,
+            "source": "E4-12.wav",
+            "x": 28,
+            "y": 0
+        },
+        {
+            "note": 11,
+            "source": "E4-7.wav",
+            "x": 29,
+            "y": 1
+        },
+        {
+            "note": 2,
+            "source": "E4-10.wav",
+            "x": 30,
+            "y": 0
+        },
+        {
+            "note": 0,
+            "source": "E4-8.wav",
+            "x": 31,
+            "y": 1
+        },
+        {
+            "note": 9,
+            "source": "E4-5.wav",
+            "x": 32,
+            "y": 0
+        },
+        {
+            "note": 9,
+            "source": "A-0.wav",
+            "x": 32,
+            "y": 5
+        },
+        {
+            "note": 4,
+            "source": "D-2.wav",
+            "x": 33,
+            "y": 4
+        },
+        {
+            "note": 9,
+            "source": "G-2.wav",
+            "x": 34,
+            "y": 3
+        },
+        {
+            "note": 0,
+            "source": "B-1.wav",
+            "x": 35,
+            "y": 2
+        },
+        {
+            "note": 4,
+            "source": "E4-0.wav",
+            "x": 36,
+            "y": 1
+        },
+        {
+            "note": 9,
+            "source": "E4-5.wav",
+            "x": 37,
+            "y": 0
+        },
+        {
+            "note": 11,
+            "source": "E4-7.wav",
+            "x": 38,
+            "y": 1
+        },
+        {
+            "note": 4,
+            "source": "E2-0.wav",
+            "x": 38,
+            "y": 5
+        },
+        {
+            "note": 4,
+            "source": "D-2.wav",
+            "x": 39,
+            "y": 4
+        },
+        {
+            "note": 8,
+            "source": "G-1.wav",
+            "x": 40,
+            "y": 3
+        },
+        {
+            "note": 4,
+            "source": "E4-0.wav",
+            "x": 41,
+            "y": 1
+        },
+        {
+            "note": 0,
+            "source": "E4-8.wav",
+            "x": 42,
+            "y": 0
+        },
+        {
+            "note": 11,
+            "source": "E4-7.wav",
+            "x": 43,
+            "y": 1
+        },
+        {
+            "note": 9,
+            "source": "E4-5.wav",
+            "x": 44,
+            "y": 2
+        },
+        {
+            "note": 9,
+            "source": "A-0.wav",
+            "x": 44,
+            "y": 5
+        },
+        {
+            "note": 4,
+            "source": "D-2.wav",
+            "x": 45,
+            "y": 4
+        },
+        {
+            "note": 9,
+            "source": "G-2.wav",
+            "x": 46,
+            "y": 3
+        }
+    ],
+    "rythmBeats": 4,
+    "rythmTicks": 4,
+    "scaleValue": 1,
+    "songName": "For Elise - Ludwig van Beethoven",
+    "trackCount": 6
+}

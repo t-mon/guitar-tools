@@ -1,0 +1,8 @@
+{
+    "policy_groups": [
+        "keep-display-on",
+        "audio",
+        "microphone"
+    ],
+    "policy_version": 1.3
+}

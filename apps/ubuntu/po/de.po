@@ -1,0 +1,598 @@
+# German translation for guitar-tools
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
+# This file is distributed under the same license as the guitar-tools package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: guitar-tools\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-01 12:17+0100\n"
+"PO-Revision-Date: 2016-11-27 12:37+0000\n"
+"Last-Translator: Simon Stürz <stuerz.simon@gmail.com>\n"
+"Language-Team: German <de@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-01-15 06:48+0000\n"
+"X-Generator: Launchpad (build 18302)\n"
+
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:32
+msgid "About"
+msgstr "Impressum"
+
+#. TRANSLATORS: In the about screen.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:108
+msgid "License:"
+msgstr "Lizenz:"
+
+#. TRANSLATORS: In the about screen.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:129
+msgid "Source code:"
+msgstr "Quellcode:"
+
+#. TRANSLATORS: In the about screen.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:150
+msgid "Bugtracker:"
+msgstr "Fehler melden:"
+
+#. TRANSLATORS: Thank you very much for helping with the translations!! :)
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:171
+msgid "Translations:"
+msgstr "Übersetzungen:"
+
+#. TRANSLATORS: In the about screen.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:193
+msgid "Mail:"
+msgstr "Mail:"
+
+#. TRANSLATORS: In the about screen.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:214
+msgid "Design:"
+msgstr "Design:"
+
+#. TRANSLATORS: Donate button description
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:227
+msgid "Enjoying the app?"
+msgstr "Gefällt dir die App?"
+
+#. TRANSLATORS: Text in the Donate button
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:241
+msgid "Donate (PayPal)"
+msgstr "Spenden (PayPal)"
+
+#. TRANSLATORS: In the about screen.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:253
+msgid ""
+"Thanks to Fabian Baumgartner and Alfred Bushi for recording the guitar "
+"sounds with me. We release the sounds under the <b>CC BY-NC 3.0</b>."
+msgstr ""
+"Vielen Dank an Fabian Baumgartner und Alfred Bushi, die mir geholfen haben "
+"die Gitarren Töne aufzunehmen. Wir veröffentlichen die Töne unter der  <b>CC "
+"BY-NC 3.0</b> Lizenz."
+
+#. TRANSLATORS: In the about screen.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:268
+msgid "Metronome sounds:"
+msgstr "Metronom Klänge:"
+
+#. TRANSLATORS: In the about screen.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:296
+msgid "Drum loops:"
+msgstr "Schlagzeug:"
+
+#. TRANSLATORS: In the about screen.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:324
+msgid "External library:"
+msgstr "Externe Bibliotheken:"
+
+#. TRANSLATORS: Chord help page title
+#. TRANSLATORS: Records help page title
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ChordsHelpPage.qml:33
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistHelpPage.qml:33
+msgid "Help"
+msgstr "Hilfe"
+
+#. TRANSLATORS: Chord help page: description of the hand
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ChordsHelpPage.qml:63
+msgid ""
+"Tap on the guitar fret board to listen how the chords sounds like. You can "
+"change the speed in the settings."
+msgstr ""
+"Klicke auf das Gitarrenbrett um dir anzuhören, wie der Akkord klingt. Die "
+"Abspielgeschwindigkeit kann in den Einstellungen verändert werden."
+
+#. TRANSLATORS: Chord help page: symbol for not playing the string
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ChordsHelpPage.qml:85
+msgid "Don't play this string"
+msgstr "Diese Saite nicht spielen"
+
+#. TRANSLATORS: Chord help page: symbol for playing the string
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ChordsHelpPage.qml:108
+msgid "Play this string"
+msgstr "Diese Saite spielen"
+
+#. TRANSLATORS: Chord help page: description of the hand
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ChordsHelpPage.qml:117
+msgid "Finger numbers"
+msgstr "Finger Bezeichnungen"
+
+#. TRANSLATORS: Title of the load song page
+#. TRANSLATORS: Button in the menu of the compose tool (Load examples)
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeLoadPage.qml:34
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:834
+msgid "Load example"
+msgstr "Beispiel laden"
+
+#. TRANSLATORS: Button in the menu of the compose tool (Load a song)
+#. TRANSLATORS: Title of the load song as dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeLoadPage.qml:34
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:824
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:945
+msgid "Load song"
+msgstr "Lied laden"
+
+#. TRANSLATORS: Title of the song menu in the compose tool
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:788
+msgid "Song menu"
+msgstr "Lied Menü"
+
+#. TRANSLATORS: Button in the menu of the compose tool
+#. TRANSLATORS: Title of the new song as dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:793
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:879
+msgid "New song"
+msgstr "Neues Lied"
+
+#. TRANSLATORS: Button in the menu of the compose tool (Save the current song)
+#. TRANSLATORS: Save button in the 'Save as' dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:804
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:924
+msgid "Save"
+msgstr "Speichern"
+
+#. TRANSLATORS: Button in the menu of the compose tool (Save the current song as...)
+#. TRANSLATORS: Title of the save as dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:814
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:913
+msgid "Save as"
+msgstr "Speichern unter"
+
+#. TRANSLATORS: Rename the current song
+#. TRANSLATORS: Title of the rename song dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:846
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:978
+msgid "Rename song"
+msgstr "Lied umbenennen"
+
+#. TRANSLATORS: Delete the current song
+#. TRANSLATORS: Title of the delete song as dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:856
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:1011
+msgid "Delete song"
+msgstr "Lied löschen"
+
+#. TRANSLATORS: Close button in the compose song menu popover
+#. TRANSLATORS: Close button in the chord selection popover (guitar)
+#. TRANSLATORS: The close button of the record information dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:867
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:587
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:269
+msgid "Close"
+msgstr "Schließen"
+
+#. TRANSLATORS: Placeholder text for a new song name
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:884
+msgid "Song name"
+msgstr "Lied Name"
+
+#. TRANSLATORS: Create new song button
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:891
+msgid "Create"
+msgstr "Erstellen"
+
+#. TRANSLATORS: Cancel button in the remove record dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:900
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:933
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:965
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:998
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:1029
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeSettingsPage.qml:289
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:173
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:206
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. TRANSLATORS: Save button in the 'Save as' dialog
+#. TRANSLATORS: Rename button in the rename record dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:989
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:197
+msgid "Rename"
+msgstr "Umbenennen"
+
+#. TRANSLATORS: Delete question for the delete song dialog. The place holder represents the song name.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:1014
+#, qt-format
+msgid "Are you sure you want to delete \"%1\"?"
+msgstr "Wollen Sie das Lied \"%1\" wirklich löschen?"
+
+#. TRANSLATORS: Delete button in the remove record dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:1018
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:163
+msgid "Delete"
+msgstr "Löschen"
+
+#. TRANSLATORS: Title of the note selection page of the compose tool
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeSelectorPage.qml:34
+msgid "Select note"
+msgstr "Note wählen"
+
+#. TRANSLATORS: Button in the note selection page of the compose tool (play mode -> click on note plays note, select mode -> click on note selects note)
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeSelectorPage.qml:55
+msgid "Play mode"
+msgstr "Abspiel Modus"
+
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeSelectorPage.qml:55
+msgid "Select mode"
+msgstr "Auswahl Modus"
+
+#. TRANSLATORS: Title of the song settings page of the composer tool
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeSettingsPage.qml:34
+msgid "Song settings"
+msgstr "Lied Einstellungen"
+
+#. TRANSLATORS: The measures slider in the song settings. Indicates how many measures the song has.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeSettingsPage.qml:63
+msgid "Measures"
+msgstr "Tackte"
+
+#. TRANSLATORS: The tracks slider description in the compose tool song settings (rows of the compose tool)
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeSettingsPage.qml:120
+msgid "Tracks"
+msgstr "Tracks"
+
+#. TRANSLATORS: The bpm description in the compose tool song settings
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeSettingsPage.qml:177
+msgid "Beats per minute"
+msgstr "Schläge pro Minute"
+
+#. TRANSLATORS: The rythm description in the compose tool song settings (i.e. 4/4)
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeSettingsPage.qml:227
+msgid "Rhythm"
+msgstr "Rhythmus"
+
+#. TRANSLATORS: Removes all notes in the compose tool
+#. TRANSLATORS: Title of the clear notes dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeSettingsPage.qml:258
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeSettingsPage.qml:271
+msgid "Clear all notes"
+msgstr "Lösche alle Noten"
+
+#. TRANSLATORS: Clear question for the delete song dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeSettingsPage.qml:274
+msgid "Are you sure you want to clear all notes in this song?"
+msgstr "Wollen Sie wirklich alle Noten entfernen?"
+
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposeSettingsPage.qml:278
+msgid "Clear"
+msgstr "Entfernen"
+
+#. TRANSLATORS: Title of the drum loops page
+#. TRANSLATORS: The name of the drum loops tool
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/DrumLoopPage.qml:34
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/MainPage.qml:122
+msgid "Drum loops"
+msgstr "Schlagzeug"
+
+#. TRANSLATORS: The title of the fretboard page (in the guitar player)
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/FretBoardPage.qml:34
+msgid "Fretboard"
+msgstr "Griffbrett"
+
+#. TRANSLATORS: Title of the guitar player page
+#. TRANSLATORS: The name of the guitar player tool
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:36
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/MainPage.qml:71
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:237
+msgid "Guitar"
+msgstr "Gitarre"
+
+#. TRANSLATORS: Title of the chord selection popover (guitar)
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:468
+msgid "Select chord"
+msgstr "Akkord wählen"
+
+#. TRANSLATORS: Play button in the chord selection popover (guitar)
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:564
+msgid "Play"
+msgstr "Abspielen"
+
+#. TRANSLATORS: Add button in the chord selection popover (guitar)
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:576
+msgid "Add"
+msgstr "Hinzufügen"
+
+#. TRANSLATORS: Title of the guitar tuner page
+#. TRANSLATORS: The name of the tuner tool
+#. TRANSLATORS: In the settings page the metronome volume.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarTunerPage.qml:32
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/MainPage.qml:60
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:201
+msgid "Guitar tuner"
+msgstr "Stimmgerät"
+
+#. TRANSLATORS: E2 guitar string: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#. TRANSLATORS: E4 guitar string: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#. TRANSLATORS: E: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:86
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:101
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:134
+msgid "E"
+msgstr "E"
+
+#. TRANSLATORS: A guitar string: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#. TRANSLATORS: A: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:89
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:149
+msgid "A"
+msgstr "A"
+
+#. TRANSLATORS: D guitar string: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#. TRANSLATORS: D: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:92
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:128
+msgid "D"
+msgstr "D"
+
+#. TRANSLATORS: G guitar string: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#. TRANSLATORS: G: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:95
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:143
+msgid "G"
+msgstr "G"
+
+#. TRANSLATORS: B guitar string: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#. TRANSLATORS: B: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:98
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:155
+msgid "B"
+msgstr "H"
+
+#. TRANSLATORS: Type of the chord. See https://en.wikipedia.org/wiki/Major_and_minor
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:111
+msgid "minor"
+msgstr "Moll"
+
+#. TRANSLATORS: Type of the chord. See https://en.wikipedia.org/wiki/Major_and_minor
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:114
+msgid "major"
+msgstr "Dur"
+
+#. TRANSLATORS: C: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:122
+msgid "C"
+msgstr "C"
+
+#. TRANSLATORS: C sharp: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:125
+msgid "C#"
+msgstr "C#"
+
+#. TRANSLATORS: D sharp: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:131
+msgid "D#"
+msgstr "D#"
+
+#. TRANSLATORS: F: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:137
+msgid "F"
+msgstr "F"
+
+#. TRANSLATORS: F sharp: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:140
+msgid "F#"
+msgstr "F#"
+
+#. TRANSLATORS: G# Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:146
+msgid "G#"
+msgstr "G#"
+
+#. TRANSLATORS: A sharp: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/Main.qml:152
+msgid "A#"
+msgstr "B"
+
+#. TRANSLATORS: The name of the metronome tool
+#. TRANSLATORS: Title of the metronome page
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/MainPage.qml:81
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/MetronomePage.qml:34
+msgid "Metronome"
+msgstr "Metronom"
+
+#. TRANSLATORS: The name of the chord tool
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/MainPage.qml:91
+msgid "Chords"
+msgstr "Akkorde"
+
+#. TRANSLATORS: The name of the scales tool
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/MainPage.qml:102
+msgid "Scales"
+msgstr "Tonleitern"
+
+#. TRANSLATORS: The name of the recorder tool
+#. TRANSLATORS: Title of the drum loops page
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/MainPage.qml:112
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPage.qml:34
+msgid "Recorder"
+msgstr "Aufnahmegerät"
+
+#. TRANSLATORS: The name of the compose tool
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/MainPage.qml:132
+msgid "Compose tool"
+msgstr "Komponieren"
+
+#. TRANSLATORS: Records help page
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistHelpPage.qml:64
+msgid "Records location:"
+msgstr "Ordner für Aufnahmen:"
+
+#. TRANSLATORS: Records help page: delete icon description
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistHelpPage.qml:95
+msgid "Click to play"
+msgstr "Klicken zum Abspielen"
+
+#. TRANSLATORS: Records help page: delete icon description
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistHelpPage.qml:118
+msgid "Click again to stop"
+msgstr "Nochmals klicken zum Stoppen"
+
+#. TRANSLATORS: Records help page: delete icon description
+#. TRANSLATORS: Title of the record remove dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistHelpPage.qml:140
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:151
+msgid "Delete record"
+msgstr "Aufnahme löschen"
+
+#. TRANSLATORS: Records help page: edit icon description
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistHelpPage.qml:162
+msgid "Rename record"
+msgstr "Aufnahme umbenennen"
+
+#. TRANSLATORS: Records help page: edit icon description
+#. TRANSLATORS: Title of the rename record dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistHelpPage.qml:184
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:217
+msgid "Record information"
+msgstr "Aufnahme Informationen"
+
+#. TRANSLATORS: Title of the records playlist page
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:35
+msgid "Records"
+msgstr "Aufnahmen"
+
+#. TRANSLATORS: Question of the record remove dialog.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:153
+msgid "Are you sure you want to delete this file?"
+msgstr "Wollen Sie diese Aufnahme wirklich löschen?"
+
+#. TRANSLATORS: Title of the rename record dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:184
+msgid "Rename record file"
+msgstr "Aufnahme umbenennen"
+
+#. TRANSLATORS: Instructions of the record rename dialog.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:186
+msgid "Please enter the new file name."
+msgstr "Bitte geben Sie den neuen Dateinamen ein."
+
+#. TRANSLATORS: The name lable in the record information dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:221
+msgid "Name:"
+msgstr "Name:"
+
+#. TRANSLATORS: The type lable in the record information dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:233
+msgid "Type:"
+msgstr "Format:"
+
+#. TRANSLATORS: The size lable in the record information dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:245
+msgid "Size:"
+msgstr "Größe:"
+
+#. TRANSLATORS: The modified lable in the record information dialog
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:257
+msgid "Modified:"
+msgstr "Geändert am:"
+
+#. TRANSLATORS: Title of the settings page
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:35
+msgid "Settings"
+msgstr "Einstellungen"
+
+#. TRANSLATORS: In the settings page the metronome volume.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:77
+msgid "General settings"
+msgstr "Allgemeine Einstellungen"
+
+#. TRANSLATORS: In the settings page the Debug checkbox description.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:90
+msgid "Show details"
+msgstr "Details anzeigen"
+
+#. TRANSLATORS: In the settings page the screen saver checkbox description.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:114
+msgid "Disable screen saver"
+msgstr "Bildschirmschoner deaktivieren"
+
+#. TRANSLATORS: In the settings page the dark theme checkbox description.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:137
+msgid "Dark theme"
+msgstr "Dunkles Theme"
+
+#. TRANSLATORS: In the settings page the chord player delay.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:154
+msgid "Chord player delay"
+msgstr "Akkord Abspielverzögerung"
+
+#. TRANSLATORS: In the settings page the pitch standard selection
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:212
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/components/TunerBottomEdge.qml:190
+msgid "Pitch standard"
+msgstr "Kammerton"
+
+#. TRANSLATORS: In the settings page. Section guitar: if true, the not associated chord string will be marked red.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:250
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/components/GuitarBottomEdge.qml:195
+msgid "Mark not associated chord strings"
+msgstr "Markiere unpassende Akkord Saiten"
+
+#. TRANSLATORS: In the settings page. Section guitar: if true, the not associated chord string can not be played.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:274
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/components/GuitarBottomEdge.qml:218
+msgid "Disable not associated chord strings"
+msgstr "Deaktiviere unpassende Akkord Saiten"
+
+#. TRANSLATORS: In the settings page the metronome volume.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:295
+msgid "Audio input"
+msgstr "Audio-Eingang"
+
+#. TRANSLATORS: In the settings page the microphone volume.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:302
+msgid "Microphone volume"
+msgstr "Mikrofon Lautstärke"
+
+#. TRANSLATORS: In the settings page the metronome volume.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:355
+msgid "Audio output"
+msgstr "Audio-Ausgang"
+
+#. TRANSLATORS: In the settings page the metronome volume.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:362
+msgid "Metronome volume"
+msgstr "Metronom Lautstäke"
+
+#. TRANSLATORS: In the settings page the guitar player volume.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:405
+msgid "Guitar volume"
+msgstr "Gitarren Lautstärke"
+
+#. TRANSLATORS: In the settings page the drum loops volume.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/SettingsPage.qml:449
+msgid "Drum loops volume"
+msgstr "Schlagzeug Lautstärke"
+
+#. TRANSLATORS: Title of the tuning fork page
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/TuningForkPage.qml:33
+msgid "Tuning fork"
+msgstr "Stimmgabel"
+
+#. TRANSLATORS: In the scales view, indicates if the notes on the fretboard should be displayed or not
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/components/ComposeBottomEdge.qml:242
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/components/FretBoardBottomEdge.qml:197
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/components/ScalesBottomEdge.qml:234
+msgid "Show notes"
+msgstr "Noten anzeigen"

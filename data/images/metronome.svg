@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="900"
+   height="1000"
+   viewBox="0 0 900 1000"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="metronome.svg"
+   inkscape:export-filename="/home/timon/development/guitar-tools/guitar-tools/data/images/pendulum.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="331.00655"
+     inkscape:cy="33.845794"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="2880"
+     inkscape:window-height="1752"
+     inkscape:window-x="0"
+     inkscape:window-y="48"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-52.3622)">
+    <path
+       id="path4135-6"
+       style="fill:none;fill-rule:evenodd;stroke:#666666;stroke-width:10.00990009;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 781.05967,965.2682 -162.99655,-0.5 m -336.2235,0.5 -161.16534,0 m -22.670962,82.089 703.993342,0 -241.99767,-989.99005 -219.9979,0 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccc" />
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.12332737;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4744"
+       width="898.87665"
+       height="998.87671"
+       x="0.56166369"
+       y="52.923847"
+       ry="0" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#666666;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4135"
+       sodipodi:type="arc"
+       sodipodi:cx="450"
+       sodipodi:cy="962.86218"
+       sodipodi:rx="167.57153"
+       sodipodi:ry="167.57153"
+       sodipodi:start="3.1415927"
+       sodipodi:end="0"
+       d="M 282.42847,962.86217 A 167.57153,167.57153 0 0 1 450,795.29065 167.57153,167.57153 0 0 1 617.57153,962.86218"
+       sodipodi:open="true" />
+  </g>
+</svg>

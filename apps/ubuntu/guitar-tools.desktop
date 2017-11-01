@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Guitar tools
+Exec=guitar-tools
+Icon=guitar-tools/guitar-tools.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
+X-Ubuntu-Supported-Orientations=portrait

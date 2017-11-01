@@ -1,0 +1,39 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
+        <file>main.qml</file>
+        <file>MainPage.qml</file>
+        <file>GuitarTunerPage.qml</file>
+        <file>MetronomePage.qml</file>
+        <file>SettingsPage.qml</file>
+        <file>GuitarPlayerPage.qml</file>
+        <file>AboutPage.qml</file>
+        <file>ChordPage.qml</file>
+        <file>ChordsHelpPage.qml</file>
+        <file>DrumLoopPage.qml</file>
+        <file>RecorderPage.qml</file>
+        <file>RecorderPlaylistPage.qml</file>
+        <file>RecorderPlaylistHelpPage.qml</file>
+        <file>TuningForkPage.qml</file>
+        <file>ScalesPage.qml</file>
+        <file>FretBoardPage.qml</file>
+        <file>ComposePage.qml</file>
+        <file>ComposeSettingsPage.qml</file>
+        <file>ComposeSelectorPage.qml</file>
+        <file>ComposeLoadPage.qml</file>
+        <file>components/MainMenuListItem.qml</file>
+        <file>components/ChordPlayer.qml</file>
+        <file>components/GuitarStringItem.qml</file>
+        <file>components/GuitarSoundEffect.qml</file>
+        <file>components/ChordsBottomEdge.qml</file>
+        <file>components/ScalesBottomEdge.qml</file>
+        <file>components/MicrophoneVolumeBottomEdge.qml</file>
+        <file>components/MetronomeBottomEdge.qml</file>
+        <file>components/GuitarBottomEdge.qml</file>
+        <file>components/ScaleItem.qml</file>
+        <file>components/FretBoardBottomEdge.qml</file>
+        <file>components/TunerBottomEdge.qml</file>
+        <file>components/ComposeBottomEdge.qml</file>
+        <file>components/GuitarChordItem.qml</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,1068 @@
+{
+    "chords": [
+        {
+            "note": "F#",
+            "name": "",
+            "key": "major",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "G",
+                    "fret": 3,
+                    "finger": 2
+                },
+                {
+                    "string": "D",
+                    "fret": 4,
+                    "finger": 4
+                },
+                {
+                    "string": "A",
+                    "fret": 4,
+                    "finger": 3
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 1
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "m",
+            "key": "minor",
+            "startFret": "2",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 4,
+                    "finger": 4
+                },
+                {
+                    "string": "B",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "G",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "D",
+                    "fret": 3,
+                    "finger": 3
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": -1,
+                    "finger": 0
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "5",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "B",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "G",
+                    "fret": -1,
+                    "finger": -1
+                },
+                {
+                    "string": "D",
+                    "fret": 4,
+                    "finger": 4
+                },
+                {
+                    "string": "A",
+                    "fret": 4,
+                    "finger": 3
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 1
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "6",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "G",
+                    "fret": 3,
+                    "finger": 4
+                },
+                {
+                    "string": "D",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 2
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "7",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 0,
+                    "finger": 0
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "G",
+                    "fret": 3,
+                    "finger": 2
+                },
+                {
+                    "string": "D",
+                    "fret": 4,
+                    "finger": 3
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": -1,
+                    "finger": 0
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "maj7",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 2
+                },
+                {
+                    "string": "G",
+                    "fret": 3,
+                    "finger": 4
+                },
+                {
+                    "string": "D",
+                    "fret": 3,
+                    "finger": 3
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 1
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "9",
+            "key": "none",
+            "startFret": "3",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "B",
+                    "fret": 3,
+                    "finger": 4
+                },
+                {
+                    "string": "G",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "D",
+                    "fret": 2,
+                    "finger": 2
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": -1,
+                    "finger": 0
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "maj9",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 4,
+                    "finger": 4
+                },
+                {
+                    "string": "B",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "G",
+                    "fret": 3,
+                    "finger": 3
+                },
+                {
+                    "string": "D",
+                    "fret": 3,
+                    "finger": 2
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 1
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "11",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 4,
+                    "finger": 3
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "G",
+                    "fret": 3,
+                    "finger": 2
+                },
+                {
+                    "string": "D",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "A",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 1
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "13",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "B",
+                    "fret": 4,
+                    "finger": 3
+                },
+                {
+                    "string": "G",
+                    "fret": 3,
+                    "finger": 2
+                },
+                {
+                    "string": "D",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": -1,
+                    "finger": 0
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "maj13",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "G",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "D",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "A",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 2
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "m6",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "G",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "D",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 2
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "m7",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "G",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "D",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 2
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "m9",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 4
+                },
+                {
+                    "string": "G",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "D",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "A",
+                    "fret": 0,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 2
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "m11",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "G",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "D",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "A",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 1
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "m13",
+            "key": "none",
+            "startFret": "3",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "B",
+                    "fret": 4,
+                    "finger": 4
+                },
+                {
+                    "string": "G",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "D",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "A",
+                    "fret": 4,
+                    "finger": 3
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 1
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "m(maj7)",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "G",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "D",
+                    "fret": 3,
+                    "finger": 2
+                },
+                {
+                    "string": "A",
+                    "fret": 4,
+                    "finger": 3
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 1
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "sus2",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 2,
+                    "finger": 4
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "G",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "D",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 2
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "sus4",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "G",
+                    "fret": 4,
+                    "finger": 4
+                },
+                {
+                    "string": "D",
+                    "fret": 4,
+                    "finger": 3
+                },
+                {
+                    "string": "A",
+                    "fret": 4,
+                    "finger": 2
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 1
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "dim",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "B",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "G",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "D",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 2
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "aug",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "B",
+                    "fret": 3,
+                    "finger": 3
+                },
+                {
+                    "string": "G",
+                    "fret": 3,
+                    "finger": 2
+                },
+                {
+                    "string": "D",
+                    "fret": 0,
+                    "finger": 0
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": -1,
+                    "finger": 0
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "6/9",
+            "key": "none",
+            "startFret": "3",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 4,
+                    "finger": 4
+                },
+                {
+                    "string": "B",
+                    "fret": 4,
+                    "finger": 4
+                },
+                {
+                    "string": "G",
+                    "fret": 3,
+                    "finger": 1
+                },
+                {
+                    "string": "D",
+                    "fret": 4,
+                    "finger": 3
+                },
+                {
+                    "string": "A",
+                    "fret": 4,
+                    "finger": 2
+                },
+                {
+                    "string": "E2",
+                    "fret": -1,
+                    "finger": 0
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "7sus4",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "G",
+                    "fret": 4,
+                    "finger": 4
+                },
+                {
+                    "string": "D",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "A",
+                    "fret": 4,
+                    "finger": 3
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 1
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "7b5",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "B",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "G",
+                    "fret": 3,
+                    "finger": 4
+                },
+                {
+                    "string": "D",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 2
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "7b9",
+            "key": "none",
+            "startFret": "2",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 2,
+                    "finger": 3
+                },
+                {
+                    "string": "B",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "G",
+                    "fret": 2,
+                    "finger": 2
+                },
+                {
+                    "string": "D",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "A",
+                    "fret": 3,
+                    "finger": 4
+                },
+                {
+                    "string": "E2",
+                    "fret": 1,
+                    "finger": 1
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "9sus4",
+            "key": "none",
+            "startFret": "4",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 2
+                },
+                {
+                    "string": "G",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "D",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "A",
+                    "fret": 1,
+                    "finger": 1
+                },
+                {
+                    "string": "E2",
+                    "fret": -1,
+                    "finger": 0
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "add9",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 4,
+                    "finger": 4
+                },
+                {
+                    "string": "B",
+                    "fret": 2,
+                    "finger": 1
+                },
+                {
+                    "string": "G",
+                    "fret": 3,
+                    "finger": 2
+                },
+                {
+                    "string": "D",
+                    "fret": 4,
+                    "finger": 3
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": -1,
+                    "finger": 0
+                }
+            ]
+        },
+        {
+            "note": "F#",
+            "name": "aug9",
+            "key": "none",
+            "startFret": "1",
+            "positions": [
+                {
+                    "string": "E4",
+                    "fret": 4,
+                    "finger": 4
+                },
+                {
+                    "string": "B",
+                    "fret": 3,
+                    "finger": 3
+                },
+                {
+                    "string": "G",
+                    "fret": 3,
+                    "finger": 3
+                },
+                {
+                    "string": "D",
+                    "fret": 2,
+                    "finger": 2
+                },
+                {
+                    "string": "A",
+                    "fret": -1,
+                    "finger": 0
+                },
+                {
+                    "string": "E2",
+                    "fret": 2,
+                    "finger": 1
+                }
+            ]
+        }
+    ]
+}

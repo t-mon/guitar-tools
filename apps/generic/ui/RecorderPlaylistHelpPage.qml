@@ -30,7 +30,7 @@ Page {
     header: PageHeader {
         id: pageHeader
         // TRANSLATORS: Records help page title
-        title: i18n.tr("Help")
+        title: qsTr("Help")
         flickable: helpFlickable
         trailingActionBar.actions: [
             Action {
@@ -61,7 +61,7 @@ Page {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 // TRANSLATORS: Records help page
-                text: i18n.tr("Records location:")
+                text: qsTr("Records location:")
                 wrapMode: Text.WordWrap
             }
 
@@ -92,7 +92,7 @@ Page {
 
                 Label {
                     // TRANSLATORS: Records help page: delete icon description
-                    text: i18n.tr("Click to play")
+                    text: qsTr("Click to play")
                     anchors.verticalCenter: playIcon.verticalCenter
                 }
             }
@@ -115,7 +115,7 @@ Page {
 
                 Label {
                     // TRANSLATORS: Records help page: delete icon description
-                    text: i18n.tr("Click again to stop")
+                    text: qsTr("Click again to stop")
                     anchors.verticalCenter: stopIcon.verticalCenter
                 }
             }
@@ -137,7 +137,7 @@ Page {
 
                 Label {
                     // TRANSLATORS: Records help page: delete icon description
-                    text: i18n.tr("Delete record")
+                    text: qsTr("Delete record")
                     anchors.verticalCenter: deleteIcon.verticalCenter
                 }
             }
@@ -159,7 +159,7 @@ Page {
 
                 Label {
                     // TRANSLATORS: Records help page: edit icon description
-                    text: i18n.tr("Rename record")
+                    text: qsTr("Rename record")
                     anchors.verticalCenter: editIcon.verticalCenter
                 }
             }
@@ -181,7 +181,7 @@ Page {
 
                 Label {
                     // TRANSLATORS: Records help page: edit icon description
-                    text: i18n.tr("Record information")
+                    text: qsTr("Record information")
                     anchors.verticalCenter: infoIcon.verticalCenter
                 }
             }

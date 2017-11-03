@@ -32,7 +32,7 @@ Page {
     header: PageHeader {
         id: pageHeader
         // TRANSLATORS: Title of the records playlist page
-        title: i18n.tr("Records")
+        title: qsTr("Records")
         flickable: recordsListView
         trailingActionBar.actions: [
             Action {
@@ -148,9 +148,9 @@ Page {
         Dialog {
             id: removeDialog
             // TRANSLATORS: Title of the record remove dialog
-            title: i18n.tr("Delete record")
+            title: qsTr("Delete record")
             // TRANSLATORS: Question of the record remove dialog.
-            text: i18n.tr("Are you sure you want to delete this file?")
+            text: qsTr("Are you sure you want to delete this file?")
 
             Label {
                 text: root.fileName
@@ -160,7 +160,7 @@ Page {
 
             Button {
                 // TRANSLATORS: Delete button in the remove record dialog
-                text: i18n.tr("Delete")
+                text: qsTr("Delete")
                 color: UbuntuColors.red
                 onClicked: {
                     Core.recorder.deleteRecordFile(root.fileNamePath);
@@ -170,7 +170,7 @@ Page {
 
             Button {
                 // TRANSLATORS: Cancel button in the remove record dialog
-                text: i18n.tr("Cancel")
+                text: qsTr("Cancel")
                 onClicked: PopupUtils.close(removeDialog)
             }
         }
@@ -181,9 +181,9 @@ Page {
         Dialog {
             id: renameDialog
             // TRANSLATORS: Title of the rename record dialog
-            title: i18n.tr("Rename record file")
+            title: qsTr("Rename record file")
             // TRANSLATORS: Instructions of the record rename dialog.
-            text: i18n.tr("Please enter the new file name.")
+            text: qsTr("Please enter the new file name.")
 
             TextField {
                 id: fileNameTextField
@@ -194,7 +194,7 @@ Page {
 
             Button {
                 // TRANSLATORS: Rename button in the rename record dialog
-                text: i18n.tr("Rename")
+                text: qsTr("Rename")
                 color: UbuntuColors.green
                 onClicked: {
                     Core.recorder.renameRecordFile(root.fileNamePath, fileNameTextField.text);
@@ -203,7 +203,7 @@ Page {
             }
 
             Button {
-                text: i18n.tr("Cancel")
+                text: qsTr("Cancel")
                 onClicked: PopupUtils.close(renameDialog)
             }
         }
@@ -214,11 +214,11 @@ Page {
         Dialog {
             id: infoDialog
             // TRANSLATORS: Title of the rename record dialog
-            title: i18n.tr("Record information")
+            title: qsTr("Record information")
 
             Label {
                 // TRANSLATORS: The name lable in the record information dialog
-                text: i18n.tr("Name:")
+                text: qsTr("Name:")
                 font.bold: true
             }
 
@@ -230,7 +230,7 @@ Page {
 
             Label {
                 // TRANSLATORS: The type lable in the record information dialog
-                text: i18n.tr("Type:")
+                text: qsTr("Type:")
                 font.bold: true
             }
 
@@ -242,7 +242,7 @@ Page {
 
             Label {
                 // TRANSLATORS: The size lable in the record information dialog
-                text: i18n.tr("Size:")
+                text: qsTr("Size:")
                 font.bold: true
             }
 
@@ -254,7 +254,7 @@ Page {
 
             Label {
                 // TRANSLATORS: The modified lable in the record information dialog
-                text: i18n.tr("Modified:")
+                text: qsTr("Modified:")
                 font.bold: true
             }
 
@@ -266,7 +266,7 @@ Page {
 
             Button {
                 // TRANSLATORS: The close button of the record information dialog
-                text: i18n.tr("Close")
+                text: qsTr("Close")
                 onClicked: PopupUtils.close(infoDialog)
             }
         }

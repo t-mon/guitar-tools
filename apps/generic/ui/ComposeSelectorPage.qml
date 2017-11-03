@@ -31,7 +31,7 @@ Page {
     header: PageHeader {
         id: pageHeader
         // TRANSLATORS: Title of the note selection page of the compose tool
-        title: i18n.tr("Select note")
+        title: qsTr("Select note")
     }
 
     property int selectionIndex: -1
@@ -52,7 +52,7 @@ Page {
                 anchors.fill: parent
                 anchors.margins: units.gu(1)
                 // TRANSLATORS: Button in the note selection page of the compose tool (play mode -> click on note plays note, select mode -> click on note selects note)
-                text: scale.selectMode ? i18n.tr("Play mode") : i18n.tr("Select mode")
+                text: scale.selectMode ? qsTr("Play mode") : qsTr("Select mode")
                 color: scale.selectMode ? UbuntuColors.green : UbuntuColors.graphite
                 Behavior on color { ColorAnimation { duration: 400 ; easing.type: scale.selectMode ? Easing.OutQuad : Easing.InQuad} }
                 onClicked: scale.selectMode = !scale.selectMode

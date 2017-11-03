@@ -1,0 +1,348 @@
+{
+    "bpm": 208,
+    "enableMetronome": false,
+    "measureCount": 14,
+    "notes": [
+        {
+            "note": 4,
+            "source": "E2-0.wav",
+            "x": 0,
+            "y": 5
+        },
+        {
+            "note": 11,
+            "source": "A-2.wav",
+            "x": 1,
+            "y": 4
+        },
+        {
+            "note": 4,
+            "source": "D-2.wav",
+            "x": 2,
+            "y": 3
+        },
+        {
+            "note": 11,
+            "source": "B-0.wav",
+            "x": 3,
+            "y": 1
+        },
+        {
+            "note": 4,
+            "source": "E4-0.wav",
+            "x": 4,
+            "y": 0
+        },
+        {
+            "note": 11,
+            "source": "B-0.wav",
+            "x": 5,
+            "y": 1
+        },
+        {
+            "note": 7,
+            "source": "G-0.wav",
+            "x": 6,
+            "y": 2
+        },
+        {
+            "note": 4,
+            "source": "D-2.wav",
+            "x": 7,
+            "y": 3
+        },
+        {
+            "note": 7,
+            "source": "E2-3.wav",
+            "x": 8,
+            "y": 5
+        },
+        {
+            "note": 11,
+            "source": "A-2.wav",
+            "x": 9,
+            "y": 4
+        },
+        {
+            "note": 2,
+            "source": "D-0.wav",
+            "x": 10,
+            "y": 3
+        },
+        {
+            "note": 2,
+            "source": "B-3.wav",
+            "x": 11,
+            "y": 1
+        },
+        {
+            "note": 4,
+            "source": "E4-0.wav",
+            "x": 12,
+            "y": 0
+        },
+        {
+            "note": 2,
+            "source": "B-3.wav",
+            "x": 13,
+            "y": 1
+        },
+        {
+            "note": 7,
+            "source": "G-0.wav",
+            "x": 14,
+            "y": 2
+        },
+        {
+            "note": 2,
+            "source": "D-0.wav",
+            "x": 15,
+            "y": 3
+        },
+        {
+            "note": 2,
+            "source": "D-0.wav",
+            "x": 16,
+            "y": 3
+        },
+        {
+            "note": 9,
+            "source": "G-2.wav",
+            "x": 17,
+            "y": 2
+        },
+        {
+            "note": 2,
+            "source": "B-3.wav",
+            "x": 18,
+            "y": 1
+        },
+        {
+            "note": 9,
+            "source": "G-2.wav",
+            "x": 19,
+            "y": 2
+        },
+        {
+            "note": 4,
+            "source": "E4-0.wav",
+            "x": 20,
+            "y": 0
+        },
+        {
+            "note": 2,
+            "source": "B-3.wav",
+            "x": 21,
+            "y": 1
+        },
+        {
+            "note": 9,
+            "source": "G-2.wav",
+            "x": 22,
+            "y": 2
+        },
+        {
+            "note": 2,
+            "source": "B-3.wav",
+            "x": 23,
+            "y": 1
+        },
+        {
+            "note": 0,
+            "source": "A-3.wav",
+            "x": 24,
+            "y": 4
+        },
+        {
+            "note": 4,
+            "source": "D-2.wav",
+            "x": 25,
+            "y": 3
+        },
+        {
+            "note": 2,
+            "source": "B-3.wav",
+            "x": 26,
+            "y": 1
+        },
+        {
+            "note": 7,
+            "source": "G-0.wav",
+            "x": 27,
+            "y": 2
+        },
+        {
+            "note": 4,
+            "source": "E4-0.wav",
+            "x": 28,
+            "y": 0
+        },
+        {
+            "note": 2,
+            "source": "B-3.wav",
+            "x": 29,
+            "y": 1
+        },
+        {
+            "note": 7,
+            "source": "G-0.wav",
+            "x": 30,
+            "y": 2
+        },
+        {
+            "note": 2,
+            "source": "B-3.wav",
+            "x": 31,
+            "y": 1
+        },
+        {
+            "note": 0,
+            "source": "A-3.wav",
+            "x": 32,
+            "y": 4
+        },
+        {
+            "note": 4,
+            "source": "D-2.wav",
+            "x": 33,
+            "y": 3
+        },
+        {
+            "note": 2,
+            "source": "B-3.wav",
+            "x": 34,
+            "y": 1
+        },
+        {
+            "note": 7,
+            "source": "G-0.wav",
+            "x": 35,
+            "y": 2
+        },
+        {
+            "note": 4,
+            "source": "E4-0.wav",
+            "x": 36,
+            "y": 0
+        },
+        {
+            "note": 2,
+            "source": "B-3.wav",
+            "x": 37,
+            "y": 1
+        },
+        {
+            "note": 7,
+            "source": "G-0.wav",
+            "x": 38,
+            "y": 2
+        },
+        {
+            "note": 2,
+            "source": "B-3.wav",
+            "x": 39,
+            "y": 1
+        },
+        {
+            "note": 9,
+            "source": "A-0.wav",
+            "x": 40,
+            "y": 4
+        },
+        {
+            "note": 4,
+            "source": "D-2.wav",
+            "x": 41,
+            "y": 3
+        },
+        {
+            "note": 11,
+            "source": "B-0.wav",
+            "x": 42,
+            "y": 1
+        },
+        {
+            "note": 9,
+            "source": "G-2.wav",
+            "x": 43,
+            "y": 2
+        },
+        {
+            "note": 4,
+            "source": "E4-0.wav",
+            "x": 44,
+            "y": 0
+        },
+        {
+            "note": 11,
+            "source": "B-0.wav",
+            "x": 45,
+            "y": 1
+        },
+        {
+            "note": 9,
+            "source": "G-2.wav",
+            "x": 46,
+            "y": 2
+        },
+        {
+            "note": 11,
+            "source": "B-0.wav",
+            "x": 47,
+            "y": 1
+        },
+        {
+            "note": 9,
+            "source": "A-0.wav",
+            "x": 48,
+            "y": 4
+        },
+        {
+            "note": 4,
+            "source": "D-2.wav",
+            "x": 49,
+            "y": 3
+        },
+        {
+            "note": 11,
+            "source": "B-0.wav",
+            "x": 50,
+            "y": 1
+        },
+        {
+            "note": 9,
+            "source": "G-2.wav",
+            "x": 51,
+            "y": 2
+        },
+        {
+            "note": 4,
+            "source": "E4-0.wav",
+            "x": 52,
+            "y": 0
+        },
+        {
+            "note": 11,
+            "source": "B-0.wav",
+            "x": 53,
+            "y": 1
+        },
+        {
+            "note": 9,
+            "source": "G-2.wav",
+            "x": 54,
+            "y": 2
+        },
+        {
+            "note": 11,
+            "source": "B-0.wav",
+            "x": 55,
+            "y": 1
+        }
+    ],
+    "rythmBeats": 4,
+    "rythmTicks": 4,
+    "scaleValue": 0.97712084452311199,
+    "songName": "Behind blue eyes - Limp Bizkit",
+    "trackCount": 6
+}

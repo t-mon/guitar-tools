@@ -30,7 +30,7 @@ Page {
     header: PageHeader {
         id: pageHeader
         // TRANSLATORS: Chord help page title
-        title: i18n.tr("Help")
+        title: qsTr("Help")
         flickable: helpFlickable
         trailingActionBar.actions: [
             Action {
@@ -60,7 +60,7 @@ Page {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 // TRANSLATORS: Chord help page: description of the hand
-                text: i18n.tr("Tap on the guitar fret board to listen how the chords sounds like. You can change the speed in the settings.")
+                text: qsTr("Tap on the guitar fret board to listen how the chords sounds like. You can change the speed in the settings.")
                 wrapMode: Text.WordWrap
             }
 
@@ -82,7 +82,7 @@ Page {
 
                 Label {
                     // TRANSLATORS: Chord help page: symbol for not playing the string
-                    text: i18n.tr("Don't play this string")
+                    text: qsTr("Don't play this string")
                     anchors.verticalCenter: dontPluckRectangle.verticalCenter
                 }
             }
@@ -105,7 +105,7 @@ Page {
 
                 Label {
                     // TRANSLATORS: Chord help page: symbol for playing the string
-                    text: i18n.tr("Play this string")
+                    text: qsTr("Play this string")
                     anchors.verticalCenter: pluckRectangle.verticalCenter
                 }
             }
@@ -114,7 +114,7 @@ Page {
 
             Label {
                 // TRANSLATORS: Chord help page: description of the hand
-                text: i18n.tr("Finger numbers")
+                text: qsTr("Finger numbers")
                 font.bold: true
                 wrapMode: Text.WordWrap
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -128,7 +128,7 @@ Page {
                 width: parent.width > units.gu(50) ? units.gu(50) : parent.width
 
                 fillMode: Image.PreserveAspectFit
-                source: "file://" + dataDirectory + "images/hand.svg"
+                source: dataDirectory + "/images/hand.svg"
             }
 
         }

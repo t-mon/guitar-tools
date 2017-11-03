@@ -187,7 +187,7 @@ Item {
                     Layout.fillWidth: true
                     model: ["434 Hz", "440 Hz"]
                     // TRANSLATORS: In the settings page the pitch standard selection
-                    text: i18n.tr("Pitch standard")
+                    text: qsTr("Pitch standard")
                     onSelectedIndexChanged: {
                         if (selectedIndex === 0)
                             Core.settings.pitchStandard = 434

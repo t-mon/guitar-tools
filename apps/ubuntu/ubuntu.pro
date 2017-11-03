@@ -52,7 +52,7 @@ CONF_FILES += guitar-tools.apparmor \
               guitar-tools.desktop
 
 # install files
-dataFolder.files = ../../data/
+dataFolder.files = data/
 dataFolder.path = /guitar-tools
 
 # specify where the config files are installed to

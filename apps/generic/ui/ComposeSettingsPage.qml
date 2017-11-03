@@ -31,7 +31,7 @@ Page {
     header: PageHeader {
         id: pageHeader
         // TRANSLATORS: Title of the song settings page of the composer tool
-        title: i18n.tr("Song settings")
+        title: qsTr("Song settings")
         flickable: settingsFlickable
     }
 
@@ -60,7 +60,7 @@ Page {
 
                     Label {
                         // TRANSLATORS: The measures slider in the song settings. Indicates how many measures the song has.
-                        text: i18n.tr("Measures") + ": " + Core.composeTool.measureCount + " (" + Core.composeTool.songDurationString + ")"
+                        text: qsTr("Measures") + ": " + Core.composeTool.measureCount + " (" + Core.composeTool.songDurationString + ")"
                     }
 
                     RowLayout {
@@ -117,7 +117,7 @@ Page {
 
                     Label {
                         // TRANSLATORS: The tracks slider description in the compose tool song settings (rows of the compose tool)
-                        text: i18n.tr("Tracks") + " (" + Math.round(trackSlider.value) + ")"
+                        text: qsTr("Tracks") + " (" + Math.round(trackSlider.value) + ")"
                     }
 
                     RowLayout {
@@ -174,7 +174,7 @@ Page {
 
                     Label {
                         // TRANSLATORS: The bpm description in the compose tool song settings
-                        text: i18n.tr("Beats per minute") + " (" + Math.round(bpmSlider.value) + ")"
+                        text: qsTr("Beats per minute") + " (" + Math.round(bpmSlider.value) + ")"
                     }
 
                     RowLayout {
@@ -224,7 +224,7 @@ Page {
 
             Label {
                 // TRANSLATORS: The rythm description in the compose tool song settings (i.e. 4/4)
-                text: i18n.tr("Rhythm") + " (" + tickPicker.model[tickPicker.selectedIndex] + "/4)"
+                text: qsTr("Rhythm") + " (" + tickPicker.model[tickPicker.selectedIndex] + "/4)"
             }
 
             Row {
@@ -255,7 +255,7 @@ Page {
             Button {
                 id: clearNotesButton
                 // TRANSLATORS: Removes all notes in the compose tool
-                text: i18n.tr("Clear all notes")
+                text: qsTr("Clear all notes")
                 Layout.fillWidth: true
                 color: UbuntuColors.red
                 onClicked: PopupUtils.open(clearNotesComponent)
@@ -268,14 +268,14 @@ Page {
                 id: clearNotesDialog
 
                 // TRANSLATORS: Title of the clear notes dialog
-                title: i18n.tr("Clear all notes")
+                title: qsTr("Clear all notes")
 
                 // TRANSLATORS: Clear question for the delete song dialog
-                text: i18n.tr("Are you sure you want to clear all notes in this song?")
+                text: qsTr("Are you sure you want to clear all notes in this song?")
 
                 Button {
                     id: deleteButton
-                    text: i18n.tr("Clear")
+                    text: qsTr("Clear")
                     color: UbuntuColors.red
                     onClicked: {
                         PopupUtils.close(clearNotesDialog)
@@ -286,7 +286,7 @@ Page {
                 ThinDivider { }
 
                 Button {
-                    text: i18n.tr("Cancel")
+                    text: qsTr("Cancel")
                     color: UbuntuColors.green
                     onClicked: PopupUtils.close(clearNotesDialog)
                 }

@@ -28,13 +28,22 @@ Item {
     property string title
     property string imageName
 
+    height: toolButton.implicitHeight
+
     signal clicked()
 
     Button {
         id: toolButton
         anchors.left: parent.left
         anchors.right: parent.right
-        text: title
+
+        Label {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            text: root.title
+        }
+
         onClicked: root.clicked()
     }
 }

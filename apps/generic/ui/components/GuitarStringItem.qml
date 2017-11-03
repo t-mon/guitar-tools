@@ -18,12 +18,11 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import QtMultimedia 5.4
-import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
 
 Item {
@@ -32,7 +31,7 @@ Item {
     // String properties
     property string noteName
     property real thickness
-    property string stringColor: theme.palette.normal.baseText
+    property string stringColor: Material.foreground
     property int fret: 0
 
     // Animation properties
@@ -63,9 +62,9 @@ Item {
         height: thickness
         color: {
             if (fret < 0 && Core.settings.markNotAssociatedStrings) {
-                return UbuntuColors.red
+                return Material.color(Material.Red)
             } else {
-                return theme.palette.normal.baseText
+                return Material.foreground
             }
         }
 

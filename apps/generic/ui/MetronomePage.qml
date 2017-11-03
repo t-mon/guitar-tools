@@ -31,7 +31,7 @@ Page {
     header: PageHeader {
         id: pageHeader
         // TRANSLATORS: Title of the metronome page
-        title: i18n.tr("Metronome")
+        title: qsTr("Metronome")
         trailingActionBar.actions: [
             Action {
                 iconName: "info"
@@ -53,13 +53,13 @@ Page {
 
     SoundEffect {
         id: tickSound
-        source: "file://" + dataDirectory + "sounds/metronome/tick.wav"
+        source: dataDirectory + "sounds/metronome/tick.wav"
         volume: metronomeVolume
     }
 
     SoundEffect {
         id: tockSound
-        source: "file://" + dataDirectory + "sounds/metronome/tock.wav"
+        source: dataDirectory + "sounds/metronome/tock.wav"
         volume: metronomeVolume
     }
 
@@ -141,7 +141,7 @@ Page {
             property real widthOffset: (metronomeBackgroundImage.width - metronomeBackgroundImage.paintedWidth) / 2
             property real heightOffset: (metronomeBackgroundImage.height - metronomeBackgroundImage.paintedHeight) / 2
 
-            source: "file://" + dataDirectory + "images/metronome.png"
+            source: dataDirectory + "/images/metronome.png"
 
             Column {
                 anchors.left: parent.left
@@ -205,7 +205,7 @@ Page {
                     id: metronomePendulumImage
                     height: metronomeBackgroundImage.paintedHeight
                     fillMode: Image.PreserveAspectFit
-                    source: "file://" + dataDirectory + "images/metronome-pendulum.png"
+                    source: dataDirectory + "/images/metronome-pendulum.png"
                 }
 
                 Image {
@@ -219,7 +219,7 @@ Page {
                     }
 
                     fillMode: Image.PreserveAspectFit
-                    source: "file://" + dataDirectory + "images/metronome-weight.png"
+                    source: dataDirectory + "/images/metronome-weight.png"
                 }
             }
 

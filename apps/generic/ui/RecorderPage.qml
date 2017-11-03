@@ -31,7 +31,7 @@ Page {
     header: PageHeader {
         id: pageHeader
         // TRANSLATORS: Title of the drum loops page
-        title: i18n.tr("Recorder")
+        title: qsTr("Recorder")
         trailingActionBar.actions: [
             Action {
                 iconName: "info"

@@ -18,36 +18,46 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import QtMultimedia 5.4
-import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Pickers 1.0
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
 import "components"
 
 Page {
     id: root
-    header: PageHeader {
-        id: pageHeader
-        // TRANSLATORS: The title of the fretboard page (in the guitar player)
-        title: i18n.tr("Fretboard")
-        flickable: scale.flickable
-        trailingActionBar.actions: [
-            Action {
-                iconName: "info"
-                onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("AboutPage.qml"))
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/back.svg"
+                onClicked: pageStack.pop()
             }
-        ]
+
+            Label {
+                text: qsTr("Guitar")
+                elide: Label.ElideRight
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/info.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+        }
     }
+
 
     ScaleItem {
         id: scale
         anchors.fill: parent
+        anchors.topMargin: root.header.implicitHeight
         scale: Core.fretBoardScale
         colorfull: true
-        displayNotes: bottomEdge.displayFretboardNotes
     }
 
-    FretBoardBottomEdge { id: bottomEdge }
+    //FretBoardBottomEdge { id: bottomEdge }
 }

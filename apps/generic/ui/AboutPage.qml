@@ -19,62 +19,77 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 import QtQuick 2.7
-import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
 import GuitarTools 1.0
+
+import "components"
 
 Page {
     id: root
-    header: PageHeader {
-        id: pageHeader
-        title: i18n.tr("About")
-        flickable: aboutFlickable
+    title: qsTr("About")
+
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/back.svg"
+                onClicked: pageStack.pop()
+            }
+
+            Label {
+                text: qsTr("About")
+                elide: Label.ElideRight
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+        }
     }
 
     Flickable {
         id: aboutFlickable
         anchors.fill: parent
+        anchors.topMargin: root.header.height
         contentHeight: aboutColumn.height
 
         Column {
             id: aboutColumn
             anchors.left: parent.left
-            anchors.leftMargin: units.gu(2)
+            anchors.leftMargin: 10
             anchors.right: parent.right
-            anchors.rightMargin: units.gu(2)
+            anchors.rightMargin: 10
 
-            spacing: units.gu(3)
+            spacing: 6
 
             Column {
                 anchors.left: parent.left
                 anchors.right: parent.right
-                spacing: units.gu(2)
+                spacing: 10
 
                 Item {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    height: units.gu(7)
+                    height: 15
 
                     Label {
                         anchors.centerIn: parent
                         text: "Guitar tools"
                         font.bold: true
-                        font.pixelSize: units.gu(5)
+                        font.pixelSize: 30
                     }
                 }
 
 
-                UbuntuShape {
+                Rectangle {
                     id: iconImage
                     anchors.horizontalCenter: parent.horizontalCenter
-                    width: units.gu(10)
+                    width: 50
                     height: width
-                    radius: "medium"
-                    source: Image {
+                    radius: 10
+
+                    Image {
                         anchors.fill: parent
-                        source: "file://" + dataDirectory + "icons/guitar-tools.svg"
+                        source: dataDirectory + "/icons/guitar-tools.svg"
                     }
                 }
 
@@ -82,7 +97,7 @@ Page {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: version
                     font.bold: true
-                    font.pixelSize: units.gu(3)
+                    font.pixelSize: 20
                 }
 
                 Label {
@@ -90,22 +105,22 @@ Page {
                     text: "2016 © Simon Stürz"
                 }
 
-                ThinDivider { }
+                Separator { }
             }
 
 
             Column {
                 anchors.left: parent.left
                 anchors.right: parent.right
-                spacing: units.gu(1)
+                spacing: 10
 
                 Row {
                     anchors.left: parent.left
-                    spacing: units.gu(2)
+                    spacing: 5
 
                     Label {
                         // TRANSLATORS: In the about screen.
-                        text: i18n.tr("License:")
+                        text: qsTr("License:")
                         font.bold: true
                     }
 
@@ -122,11 +137,11 @@ Page {
 
                 Row {
                     anchors.left: parent.left
-                    spacing: units.gu(2)
+                    spacing: 5
 
                     Label {
                         // TRANSLATORS: In the about screen.
-                        text: i18n.tr("Source code:")
+                        text: qsTr("Source code:")
                         font.bold: true
                     }
 
@@ -143,11 +158,11 @@ Page {
 
                 Row {
                     anchors.left: parent.left
-                    spacing: units.gu(2)
+                    spacing: 5
 
                     Label {
                         // TRANSLATORS: In the about screen.
-                        text: i18n.tr("Bugtracker:")
+                        text: qsTr("Bugtracker:")
                         font.bold: true
                     }
 
@@ -164,11 +179,11 @@ Page {
 
                 Row {
                     anchors.left: parent.left
-                    spacing: units.gu(2)
+                    spacing: 5
 
                     Label {
                         // TRANSLATORS: Thank you very much for helping with the translations!! :)
-                        text: i18n.tr("Translations:")
+                        text: qsTr("Translations:")
                         font.bold: true
                     }
 
@@ -186,11 +201,11 @@ Page {
 
                 Row {
                     anchors.left: parent.left
-                    spacing: units.gu(2)
+                    spacing: 5
 
                     Label {
                         // TRANSLATORS: In the about screen.
-                        text: i18n.tr("Mail:")
+                        text: qsTr("Mail:")
                         font.bold: true
                     }
 
@@ -207,11 +222,11 @@ Page {
 
                 Row {
                     anchors.left: parent.left
-                    spacing: units.gu(2)
+                    spacing: 5
 
                     Label {
                         // TRANSLATORS: In the about screen.
-                        text: i18n.tr("Design:")
+                        text: qsTr("Design:")
                         font.bold: true
                     }
 
@@ -220,11 +235,11 @@ Page {
                     }
                 }
 
-                ThinDivider { }
+                Separator { }
 
                 Label {
                     // TRANSLATORS: Donate button description
-                    text: i18n.tr("Enjoying the app?")
+                    text: qsTr("Enjoying the app?")
                     font.bold: true
                     wrapMode: Text.WordWrap
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -233,39 +248,45 @@ Page {
                 Button {
                     id: donateButton
                     anchors.left: parent.left
-                    anchors.leftMargin: units.gu(5)
+                    anchors.leftMargin: 10
                     anchors.right: parent.right
-                    anchors.rightMargin: units.gu(5)
-                    color: "green"
+                    anchors.rightMargin: 10
+
+//                    background: Rectangle {
+//                        anchors.fill: parent
+//                        color: app.green
+//                    }
+
+                    //color: "green"
                     // TRANSLATORS: Text in the Donate button
-                    text: i18n.tr("Donate (PayPal)")
+                    text: qsTr("Donate (PayPal)")
                     font.underline: true
                     onClicked: Qt.openUrlExternally("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=C3UKTC3XY9SJ6")
                 }
 
-                ThinDivider { }
+                Separator { }
 
                 Label {
                     id: sounds
                     anchors.left: parent.left
                     anchors.right: parent.right
                     // TRANSLATORS: In the about screen.
-                    text: i18n.tr("Thanks to Fabian Baumgartner and Alfred Bushi for recording the guitar sounds with me. We release the sounds under the <b>CC BY-NC 3.0</b>.")
+                    text: qsTr("Thanks to Fabian Baumgartner and Alfred Bushi for recording the guitar sounds with me. We release the sounds under the <b>CC BY-NC 3.0</b>.")
                     wrapMode: Text.WordWrap
                 }
 
-                ThinDivider { }
+                Separator { }
 
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
 
-                    spacing: units.gu(1)
+                    spacing: 2
 
                     Label {
                         id: metronomeTitle
                         // TRANSLATORS: In the about screen.
-                        text: i18n.tr("Metronome sounds:")
+                        text: qsTr("Metronome sounds:")
                         font.bold: true
                     }
 
@@ -282,18 +303,18 @@ Page {
                     }
                 }
 
-                ThinDivider { }
+                Separator { }
 
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
 
-                    spacing: units.gu(1)
+                    spacing: 2
 
                     Label {
                         id: drumLoopsTitle
                         // TRANSLATORS: In the about screen.
-                        text: i18n.tr("Drum loops:")
+                        text: qsTr("Drum loops:")
                         font.bold: true
                     }
 
@@ -310,18 +331,18 @@ Page {
                     }
                 }
 
-                ThinDivider { }
+                Separator { }
 
                 Row {
                     anchors.left: parent.left
                     anchors.right: parent.right
 
-                    spacing: units.gu(1)
+                    spacing: 2
 
                     Label {
                         id: libsTitle
                         // TRANSLATORS: In the about screen.
-                        text: i18n.tr("External library:")
+                        text: qsTr("External library:")
                         font.bold: true
                     }
 
@@ -338,7 +359,7 @@ Page {
                     }
                 }
 
-                ThinDivider { }
+                Separator { }
             }
         }
     }

@@ -33,7 +33,9 @@ ApplicationWindow {
     width: 320
     height: 480
     visible: true
-    title: "Guitar Tools"
+    title: qsTr("Guitar Tools")
+
+    property bool landscape: height < width
 
     property color green: "#3eb34f"
     property color red: "#ed3146"
@@ -73,22 +75,22 @@ ApplicationWindow {
         switch(guitarString) {
         case Music.GuitarStringE2:
             // TRANSLATORS: E2 guitar string: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("E");
+            return qsTr("E");
         case Music.GuitarStringA:
             // TRANSLATORS: A guitar string: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("A");
+            return qsTr("A");
         case Music.GuitarStringD:
             // TRANSLATORS: D guitar string: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("D");
+            return qsTr("D");
         case Music.GuitarStringG:
             // TRANSLATORS: G guitar string: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("G");
+            return qsTr("G");
         case Music.GuitarStringB:
             // TRANSLATORS: B guitar string: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("B");
+            return qsTr("B");
         case Music.GuitarStringE4:
             // TRANSLATORS: E4 guitar string: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("E");
+            return qsTr("E");
         }
     }
 
@@ -98,10 +100,10 @@ ApplicationWindow {
             return "";
         case Music.NoteKeyMinor:
             // TRANSLATORS: Type of the chord. See https://en.wikipedia.org/wiki/Major_and_minor
-            return i18n.tr("minor");
+            return qsTr("minor");
         case Music.NoteKeyMajor:
             // TRANSLATORS: Type of the chord. See https://en.wikipedia.org/wiki/Major_and_minor
-            return i18n.tr("major");
+            return qsTr("major");
         }
     }
 
@@ -109,40 +111,40 @@ ApplicationWindow {
         switch(note) {
         case Music.NoteC:
             // TRANSLATORS: C: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("C");
+            return qsTr("C");
         case Music.NoteCSharp:
             // TRANSLATORS: C sharp: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("C#");
+            return qsTr("C#");
         case Music.NoteD:
             // TRANSLATORS: D: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("D");
+            return qsTr("D");
         case Music.NoteDSharp:
             // TRANSLATORS: D sharp: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("D#");
+            return qsTr("D#");
         case Music.NoteE:
             // TRANSLATORS: E: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("E");
+            return qsTr("E");
         case Music.NoteF:
             // TRANSLATORS: F: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("F");
+            return qsTr("F");
         case Music.NoteFSharp:
             // TRANSLATORS: F sharp: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("F#");
+            return qsTr("F#");
         case Music.NoteG:
             // TRANSLATORS: G: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("G");
+            return qsTr("G");
         case Music.NoteGSharp:
             // TRANSLATORS: G# Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("G#");
+            return qsTr("G#");
         case Music.NoteA:
             // TRANSLATORS: A: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("A");
+            return qsTr("A");
         case Music.NoteASharp:
             // TRANSLATORS: A sharp: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return i18n.tr("A#");
+            return qsTr("A#");
         case Music.NoteB:
             // TRANSLATORS: B: Please check out https://en.wikipedia.org/wiki/Musical_note (12-tone chromatic scale) for the correct note name in your country.
-            return  i18n.tr("B");
+            return  qsTr("B");
         case Music.NoteNone:
             return  "-";
         }

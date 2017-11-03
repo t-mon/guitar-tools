@@ -248,7 +248,7 @@ Page {
             property real heightOffset: (height - paintedHeight) / 2
 
             fillMode: Image.PreserveAspectFit
-            source: "file://" + dataDirectory + "images/fingerboard.png"
+            source: dataDirectory + "/images/fingerboard.png"
 
             MouseArea {
                 anchors.fill: parent

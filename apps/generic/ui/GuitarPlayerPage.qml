@@ -18,36 +18,41 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import QtMultimedia 5.4
-import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3
-import Ubuntu.Components.Pickers 1.3
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
 import "components"
 
 Page {
     id: root
-    header: PageHeader {
-        id: pageHeader
-        // TRANSLATORS: Title of the guitar player page
-        title: i18n.tr("Guitar")
-        trailingActionBar.actions: [
-            Action {
-                iconName: "info"
-                onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("AboutPage.qml"))
-            },
-            Action {
-                iconName: "add"
-                onTriggered: PopupUtils.open(chordSelectionComponent)
-            },
-            Action {
-                iconSource: "file://" + dataDirectory + "icons/fretboard.svg"
-                onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("FretBoardPage.qml"))
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/back.svg"
+                onClicked: pageStack.pop()
             }
-        ]
+
+            Label {
+                text: qsTr("Guitar")
+                elide: Label.ElideRight
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/add.svg"
+                onClicked: chordSelectionPopup.open()
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/fretboard.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("FretBoardPage.qml"))
+            }
+        }
     }
 
     property int selectedIndex: 0
@@ -60,18 +65,18 @@ Page {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.topMargin: pageHeader.height + units.gu(2)
-        anchors.bottomMargin: units.gu(2)
+        anchors.topMargin: 10
+        anchors.bottomMargin: 10
 
         GridView {
             id: chordsGridView
-            cellWidth: width / 4 > units.gu(12) ? units.gu(12) : width / 4
+            cellWidth: width / 4 > 50 ? 50 : width / 4
             cellHeight: cellWidth
 
             Layout.alignment: Qt.AlignHCenter
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.maximumWidth: parent.width - units.gu(1)
+            Layout.maximumWidth: parent.width - 5
 
             model: Core.guitarPlayerChords
             delegate: GuitarChordItem { }
@@ -84,12 +89,13 @@ Page {
 
                 property string chordName
 
-                UbuntuShape {
+                Rectangle {
                     id: temporaryShape
                     anchors.fill: dragItem
-                    anchors.margins: units.gu(1)
+                    anchors.margins: 2
                     z: 1
-                    color: UbuntuColors.green
+                    color: app.green
+                    radius: height / 4
 
                     Label {
                         anchors.centerIn: parent
@@ -267,8 +273,8 @@ Page {
             Layout.preferredHeight: stringColumn.height + 2 * offset
             Layout.fillWidth: true
 
-            property real stringAreaHeight: units.gu(5)
-            property real offset: units.gu(2.5)
+            property real stringAreaHeight: 20
+            property real offset: 10
 
             //Rectangle { anchors.fill: parent; color: "steelblue" ; opacity: .2 }
 
@@ -284,8 +290,8 @@ Page {
                     anchors.right: parent.right
                     height: guitarItem.stringAreaHeight
                     noteName: guitarStringToString(Music.GuitarStringE4);
-                    thickness: units.gu(0.2)
-                    Component.onCompleted: source = "file://" + dataDirectory + "sounds/guitar/E4-0.wav"
+                    thickness: 1.2
+                    Component.onCompleted: source = dataDirectory + "/sounds/guitar/E4-0.wav"
                 }
 
                 GuitarStringItem {
@@ -294,8 +300,8 @@ Page {
                     anchors.right: parent.right
                     height: guitarItem.stringAreaHeight
                     noteName: guitarStringToString(Music.GuitarStringB);
-                    thickness: units.gu(0.22)
-                    Component.onCompleted: source = "file://" + dataDirectory + "sounds/guitar/B-0.wav"
+                    thickness: 1.22
+                    Component.onCompleted: source = dataDirectory + "/sounds/guitar/B-0.wav"
                 }
 
                 GuitarStringItem {
@@ -304,8 +310,8 @@ Page {
                     anchors.right: parent.right
                     height: guitarItem.stringAreaHeight
                     noteName: guitarStringToString(Music.GuitarStringG);
-                    thickness: units.gu(0.24)
-                    Component.onCompleted: source = "file://" + dataDirectory + "sounds/guitar/G-0.wav"
+                    thickness: 1.24
+                    Component.onCompleted: source = dataDirectory + "/sounds/guitar/G-0.wav"
                 }
 
                 GuitarStringItem {
@@ -314,8 +320,8 @@ Page {
                     anchors.right: parent.right
                     height: guitarItem.stringAreaHeight
                     noteName: guitarStringToString(Music.GuitarStringD);
-                    thickness: units.gu(0.26)
-                    Component.onCompleted: source = "file://" + dataDirectory + "sounds/guitar/D-0.wav"
+                    thickness: 1.26
+                    Component.onCompleted: source = dataDirectory + "/sounds/guitar/D-0.wav"
                 }
 
                 GuitarStringItem {
@@ -324,8 +330,8 @@ Page {
                     anchors.right: parent.right
                     height: guitarItem.stringAreaHeight
                     noteName: guitarStringToString(Music.GuitarStringA);
-                    thickness: units.gu(0.3)
-                    Component.onCompleted: source = "file://" + dataDirectory + "sounds/guitar/A-0.wav"
+                    thickness: 1.3
+                    Component.onCompleted: source = dataDirectory + "/sounds/guitar/A-0.wav"
                 }
 
                 GuitarStringItem {
@@ -334,8 +340,8 @@ Page {
                     anchors.right: parent.right
                     height: guitarItem.stringAreaHeight
                     noteName: guitarStringToString(Music.GuitarStringE2);
-                    thickness: units.gu(0.33)
-                    Component.onCompleted: source = "file://" + dataDirectory + "sounds/guitar/E2-0.wav"
+                    thickness: 1.33
+                    Component.onCompleted: source = dataDirectory + "/sounds/guitar/E2-0.wav"
                 }
             }
 
@@ -430,77 +436,102 @@ Page {
 
         // E4
         var chordPosition = currentChord.positions.get(Music.GuitarStringE4)
-        e4String.source = "file://" + dataDirectory + "sounds/guitar/" + Core.getNoteFileName(Music.GuitarStringE4, chordPosition.fret)
+        e4String.source = dataDirectory + "/sounds/guitar/" + Core.getNoteFileName(Music.GuitarStringE4, chordPosition.fret)
         e4String.fret = chordPosition.fret
 
         // A
         chordPosition = currentChord.positions.get(Music.GuitarStringA)
-        aString.source = "file://" + dataDirectory + "sounds/guitar/" + Core.getNoteFileName(Music.GuitarStringA, chordPosition.fret)
+        aString.source = dataDirectory + "/sounds/guitar/" + Core.getNoteFileName(Music.GuitarStringA, chordPosition.fret)
         aString.fret = chordPosition.fret
 
         // D
         chordPosition = currentChord.positions.get(Music.GuitarStringD)
-        dString.source = "file://" + dataDirectory + "sounds/guitar/" + Core.getNoteFileName(Music.GuitarStringD, chordPosition.fret)
+        dString.source = dataDirectory + "/sounds/guitar/" + Core.getNoteFileName(Music.GuitarStringD, chordPosition.fret)
         dString.fret = chordPosition.fret
 
         // G
         chordPosition = currentChord.positions.get(Music.GuitarStringG)
-        gString.source = "file://" + dataDirectory + "sounds/guitar/" + Core.getNoteFileName(Music.GuitarStringG, chordPosition.fret)
+        gString.source = dataDirectory + "/sounds/guitar/" + Core.getNoteFileName(Music.GuitarStringG, chordPosition.fret)
         gString.fret = chordPosition.fret
 
         // B
         chordPosition = currentChord.positions.get(Music.GuitarStringB)
-        bString.source = "file://" + dataDirectory + "sounds/guitar/" + Core.getNoteFileName(Music.GuitarStringB, chordPosition.fret)
+        bString.source = dataDirectory + "/sounds/guitar/" + Core.getNoteFileName(Music.GuitarStringB, chordPosition.fret)
         bString.fret = chordPosition.fret
 
         // E2
         chordPosition = currentChord.positions.get(Music.GuitarStringE2)
-        e2String.source = "file://" + dataDirectory + "sounds/guitar/" + Core.getNoteFileName(Music.GuitarStringE2, chordPosition.fret)
+        e2String.source = dataDirectory + "/sounds/guitar/" + Core.getNoteFileName(Music.GuitarStringE2, chordPosition.fret)
         e2String.fret = chordPosition.fret
     }
 
-    Component {
-        id: chordSelectionComponent
+    Popup {
+        id: chordSelectionPopup
+        leftMargin: root.width * 0.2 / 2
+        topMargin: root.height * 0.2 / 2
+        width: root.width * 0.8
+        height: root.height * 0.8
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
-        Dialog {
-            id: chordSelectionDialog
-            // TRANSLATORS: Title of the chord selection popover (guitar)
-            title: i18n.tr("Select chord")
+        property var chord: Core.chords.getChord(notePicker.model[notePicker.currentIndex], namePicker.model[namePicker.currentIndex])
 
-            property var chord: Core.chords.getChord(notePicker.model[notePicker.selectedIndex], namePicker.model[namePicker.selectedIndex])
+        ChordPlayer {
+            id: chordPlayer
+            chord: chordSelectionPopup.chord
+        }
 
-            ChordPlayer {
-                id: chordPlayer
-                chord: chordSelectionDialog.chord
-            }
-
-            Connections {
-                target: chordPlayer
-                onStringPlucked: indicatorRepeater.itemAt(stringNumber).pluck()
-            }
+        contentItem: ColumnLayout {
 
             Row {
-                spacing: units.gu(0)
+                anchors.left: parent.left
+                anchors.right: parent.right
+                Layout.fillHeight: true
 
-                Picker {
+                ListView {
                     id: notePicker
+                    anchors.left: parent.left
+                    height: parent.height
                     width: parent.width / 2
                     model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
-                    circular: false
-                    delegate: PickerDelegate {
+                    focus: true
+                    clip: true
+                    currentIndex: 0
+                    highlightFollowsCurrentItem: true
+                    highlight: Rectangle { color: Material.primary; radius: 5 }
+                    snapMode: ListView.SnapOneItem
+                    delegate: Item {
+                        width: parent.width
+                        height: 30
                         Label {
                             anchors.centerIn: parent
                             text: app.noteToString(modelData)
                         }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: notePicker.currentIndex = index
+                        }
                     }
                 }
 
-                Picker {
+                ListView {
                     id: namePicker
+                    anchors.right: parent.right
+                    height: parent.height
                     width: parent.width / 2
-                    model: Core.chords.getNames(notePicker.model[notePicker.selectedIndex])
-                    circular: false
-                    delegate: PickerDelegate {
+                    model: Core.chords.getNames(notePicker.model[notePicker.currentIndex])
+                    highlight: Rectangle { color: Material.primary; radius: 5 }
+                    focus: true
+                    clip: true
+                    currentIndex: 0
+                    snapMode: ListView.SnapOneItem
+                    highlightFollowsCurrentItem: true
+
+                    delegate: Item {
+                        width: parent.width
+                        height: 30
                         Label {
                             anchors.centerIn: parent
                             text:  {
@@ -513,84 +544,188 @@ Page {
                                 }
                             }
                         }
-                    }
-                }
-            }
 
-            ThinDivider { }
-
-            Row {
-                id: indicatorRow
-                anchors.left: parent.left
-                anchors.right: parent.right
-
-                Repeater {
-                    id: indicatorRepeater
-                    model: 6
-                    delegate: Item {
-                        width: parent.width / 6
-                        height: width
-
-                        function pluck() {
-                            pluckAnimation.restart()
-                        }
-
-                        Rectangle {
-                            id: indicator
-                            anchors.centerIn: parent
-                            width: parent.width * 0.8
-                            height: width
-                            radius: width / 2
-                            border.width: radius / 4
-                            border.color: chord.positions.get(index).fret < 0 ? UbuntuColors.red : UbuntuColors.green
-                            color: theme.palette.normal.base
-
-                            ColorAnimation {
-                                id: pluckAnimation
-                                target: indicator
-                                property: "color"
-                                from: UbuntuColors.green
-                                to: theme.palette.normal.base
-                                easing.type: Easing.InQuad
-                                duration: 1000
-                            }
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: namePicker.currentIndex = index
                         }
                     }
                 }
+
             }
 
-            Button  {
+            Button {
+                Layout.fillWidth: true
+
                 // TRANSLATORS: Play button in the chord selection popover (guitar)
-                text: i18n.tr("Play")
-                color: UbuntuColors.blue
+                text: qsTr("Play")
+                //color: Material.primary
                 onClicked: {
                     console.log("Listen chord: " +  app.noteToString(chordPlayer.chord.note) + chordPlayer.chord.name)
                     chordPlayer.playChord()
                 }
             }
 
-            ThinDivider { }
+            Separator { }
 
-            Button  {
+            Button {
+                Layout.fillWidth: true
+
                 // TRANSLATORS: Add button in the chord selection popover (guitar)
-                text: i18n.tr("Add")
-                color: UbuntuColors.green
+                text: qsTr("Add")
+                //color: UbuntuColors.green
                 onClicked: {
-                    console.log("Add chord: " +  app.noteToString(chordSelectionDialog.chord.note) + chordSelectionDialog.chord.name)
-                    Core.guitarPlayerChords.addChord(chordSelectionDialog.chord)
-                    PopupUtils.close(chordSelectionDialog)
+                    console.log("Add chord: " +  app.noteToString(chordSelectionPopup.chord.note) + chordSelectionPopup.chord.name)
+                    Core.guitarPlayerChords.addChord(chordSelectionPopup.chord)
+                    chordSelectionPopup.close()
                 }
             }
 
             Button {
+                Layout.fillWidth: true
+
                 // TRANSLATORS: Close button in the chord selection popover (guitar)
-                text: i18n.tr("Close")
-                onClicked: PopupUtils.close(chordSelectionDialog)
+                text: qsTr("Close")
+                onClicked: chordSelectionPopup.close()
             }
         }
     }
 
-    GuitarBottomEdge { id: bottomEdge }
+
+
+    //    Component {
+    //        id: chordSelectionComponent
+
+    //        Dialog {
+    //            id: chordSelectionDialog
+    //            // TRANSLATORS: Title of the chord selection popover (guitar)
+    //            title: qsTr("Select chord")
+
+    //            property var chord: Core.chords.getChord(notePicker.model[notePicker.selectedIndex], namePicker.model[namePicker.selectedIndex])
+
+    //            ChordPlayer {
+    //                id: chordPlayer
+    //                chord: chordSelectionDialog.chord
+    //            }
+
+    //            Connections {
+    //                target: chordPlayer
+    //                onStringPlucked: indicatorRepeater.itemAt(stringNumber).pluck()
+    //            }
+
+    //            Row {
+    //                spacing: units.gu(0)
+
+    //                Picker {
+    //                    id: notePicker
+    //                    width: parent.width / 2
+    //                    model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
+    //                    circular: false
+    //                    delegate: PickerDelegate {
+    //                        Label {
+    //                            anchors.centerIn: parent
+    //                            text: app.noteToString(modelData)
+    //                        }
+    //                    }
+    //                }
+
+    //                Picker {
+    //                    id: namePicker
+    //                    width: parent.width / 2
+    //                    model: Core.chords.getNames(notePicker.model[notePicker.selectedIndex])
+    //                    circular: false
+    //                    delegate: PickerDelegate {
+    //                        Label {
+    //                            anchors.centerIn: parent
+    //                            text:  {
+    //                                if (modelData === "") {
+    //                                    return app.keyToString(Music.NoteKeyMajor)
+    //                                } else if (modelData === "m") {
+    //                                    return app.keyToString(Music.NoteKeyMinor)
+    //                                } else {
+    //                                    return modelData
+    //                                }
+    //                            }
+    //                        }
+    //                    }
+    //                }
+    //            }
+
+    //            ThinDivider { }
+
+    //            Row {
+    //                id: indicatorRow
+    //                anchors.left: parent.left
+    //                anchors.right: parent.right
+
+    //                Repeater {
+    //                    id: indicatorRepeater
+    //                    model: 6
+    //                    delegate: Item {
+    //                        width: parent.width / 6
+    //                        height: width
+
+    //                        function pluck() {
+    //                            pluckAnimation.restart()
+    //                        }
+
+    //                        Rectangle {
+    //                            id: indicator
+    //                            anchors.centerIn: parent
+    //                            width: parent.width * 0.8
+    //                            height: width
+    //                            radius: width / 2
+    //                            border.width: radius / 4
+    //                            border.color: chord.positions.get(index).fret < 0 ? UbuntuColors.red : UbuntuColors.green
+    //                            color: theme.palette.normal.base
+
+    //                            ColorAnimation {
+    //                                id: pluckAnimation
+    //                                target: indicator
+    //                                property: "color"
+    //                                from: UbuntuColors.green
+    //                                to: theme.palette.normal.base
+    //                                easing.type: Easing.InQuad
+    //                                duration: 1000
+    //                            }
+    //                        }
+    //                    }
+    //                }
+    //            }
+
+    //            Button  {
+    //                // TRANSLATORS: Play button in the chord selection popover (guitar)
+    //                text: qsTr("Play")
+    //                color: UbuntuColors.blue
+    //                onClicked: {
+    //                    console.log("Listen chord: " +  app.noteToString(chordPlayer.chord.note) + chordPlayer.chord.name)
+    //                    chordPlayer.playChord()
+    //                }
+    //            }
+
+    //            ThinDivider { }
+
+    //            Button  {
+    //                // TRANSLATORS: Add button in the chord selection popover (guitar)
+    //                text: qsTr("Add")
+    //                color: UbuntuColors.green
+    //                onClicked: {
+    //                    console.log("Add chord: " +  app.noteToString(chordSelectionDialog.chord.note) + chordSelectionDialog.chord.name)
+    //                    Core.guitarPlayerChords.addChord(chordSelectionDialog.chord)
+    //                    PopupUtils.close(chordSelectionDialog)
+    //                }
+    //            }
+
+    //            Button {
+    //                // TRANSLATORS: Close button in the chord selection popover (guitar)
+    //                text: qsTr("Close")
+    //                onClicked: PopupUtils.close(chordSelectionDialog)
+    //            }
+    //        }
+    //    }
+
+    //    GuitarBottomEdge { id: bottomEdge }
+
 }
 
 

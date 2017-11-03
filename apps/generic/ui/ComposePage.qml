@@ -611,7 +611,7 @@ Page {
                                         }
                                     } else {
                                         if (!currentComposeNote) return
-                                        Core.notePlayer.play("file://" + dataDirectory + "sounds/guitar/" + currentComposeNote.source)
+                                        Core.notePlayer.play(dataDirectory + "sounds/guitar/" + currentComposeNote.source)
                                         currentComposeNote.plucked()
                                     }
                                 }
@@ -785,12 +785,12 @@ Page {
         Dialog {
             id: menuDialog
             // TRANSLATORS: Title of the song menu in the compose tool
-            title: i18n.tr("Song menu")
+            title: qsTr("Song menu")
 
             Button {
                 id: newSongButton
                 // TRANSLATORS: Button in the menu of the compose tool
-                text: i18n.tr("New song")
+                text: qsTr("New song")
                 onClicked: {
                     PopupUtils.close(menuDialog)
                     PopupUtils.open(newSongComponent)
@@ -801,7 +801,7 @@ Page {
             Button {
                 id: saveButton
                 // TRANSLATORS: Button in the menu of the compose tool (Save the current song)
-                text: i18n.tr("Save")
+                text: qsTr("Save")
                 onClicked: {
                     PopupUtils.close(menuDialog)
                     Core.composeTool.save()
@@ -811,7 +811,7 @@ Page {
             Button {
                 id: saveAsButton
                 // TRANSLATORS: Button in the menu of the compose tool (Save the current song as...)
-                text: i18n.tr("Save as")
+                text: qsTr("Save as")
                 onClicked: {
                     PopupUtils.close(menuDialog)
                     PopupUtils.open(saveAsComponent)
@@ -821,7 +821,7 @@ Page {
             Button {
                 id: loadButton
                 // TRANSLATORS: Button in the menu of the compose tool (Load a song)
-                text: i18n.tr("Load song")
+                text: qsTr("Load song")
                 onClicked: {
                     PopupUtils.close(menuDialog)
                     pageLayout.addPageToNextColumn(root, Qt.resolvedUrl("ComposeLoadPage.qml"), { songsModel: Core.composeTool.songs })
@@ -831,7 +831,7 @@ Page {
             Button {
                 id: loadExampleButton
                 // TRANSLATORS: Button in the menu of the compose tool (Load examples)
-                text: i18n.tr("Load example")
+                text: qsTr("Load example")
                 onClicked: {
                     PopupUtils.close(menuDialog)
                     pageLayout.addPageToNextColumn(root, Qt.resolvedUrl("ComposeLoadPage.qml"), { songsModel: Core.composeTool.exampleSongs(), loadExamples: true })
@@ -843,7 +843,7 @@ Page {
             Button {
                 id: renameButton
                 // TRANSLATORS: Rename the current song
-                text: i18n.tr("Rename song")
+                text: qsTr("Rename song")
                 onClicked: {
                     PopupUtils.close(menuDialog)
                     PopupUtils.open(renameComponent)
@@ -853,7 +853,7 @@ Page {
             Button {
                 id: deleteButton
                 // TRANSLATORS: Delete the current song
-                text: i18n.tr("Delete song")
+                text: qsTr("Delete song")
                 onClicked: {
                     PopupUtils.close(menuDialog)
                     PopupUtils.open(removeComponent)
@@ -864,7 +864,7 @@ Page {
 
             Button {
                 // TRANSLATORS: Close button in the compose song menu popover
-                text: i18n.tr("Close")
+                text: qsTr("Close")
                 onClicked: PopupUtils.close(menuDialog)
             }
         }
@@ -876,19 +876,19 @@ Page {
             id: newSongDialog
 
             // TRANSLATORS: Title of the new song as dialog
-            title: i18n.tr("New song")
+            title: qsTr("New song")
 
             TextField {
                 id: songNameTextField
                 // TRANSLATORS: Placeholder text for a new song name
-                placeholderText: i18n.tr("Song name")
+                placeholderText: qsTr("Song name")
             }
 
             ThinDivider { }
 
             Button {
                 // TRANSLATORS: Create new song button
-                text: i18n.tr("Create")
+                text: qsTr("Create")
                 color: UbuntuColors.green
                 onClicked: {
                     Core.composeTool.newSong(songNameTextField.text);
@@ -897,7 +897,7 @@ Page {
             }
 
             Button {
-                text: i18n.tr("Cancel")
+                text: qsTr("Cancel")
                 onClicked: PopupUtils.close(newSongDialog)
             }
         }
@@ -910,7 +910,7 @@ Page {
             id: saveAsDialog
 
             // TRANSLATORS: Title of the save as dialog
-            title: i18n.tr("Save as")
+            title: qsTr("Save as")
 
             TextField {
                 id: songNameTextField
@@ -921,7 +921,7 @@ Page {
 
             Button {
                 // TRANSLATORS: Save button in the 'Save as' dialog
-                text: i18n.tr("Save")
+                text: qsTr("Save")
                 color: UbuntuColors.green
                 onClicked: {
                     Core.composeTool.saveAs(songNameTextField.text);
@@ -930,7 +930,7 @@ Page {
             }
 
             Button {
-                text: i18n.tr("Cancel")
+                text: qsTr("Cancel")
                 onClicked: PopupUtils.close(saveAsDialog)
             }
         }
@@ -942,7 +942,7 @@ Page {
             id: loadDialog
 
             // TRANSLATORS: Title of the load song as dialog
-            title: i18n.tr("Load song")
+            title: qsTr("Load song")
             UbuntuListView {
                 id: songsListView
                 clip: true
@@ -962,7 +962,7 @@ Page {
             ThinDivider { }
 
             Button {
-                text: i18n.tr("Cancel")
+                text: qsTr("Cancel")
                 onClicked: PopupUtils.close(loadDialog)
             }
 
@@ -975,7 +975,7 @@ Page {
             id: renameDialog
 
             // TRANSLATORS: Title of the rename song dialog
-            title: i18n.tr("Rename song")
+            title: qsTr("Rename song")
 
             TextField {
                 id: songNameTextField
@@ -986,7 +986,7 @@ Page {
 
             Button {
                 // TRANSLATORS: Save button in the 'Save as' dialog
-                text: i18n.tr("Rename")
+                text: qsTr("Rename")
                 color: UbuntuColors.green
                 onClicked: {
                     Core.composeTool.renameSong(songNameTextField.text);
@@ -995,7 +995,7 @@ Page {
             }
 
             Button {
-                text: i18n.tr("Cancel")
+                text: qsTr("Cancel")
                 onClicked: PopupUtils.close(renameDialog)
             }
         }
@@ -1008,14 +1008,14 @@ Page {
             id: removeDialog
 
             // TRANSLATORS: Title of the delete song as dialog
-            title: i18n.tr("Delete song")
+            title: qsTr("Delete song")
 
             // TRANSLATORS: Delete question for the delete song dialog. The place holder represents the song name.
-            text: i18n.tr("Are you sure you want to delete \"%1\"?").arg(Core.composeTool.songName)
+            text: qsTr("Are you sure you want to delete \"%1\"?").arg(Core.composeTool.songName)
 
             Button {
                 id: deleteButton
-                text: i18n.tr("Delete")
+                text: qsTr("Delete")
                 color: UbuntuColors.red
                 onClicked: {
                     PopupUtils.close(removeDialog)
@@ -1026,7 +1026,7 @@ Page {
             ThinDivider { }
 
             Button {
-                text: i18n.tr("Cancel")
+                text: qsTr("Cancel")
                 color: UbuntuColors.green
                 onClicked: PopupUtils.close(removeDialog)
             }

@@ -31,7 +31,7 @@ Page {
     header: PageHeader {
         id: pageHeader
         // TRANSLATORS: Title of the load song page
-        title: loadExamples ? i18n.tr("Load example") : i18n.tr("Load song")
+        title: loadExamples ? qsTr("Load example") : qsTr("Load song")
         flickable: songsListView
         trailingActionBar.actions: [
             Action {

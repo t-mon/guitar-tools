@@ -31,7 +31,7 @@ Page {
     header: PageHeader {
         id: pageHeader
         // TRANSLATORS: Title of the drum loops page
-        title: i18n.tr("Drum loops")
+        title: qsTr("Drum loops")
         trailingActionBar.actions: [
             Action {
                 iconName: "info"
@@ -47,7 +47,7 @@ Page {
 
     FolderListModel {
         id: folderModel
-        folder: "file://" + dataDirectory + "sounds/drumloops/"
+        folder: dataDirectory + "sounds/drumloops/"
         nameFilters: [ "*.wav" ]
     }
 

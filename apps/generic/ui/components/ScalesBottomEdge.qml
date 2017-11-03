@@ -231,7 +231,7 @@ Item {
                         anchors.left: parent.left
                         anchors.verticalCenter: parent.verticalCenter
                         // TRANSLATORS: In the scales view, indicates if the notes on the fretboard should be displayed or not
-                        text: i18n.tr("Show notes")
+                        text: qsTr("Show notes")
                     }
 
                     Switch {

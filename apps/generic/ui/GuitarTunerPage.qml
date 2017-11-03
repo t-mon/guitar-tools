@@ -28,98 +28,83 @@ import "components"
 
 Page {
     id: root
-
     title: qsTr("Guitar tuner")
-    header: Item {
-        id: pageHeader
-        height: 40
-        width: parent.width
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/back.svg"
+                onClicked: pageStack.pop()
+            }
 
-        Label {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            text: qsTr("Guitar Tools")
+            Label {
+                text: qsTr("Guitar tuner")
+                elide: Label.ElideRight
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/tuning-fork.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("TuningForkPage.qml"))
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/info.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
         }
     }
 
+    Component.onDestruction: Core.guitarTuner.disable()
 
-    Flickable {
-        id: mainFlickable
+    property real angleMax: -60
+    property real angleMin: 60
+    property real minValue: 50
+    property real maxValue: -50
+
+    property int tolerance: 5
+
+    property bool landscape: width > height
+
+    property string note: app.noteToString(Core.guitarTuner.note)
+    property real value: Core.guitarTuner.centValue
+    property real angle: (((value - minValue) / (maxValue - minValue)) * (angleMax - angleMin)) + angleMin;
+
+
+    Connections {
+        target: Core.guitarTuner
+        onVolumeLevelChanged: frequencyCanvas.requestPaint()
+    }
+
+    Item {
         anchors.fill: parent
-        contentHeight: toolsColumn.height
-        clip: true
+        anchors.margins: 5
 
-        Column {
-            id: toolsColumn
-            anchors.left: parent.left
-            anchors.right: parent.right
-        }
-    }
-
-
-    //    header: PageHeader {
-    //        id: pageHeader
-    //        // TRANSLATORS: Title of the guitar tuner page
-    //        title: i18n.tr("Guitar tuner")
-    //        trailingActionBar.actions: [
-    //            Action {
-    //                iconName: "info"
-    //                onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("AboutPage.qml"))
-    //            },
-    //            Action {
-    //                iconSource: "file://" + dataDirectory + "icons/tuning-fork.svg"
-    //                onTriggered: {
-    //                    Core.activateTuningFork()
-    //                    pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("TuningForkPage.qml"))
-    //                }
-    //            }
-    //        ]
-    //    }
-
-        property real angleMax: -60
-        property real angleMin: 60
-        property real minValue: 50
-        property real maxValue: -50
-
-        property int tolerance: 5
-
-        property bool landscape: width > height
-
-        property string note: app.noteToString(Core.guitarTuner.note)
-        property real value: Core.guitarTuner.centValue
-        property real angle: (((value - minValue) / (maxValue - minValue)) * (angleMax - angleMin)) + angleMin;
-
-        Component.onDestruction: Core.guitarTuner.disable()
-
-        Connections {
-            target: Core.guitarTuner
-            onVolumeLevelChanged: frequencyCanvas.requestPaint()
-        }
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.topMargin: pageHeader.height
+            anchors.topMargin: root.header.height
             anchors.bottomMargin: frequency.height
 
             Label {
                 id: noteLabel
                 Layout.alignment: Qt.AlignCenter
-                Layout.minimumHeight: units.gu(8)
+                Layout.minimumHeight: 30
                 font.bold: true
-                font.pixelSize: units.gu(8)
+                font.pixelSize: 30
                 text: note
-                color: value >= -tolerance && value <= tolerance ? app.green : "gray"
+                color: value >= -tolerance && value <= tolerance ? app.green : Material.foreground
             }
 
             Label {
                 id: frequencyLabel
                 Layout.alignment: Qt.AlignCenter
-                Layout.minimumHeight: units.gu(2)
+                Layout.minimumHeight: 20
                 font.bold: true
-                font.pixelSize: units.gu(2)
+                font.pixelSize: 20
                 visible: Core.settings.debugEnabled
-                color: theme.palette.normal.baseText
+                color: Material.foreground
                 text: Core.guitarTuner.frequency.toFixed(2) + " [Hz]"
             }
 
@@ -129,10 +114,10 @@ Page {
                 Layout.fillHeight: landscape
                 Layout.fillWidth: !landscape
                 Layout.alignment: Qt.AlignHCenter
-                Layout.maximumWidth: parent.width > units.gu(100) ? units.gu(100) : parent.width
+                Layout.maximumWidth: parent.width
                 Layout.maximumHeight: parent.height
 
-                source: "file://" + dataDirectory + "images/tuner-scale.png"
+                source: dataDirectory + "/images/tuner-scale.svg"
 
                 Image {
                     id: needleImage
@@ -142,7 +127,7 @@ Page {
                     anchors.topMargin: ( scaleImage.height - scaleImage.paintedHeight ) / 2
                     anchors.horizontalCenter: scaleImage.horizontalCenter
 
-                    source: "file://" + dataDirectory + "images/tuner-needle.png"
+                    source: dataDirectory + "/images/tuner-needle.svg"
 
                     transform: Rotation {
                         origin {
@@ -168,7 +153,7 @@ Page {
             anchors.bottom: parent.bottom
             anchors.left: parent.left
             anchors.right: parent.right
-            height: units.gu(20)
+            height: 40
 
             color: "transparent"
 
@@ -191,12 +176,12 @@ Page {
                     dataLine.save();
                     dataLine.reset();
                     dataLine.beginPath();
-                    dataLine.lineWidth = units.gu(0.3);
+                    dataLine.lineWidth = 1;
                     dataLine.lineCap = "round"
-                    dataLine.strokeStyle = theme.palette.normal.baseText;
+                    dataLine.strokeStyle = Material.foreground;
 
                     var f = 30;
-                    var dy = (frequencyCanvas.height / 2) - units.gu(0.3);
+                    var dy = (frequencyCanvas.height / 2) - 1;
                     var amplitude = Core.guitarTuner.volumeLevel * 2 * dy / 100;
 
                     if (amplitude > dy)
@@ -214,6 +199,7 @@ Page {
             }
         }
 
+    }
 
     //TunerBottomEdge { id: bottomEdge }
 }

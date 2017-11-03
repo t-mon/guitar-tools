@@ -52,22 +52,22 @@ Item {
             var chordPosition = root.chord.positions.get(i)
             var absolutFret = root.chord.startFret + chordPosition.fret - 1
             if (i === 0) {
-                e2Effect.source = "file://" + dataDirectory + "sounds/guitar/" + Core.getNoteFileName(i, absolutFret)
+                e2Effect.source = dataDirectory + "/sounds/guitar/" + Core.getNoteFileName(i, absolutFret)
                 console.log("E2 = " + Core.getNoteFileName(i, absolutFret))
             } else if (i === 1) {
-                aEffect.source = "file://" + dataDirectory + "sounds/guitar/" + Core.getNoteFileName(i, absolutFret)
+                aEffect.source = dataDirectory + "/sounds/guitar/" + Core.getNoteFileName(i, absolutFret)
                 console.log("A = " + Core.getNoteFileName(i, absolutFret))
             } else if (i === 2) {
-                dEffect.source = "file://" + dataDirectory + "sounds/guitar/" + Core.getNoteFileName(i, absolutFret)
+                dEffect.source = dataDirectory + "/sounds/guitar/" + Core.getNoteFileName(i, absolutFret)
                 console.log("D = " + Core.getNoteFileName(i, absolutFret))
             } else if (i === 3) {
-                gEffect.source = "file://" + dataDirectory + "sounds/guitar/" + Core.getNoteFileName(i, absolutFret)
+                gEffect.source = dataDirectory + "/sounds/guitar/" + Core.getNoteFileName(i, absolutFret)
                 console.log("G = " + Core.getNoteFileName(i, absolutFret))
             } else if (i === 4) {
-                bEffect.source = "file://" + dataDirectory + "sounds/guitar/" + Core.getNoteFileName(i, absolutFret)
+                bEffect.source = dataDirectory + "/sounds/guitar/" + Core.getNoteFileName(i, absolutFret)
                 console.log("B = " + Core.getNoteFileName(i, absolutFret))
             } else if (i === 5) {
-                e4Effect.source = "file://" + dataDirectory + "sounds/guitar/" + Core.getNoteFileName(i, absolutFret)
+                e4Effect.source = dataDirectory + "/sounds/guitar/" + Core.getNoteFileName(i, absolutFret)
                 console.log("E4 = " + Core.getNoteFileName(i, absolutFret))
             }
         }
@@ -125,32 +125,32 @@ Item {
 
     GuitarSoundEffect {
         id: e2Effect
-        source: "file://" + dataDirectory + "sounds/guitar/E2-0.wav"
+        source: dataDirectory + "/sounds/guitar/E2-0.wav"
     }
 
     GuitarSoundEffect {
         id: aEffect
-        source: "file://" + dataDirectory + "sounds/guitar/A-0.wav"
+        source: dataDirectory + "/sounds/guitar/A-0.wav"
     }
 
     GuitarSoundEffect {
         id: dEffect
-        source: "file://" + dataDirectory + "sounds/guitar/D-0.wav"
+        source: dataDirectory + "/sounds/guitar/D-0.wav"
     }
 
     GuitarSoundEffect {
         id: gEffect
-        source: "file://" + dataDirectory + "sounds/guitar/G-0.wav"
+        source: dataDirectory + "/sounds/guitar/G-0.wav"
     }
 
     GuitarSoundEffect {
         id: bEffect
-        source: "file://" + dataDirectory + "sounds/guitar/B-0.wav"
+        source: dataDirectory + "/sounds/guitar/B-0.wav"
     }
 
     GuitarSoundEffect {
         id: e4Effect
-        source: "file://" + dataDirectory + "sounds/guitar/E4-0.wav"
+        source: dataDirectory + "/sounds/guitar/E4-0.wav"
     }
 }
 

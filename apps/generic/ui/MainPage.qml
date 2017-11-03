@@ -21,40 +21,39 @@
 import QtQuick 2.7
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
+
 import GuitarTools 1.0
 import "components"
 
 Page {
     id: root
     title: qsTr("Guitar Tools")
-    header: Item {
-        height: 40
-        width: parent.width
-
-        Label {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
             anchors.leftMargin: 10
-            text: qsTr("Guitar Tools")
+
+
+            Label {
+                text: qsTr("Guitar Tools")
+                elide: Label.ElideRight
+                //horizontalAlignment: Qt.AlignHCenter
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/settings.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/info.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
         }
     }
 
-
-    //    header: PageHeader {
-    //        id: pageHeader
-    //        title: "Guitar Tools"
-    //        flickable: mainFlickable
-    //        trailingActionBar.actions: [
-    //            Action {
-    //                iconName: "settings"
-    //                onTriggered: pageLayout.addPageToNextColumn(root, Qt.resolvedUrl("SettingsPage.qml"))
-    //            },
-    //            Action {
-    //                iconName: "info"
-    //                onTriggered: pageLayout.addPageToNextColumn(root, Qt.resolvedUrl("AboutPage.qml"))
-    //            }
-    //        ]
-    //    }
 
     Flickable {
         id: mainFlickable
@@ -74,11 +73,22 @@ Page {
 
                 // TRANSLATORS: The name of the tuner tool
                 title: qsTr("Guitar tuner")
-                imageName: "file://" + dataDirectory + "icons/guitar-tuner.svg"
                 onClicked:  {
-                    console.log("Guitartuner pressed")
                     Core.activateGuitarTuner()
                     pageStack.push(Qt.resolvedUrl("GuitarTunerPage.qml"))
+                }
+            }
+
+            MainMenuListItem {
+                id: guitarToolItem
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                // TRANSLATORS: The name of the tuner tool
+                title: qsTr("Guitar")
+                onClicked:  {
+                    Core.activateGuitarPlayer()
+                    pageStack.push(Qt.resolvedUrl("GuitarPlayerPage.qml"))
                 }
             }
         }
@@ -88,8 +98,8 @@ Page {
     //            MainMenuListItem {
     //                id: guitarTunerToolItem
     //                // TRANSLATORS: The name of the tuner tool
-    //                title: i18n.tr("Guitar tuner")
-    //                imageName: "file://" + dataDirectory + "icons/guitar-tuner.svg"
+    //                title: qsTr("Guitar tuner")
+    //                imageName: dataDirectory + "icons/guitar-tuner.svg"
     //                onClicked:  {
     //                    Core.activateGuitarTuner()
     //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("GuitarTunerPage.qml"))
@@ -99,7 +109,7 @@ Page {
     //            MainMenuListItem {
     //                id: guitarToolItem
     //                // TRANSLATORS: The name of the guitar player tool
-    //                title: i18n.tr("Guitar")
+    //                title: qsTr("Guitar")
     //                onClicked:  {
     //                    Core.activateGuitarPlayer()
     //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("GuitarPlayerPage.qml"))
@@ -109,7 +119,7 @@ Page {
     //            MainMenuListItem {
     //                id: metronomeToolItem
     //                // TRANSLATORS: The name of the metronome tool
-    //                title: i18n.tr("Metronome")
+    //                title: qsTr("Metronome")
     //                onClicked:  {
     //                    Core.activateMetronome()
     //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("MetronomePage.qml"))
@@ -119,7 +129,7 @@ Page {
     //            MainMenuListItem {
     //                id: chordsToolItem
     //                // TRANSLATORS: The name of the chord tool
-    //                title: i18n.tr("Chords")
+    //                title: qsTr("Chords")
     //                onClicked:  {
     //                    Core.activateChord()
     //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("ChordPage.qml"))
@@ -130,7 +140,7 @@ Page {
     //            MainMenuListItem {
     //                id: scalesToolItem
     //                // TRANSLATORS: The name of the scales tool
-    //                title: i18n.tr("Scales")
+    //                title: qsTr("Scales")
     //                onClicked:  {
     //                    Core.activateScales()
     //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("ScalesPage.qml"))
@@ -140,7 +150,7 @@ Page {
     //            MainMenuListItem {
     //                id: recorderToolItem
     //                // TRANSLATORS: The name of the recorder tool
-    //                title: i18n.tr("Recorder")
+    //                title: qsTr("Recorder")
     //                onClicked:  {
     //                    Core.activateRecorder()
     //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("RecorderPage.qml"))
@@ -150,7 +160,7 @@ Page {
     //            MainMenuListItem {
     //                id: drumLoopsToolItem
     //                // TRANSLATORS: The name of the drum loops tool
-    //                title: i18n.tr("Drum loops")
+    //                title: qsTr("Drum loops")
     //                onClicked:  {
     //                    Core.activateDrumLoops()
     //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("DrumLoopPage.qml"))
@@ -160,7 +170,7 @@ Page {
     //            MainMenuListItem {
     //                id: composeToolItem
     //                // TRANSLATORS: The name of the compose tool
-    //                title: i18n.tr("Compose tool")
+    //                title: qsTr("Compose tool")
     //                onClicked:  {
     //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("ComposePage.qml"))
     //                }

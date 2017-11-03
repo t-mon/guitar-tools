@@ -192,7 +192,7 @@ Item {
                         anchors.left: parent.left
                         anchors.verticalCenter: markNotAssociatedStringsCheckbox.verticalCenter
                         // TRANSLATORS: In the settings page. Section guitar: if true, the not associated chord string will be marked red.
-                        text: i18n.tr("Mark not associated chord strings")
+                        text: qsTr("Mark not associated chord strings")
                     }
 
                     Switch {
@@ -215,7 +215,7 @@ Item {
                         anchors.left: parent.left
                         anchors.verticalCenter: disableNotAssociatedStringsCheckbox.verticalCenter
                         // TRANSLATORS: In the settings page. Section guitar: if true, the not associated chord string can not be played.
-                        text: i18n.tr("Disable not associated chord strings")
+                        text: qsTr("Disable not associated chord strings")
                     }
 
                     Switch {

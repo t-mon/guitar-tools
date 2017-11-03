@@ -32,7 +32,7 @@ Page {
     header: PageHeader {
         id: pageHeader
         // TRANSLATORS: Title of the settings page
-        title: i18n.tr("Settings")
+        title: qsTr("Settings")
         flickable: settingsFlickable
     }
 
@@ -74,7 +74,7 @@ Page {
                 font.bold: true
                 fontSize: "large"
                 // TRANSLATORS: In the settings page the metronome volume.
-                text: i18n.tr("General settings")
+                text: qsTr("General settings")
             }
 
             ThinDivider { }
@@ -87,7 +87,7 @@ Page {
                     anchors.left: parent.left
                     anchors.verticalCenter: debugCheckbox.verticalCenter
                     // TRANSLATORS: In the settings page the Debug checkbox description.
-                    text: i18n.tr("Show details")
+                    text: qsTr("Show details")
                 }
 
                 Switch {
@@ -111,7 +111,7 @@ Page {
                     anchors.left: parent.left
                     anchors.verticalCenter: screensaverCheckbox.verticalCenter
                     // TRANSLATORS: In the settings page the screen saver checkbox description.
-                    text: i18n.tr("Disable screen saver")
+                    text: qsTr("Disable screen saver")
                 }
 
                 Switch {
@@ -134,7 +134,7 @@ Page {
                     anchors.left: parent.left
                     anchors.verticalCenter: darkThemeCheckbox.verticalCenter
                     // TRANSLATORS: In the settings page the dark theme checkbox description.
-                    text: i18n.tr("Dark theme")
+                    text: qsTr("Dark theme")
                 }
 
                 Switch {
@@ -151,7 +151,7 @@ Page {
 
             Label {
                 // TRANSLATORS: In the settings page the chord player delay.
-                text: i18n.tr("Chord player delay") + " [ " + Math.round(chordPlayerSlider.value) + "ms ]"
+                text: qsTr("Chord player delay") + " [ " + Math.round(chordPlayerSlider.value) + "ms ]"
             }
 
             RowLayout {
@@ -198,7 +198,7 @@ Page {
                 font.bold: true
                 fontSize: "large"
                 // TRANSLATORS: In the settings page the metronome volume.
-                text: i18n.tr("Guitar tuner")
+                text: qsTr("Guitar tuner")
             }
 
             ThinDivider { }
@@ -209,7 +209,7 @@ Page {
                 Layout.fillWidth: true
 
                 // TRANSLATORS: In the settings page the pitch standard selection
-                text: i18n.tr("Pitch standard")
+                text: qsTr("Pitch standard")
 
                 onSelectedIndexChanged: {
                     if (selectedIndex === 0)
@@ -234,7 +234,7 @@ Page {
                 Layout.alignment: Qt.AlignHCenter
                 font.bold: true
                 fontSize: "large"
-                text: i18n.tr("Guitar")
+                text: qsTr("Guitar")
             }
 
             ThinDivider { }
@@ -247,7 +247,7 @@ Page {
                     anchors.left: parent.left
                     anchors.verticalCenter: markNotAssociatedStringsCheckbox.verticalCenter
                     // TRANSLATORS: In the settings page. Section guitar: if true, the not associated chord string will be marked red.
-                    text: i18n.tr("Mark not associated chord strings")
+                    text: qsTr("Mark not associated chord strings")
                 }
 
                 Switch {
@@ -271,7 +271,7 @@ Page {
                     anchors.left: parent.left
                     anchors.verticalCenter: disableNotAssociatedStringsCheckbox.verticalCenter
                     // TRANSLATORS: In the settings page. Section guitar: if true, the not associated chord string can not be played.
-                    text: i18n.tr("Disable not associated chord strings")
+                    text: qsTr("Disable not associated chord strings")
                 }
 
                 Switch {
@@ -292,14 +292,14 @@ Page {
                 font.bold: true
                 fontSize: "large"
                 // TRANSLATORS: In the settings page the metronome volume.
-                text: i18n.tr("Audio input")
+                text: qsTr("Audio input")
             }
 
             ThinDivider { }
 
             Label {
                 // TRANSLATORS: In the settings page the microphone volume.
-                text: i18n.tr("Microphone volume") + " ( " + Math.round(micorphoneVolumeSlider.value) + "% )"
+                text: qsTr("Microphone volume") + " ( " + Math.round(micorphoneVolumeSlider.value) + "% )"
             }
 
             RowLayout {
@@ -352,14 +352,14 @@ Page {
                 font.bold: true
                 fontSize: "large"
                 // TRANSLATORS: In the settings page the metronome volume.
-                text: i18n.tr("Audio output")
+                text: qsTr("Audio output")
             }
 
             ThinDivider { }
 
             Label {
                 // TRANSLATORS: In the settings page the metronome volume.
-                text: i18n.tr("Metronome volume") + " ( " + Math.round(metronomeVolumeSlider.value) + "% )"
+                text: qsTr("Metronome volume") + " ( " + Math.round(metronomeVolumeSlider.value) + "% )"
             }
 
             RowLayout {
@@ -402,7 +402,7 @@ Page {
 
             Label {
                 // TRANSLATORS: In the settings page the guitar player volume.
-                text: i18n.tr("Guitar volume") + " ( " + Math.round(guitarPlayerVolumeSlider.value) + "% )"
+                text: qsTr("Guitar volume") + " ( " + Math.round(guitarPlayerVolumeSlider.value) + "% )"
             }
 
             RowLayout {
@@ -446,7 +446,7 @@ Page {
 
             Label {
                 // TRANSLATORS: In the settings page the drum loops volume.
-                text: i18n.tr("Drum loops volume") + " ( " + Math.round(drumLoopsVolumeSlider.value) + "% )"
+                text: qsTr("Drum loops volume") + " ( " + Math.round(drumLoopsVolumeSlider.value) + "% )"
             }
 
             RowLayout {
@@ -555,7 +555,7 @@ Page {
                     anchors.left: parent.left
                     height: parent.height
                     fillMode: Image.PreserveAspectFit
-                    source: "file://" + dataDirectory + "images/note-scale-1.svg"
+                    source: dataDirectory + "/images/note-scale-1.svg"
                 }
 
                 Image {
@@ -563,7 +563,7 @@ Page {
                     anchors.centerIn: parent
                     height: parent.height
                     fillMode: Image.PreserveAspectFit
-                    source: "file://" + dataDirectory + "images/note-scale-3.svg"
+                    source: dataDirectory + "/images/note-scale-3.svg"
                 }
 
                 Image {
@@ -572,7 +572,7 @@ Page {
                     anchors.right: parent.right
                     height: parent.height
                     fillMode: Image.PreserveAspectFit
-                    source: "file://" + dataDirectory + "images/note-scale-4.svg"
+                    source: dataDirectory + "/images/note-scale-4.svg"
                 }
 
                 Repeater {

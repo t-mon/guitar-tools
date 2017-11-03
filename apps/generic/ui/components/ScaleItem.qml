@@ -18,12 +18,11 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import QtMultimedia 5.4
-import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
 
 Item {
@@ -31,7 +30,7 @@ Item {
 
     property QtObject scale
     property bool colorfull: false
-    property bool displayNotes
+    property bool displayNotes: Core.settings.displayFretboardNotes
     property var flickable: fretBoardFlickable
     property bool selectMode: false
     property int currentIndex: -1
@@ -41,18 +40,18 @@ Item {
     Flickable {
         id: fretBoardFlickable
         anchors.fill: parent
-        contentHeight: fretBoardImage.paintedHeight + units.gu(12)
+        contentHeight: fretBoardImage.paintedHeight + 20
 
         flickableDirection: Flickable.VerticalFlick
 
         Image {
             id: fretBoardImage
             anchors.top: parent.top
-            anchors.topMargin: units.gu(8)
+            anchors.topMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width > units.gu(50) ? units.gu(50) * 0.65 : parent.width * 0.65
+            width: parent.width > 200 ? 200 * 0.65 : parent.width * 0.65
             fillMode: Image.PreserveAspectFit
-            source: "file://" + dataDirectory + "images/fingerboard-full.png"
+            source: dataDirectory + "/images/fingerboard-full.png"
 
             Item {
                 id: positionsItem
@@ -102,14 +101,14 @@ Item {
 
                             Behavior on border.color { ColorAnimation { duration: 400 ; easing.type: selectMode ? Easing.InQuad : Easing.OutQuad } }
 
-                            color: theme.palette.normal.base
+                            color: Material.background
 
                             ColorAnimation {
                                 id: pluckAnimation
                                 target: positionRectangle
                                 property: "color"
                                 from: positionRectangle.border.color
-                                to: theme.palette.normal.base
+                                to: Material.background
                                 easing.type: Easing.InQuad
                                 duration: 1000
                             }
@@ -117,6 +116,7 @@ Item {
                             Label {
                                 anchors.centerIn: parent
                                 opacity: displayNotes ? 1 : 0
+                                font.pixelSize: parent.height * 0.4
                                 Behavior on opacity { NumberAnimation { duration: 500 } }
                                 text: noteToString(fretPositionItem.note)
                             }
@@ -132,7 +132,7 @@ Item {
                                         selected()
                                     } else {
                                         pluckAnimation.restart()
-                                        Core.notePlayer.play("file://" + dataDirectory + "sounds/guitar/" + fretPositionItem.fretPosition.noteFileName)
+                                        Core.notePlayer.play(dataDirectory + "/sounds/guitar/" + fretPositionItem.fretPosition.noteFileName)
                                     }
                                 }
                             }
@@ -145,7 +145,7 @@ Item {
         Column {
             id: fretNumberColumn
             anchors.right: fretBoardImage.left
-            anchors.rightMargin: units.gu(2)
+            anchors.rightMargin: 5
             anchors.top: fretBoardImage.top
 
             Repeater {
@@ -159,7 +159,7 @@ Item {
                         anchors.centerIn: parent
                         text: modelData + 1
                         font.pixelSize: parent.width * 0.7
-                        color: theme.palette.normal.baseText
+                        color: Material.foreground
                     }
                 }
             }

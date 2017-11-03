@@ -35,5 +35,7 @@
         <file>components/TunerBottomEdge.qml</file>
         <file>components/ComposeBottomEdge.qml</file>
         <file>components/GuitarChordItem.qml</file>
+        <file>components/IconToolButton.qml</file>
+        <file>components/Separator.qml</file>
     </qresource>
 </RCC>

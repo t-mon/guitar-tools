@@ -18,25 +18,36 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
+import "components"
 
 Page {
     id: root
-    header: PageHeader {
-        id: pageHeader
-        // TRANSLATORS: Title of the tuning fork page
-        title: i18n.tr("Tuning fork")
-        trailingActionBar.actions: [
-            Action {
-                iconName: "info"
-                onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("AboutPage.qml"))
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/back.svg"
+                onClicked: pageStack.pop()
             }
-        ]
+
+            Label {
+                text: qsTr("Tuning fork")
+                elide: Label.ElideRight
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/info.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+        }
     }
 
     Component.onDestruction: {
@@ -46,7 +57,7 @@ Page {
 
     property real tuningForkVolume: Core.settings.tuningForkVolume
     property real tuningForkFrequency: Core.settings.tuningForkFrequency
-    property real frequencyPercentage: (frequencySlider.value - frequencySlider.minimumValue) / (frequencySlider.maximumValue - frequencySlider.minimumValue)
+    property real frequencyPercentage: (frequencySlider.value - frequencySlider.from) / (frequencySlider.to - frequencySlider.from)
     property int animationDuration: Math.abs((500 / (frequencyPercentage + 0.5)))
 
     onAnimationDurationChanged: {
@@ -57,230 +68,215 @@ Page {
         }
     }
 
-    Label {
-        id: frequencyLabel
-        anchors.top: pageHeader.bottom
-        anchors.topMargin: units.gu(5)
-        anchors.horizontalCenter: parent.horizontalCenter
-        font.bold: true
-        font.pixelSize: units.gu(4)
-        text: Math.round(Core.sineWaveGenerator.frequency) + " [Hz]"
-        color: theme.palette.normal.baseText
-    }
+    Item {
+        anchors.fill: parent
+        anchors.margins: 5
 
-    ColumnLayout {
-        anchors.top: frequencyLabel.bottom
-        anchors.topMargin: units.gu(5)
-        anchors.left:  parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: units.gu(5)
+        ColumnLayout {
+            anchors.fill: parent
+            spacing: 5
 
-        spacing: units.gu(5)
-
-        Item {
-            Layout.alignment: Qt.AlignHCenter
-            // Squared image
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            Layout.minimumWidth: units.gu(30)
-            Layout.minimumHeight: units.gu(30)
-
-            Image {
-                id: forkZero
-                anchors.fill: parent
-                fillMode: Image.PreserveAspectFit
-                source: "file://" + dataDirectory + "images/tuning-fork-0.svg"
+            Label {
+                id: frequencyLabel
+                Layout.alignment: Qt.AlignHCenter
+                font.bold: true
+                font.pixelSize: 30
+                text: Math.round(Core.sineWaveGenerator.frequency) + " [Hz]"
+                color: Material.foreground
             }
 
-            Image {
-                id: forkOne
-                anchors.fill: parent
-                fillMode: Image.PreserveAspectFit
-                opacity: 0
-                source: "file://" + dataDirectory + "images/tuning-fork-1.svg"
-            }
 
-            Image {
-                id: forkTwo
-                anchors.fill: parent
-                fillMode: Image.PreserveAspectFit
-                opacity: 0
-                source: "file://" + dataDirectory + "images/tuning-fork-2.svg"
-            }
+            Item {
+                Layout.alignment: Qt.AlignHCenter
+                // Squared image
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
-            Image {
-                id: forkThree
-                anchors.fill: parent
-                fillMode: Image.PreserveAspectFit
-                opacity: 0
-                source: "file://" + dataDirectory + "images/tuning-fork-3.svg"
-            }
+                Image {
+                    id: forkZero
+                    anchors.fill: parent
+                    fillMode: Image.PreserveAspectFit
+                    source: dataDirectory + "/images/tuning-fork-0.svg"
+                }
 
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    if (Core.sineWaveGenerator.running) {
-                        Core.sineWaveGenerator.stop()
-                        soundAnimation.stop()
-                        forkOne.opacity = 0
-                        forkTwo.opacity = 0
-                        forkThree.opacity = 0
-                    } else {
-                        Core.sineWaveGenerator.play()
-                        soundAnimation.start()
+                Image {
+                    id: forkOne
+                    anchors.fill: parent
+                    fillMode: Image.PreserveAspectFit
+                    opacity: 0
+                    source: dataDirectory + "/images/tuning-fork-1.svg"
+                }
+
+                Image {
+                    id: forkTwo
+                    anchors.fill: parent
+                    fillMode: Image.PreserveAspectFit
+                    opacity: 0
+                    source: dataDirectory + "/images/tuning-fork-2.svg"
+                }
+
+                Image {
+                    id: forkThree
+                    anchors.fill: parent
+                    fillMode: Image.PreserveAspectFit
+                    opacity: 0
+                    source: dataDirectory + "/images/tuning-fork-3.svg"
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        if (Core.sineWaveGenerator.running) {
+                            Core.sineWaveGenerator.stop()
+                            soundAnimation.stop()
+                            forkOne.opacity = 0
+                            forkTwo.opacity = 0
+                            forkThree.opacity = 0
+                        } else {
+                            Core.sineWaveGenerator.play()
+                            soundAnimation.start()
+                        }
+                    }
+                }
+
+                SequentialAnimation {
+                    id: soundAnimation
+                    loops: Animation.Infinite
+
+                    ParallelAnimation {
+                        PropertyAnimation {
+                            target: forkOne
+                            property: "opacity"
+                            to: 0.5
+                            duration: animationDuration
+                        }
+
+                        PropertyAnimation {
+                            target: forkTwo
+                            property: "opacity"
+                            to: 0
+                            duration: animationDuration
+                        }
+
+                        PropertyAnimation {
+                            target: forkThree
+                            property: "opacity"
+                            to: 0
+                            duration: animationDuration
+                        }
+                    }
+
+                    ParallelAnimation {
+                        PropertyAnimation {
+                            target: forkOne
+                            property: "opacity"
+                            to: 1
+                            duration: animationDuration
+                        }
+
+                        PropertyAnimation {
+                            target: forkTwo
+                            property: "opacity"
+                            to: 0.5
+                            duration: animationDuration
+                        }
+
+                        PropertyAnimation {
+                            target: forkThree
+                            property: "opacity"
+                            to: 0
+                            duration: animationDuration
+                        }
+                    }
+
+                    ParallelAnimation {
+                        PropertyAnimation {
+                            target: forkOne
+                            property: "opacity"
+                            to: 0.5
+                            duration: animationDuration
+                        }
+
+                        PropertyAnimation {
+                            target: forkTwo
+                            property: "opacity"
+                            to: 1
+                            duration: animationDuration
+                        }
+
+                        PropertyAnimation {
+                            target: forkThree
+                            property: "opacity"
+                            to: 0.5
+                            duration: animationDuration / 2
+                        }
+                    }
+
+                    ParallelAnimation {
+                        PropertyAnimation {
+                            target: forkOne
+                            property: "opacity"
+                            to: 0
+                            duration: animationDuration
+                        }
+
+                        PropertyAnimation {
+                            target: forkTwo
+                            property: "opacity"
+                            to: 0.5
+                            duration: animationDuration
+                        }
+
+                        PropertyAnimation {
+                            target: forkThree
+                            property: "opacity"
+                            to: 1
+                            duration: animationDuration
+                        }
+                    }
+
+                    ParallelAnimation {
+                        PropertyAnimation {
+                            target: forkOne
+                            property: "opacity"
+                            to: 0
+                            duration: animationDuration
+                        }
+
+                        PropertyAnimation {
+                            target: forkTwo
+                            property: "opacity"
+                            to: 0
+                            duration: animationDuration
+                        }
+
+                        PropertyAnimation {
+                            target: forkThree
+                            property: "opacity"
+                            to: 0.5
+                            duration: animationDuration
+                        }
                     }
                 }
             }
 
-            SequentialAnimation {
-                id: soundAnimation
-                loops: Animation.Infinite
-
-                ParallelAnimation {
-                    PropertyAnimation {
-                        target: forkOne
-                        property: "opacity"
-                        to: 0.5
-                        duration: animationDuration
-                    }
-
-                    PropertyAnimation {
-                        target: forkTwo
-                        property: "opacity"
-                        to: 0
-                        duration: animationDuration
-                    }
-
-                    PropertyAnimation {
-                        target: forkThree
-                        property: "opacity"
-                        to: 0
-                        duration: animationDuration
-                    }
-                }
-
-                ParallelAnimation {
-                    PropertyAnimation {
-                        target: forkOne
-                        property: "opacity"
-                        to: 1
-                        duration: animationDuration
-                    }
-
-                    PropertyAnimation {
-                        target: forkTwo
-                        property: "opacity"
-                        to: 0.5
-                        duration: animationDuration
-                    }
-
-                    PropertyAnimation {
-                        target: forkThree
-                        property: "opacity"
-                        to: 0
-                        duration: animationDuration
-                    }
-                }
-
-                ParallelAnimation {
-                    PropertyAnimation {
-                        target: forkOne
-                        property: "opacity"
-                        to: 0.5
-                        duration: animationDuration
-                    }
-
-                    PropertyAnimation {
-                        target: forkTwo
-                        property: "opacity"
-                        to: 1
-                        duration: animationDuration
-                    }
-
-                    PropertyAnimation {
-                        target: forkThree
-                        property: "opacity"
-                        to: 0.5
-                        duration: animationDuration / 2
-                    }
-                }
-
-                ParallelAnimation {
-                    PropertyAnimation {
-                        target: forkOne
-                        property: "opacity"
-                        to: 0
-                        duration: animationDuration
-                    }
-
-                    PropertyAnimation {
-                        target: forkTwo
-                        property: "opacity"
-                        to: 0.5
-                        duration: animationDuration
-                    }
-
-                    PropertyAnimation {
-                        target: forkThree
-                        property: "opacity"
-                        to: 1
-                        duration: animationDuration
-                    }
-                }
-
-                ParallelAnimation {
-                    PropertyAnimation {
-                        target: forkOne
-                        property: "opacity"
-                        to: 0
-                        duration: animationDuration
-                    }
-
-                    PropertyAnimation {
-                        target: forkTwo
-                        property: "opacity"
-                        to: 0
-                        duration: animationDuration
-                    }
-
-                    PropertyAnimation {
-                        target: forkThree
-                        property: "opacity"
-                        to: 0.5
-                        duration: animationDuration
-                    }
-                }
-            }
-        }
-
-        Column {
-            anchors.left: parent.left
-            anchors.right: parent.right
-            spacing: units.gu(1)
 
             RowLayout {
                 anchors.left: parent.left
-                anchors.leftMargin: units.gu(2)
+                anchors.leftMargin: 5
                 anchors.right: parent.right
-                anchors.rightMargin: units.gu(2)
+                anchors.rightMargin: 5
 
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    name: "audio-speakers-muted-symbolic"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: volumeSlider.value = volumeSlider.minimumValue
-                    }
+                IconToolButton {
+                    iconSource: dataDirectory + "/icons/audio-speakers-muted-symbolic.svg"
+                    onClicked: volumeSlider.value = volumeSlider.from
                 }
 
                 Slider {
                     id: volumeSlider
                     Layout.fillWidth: true
-                    minimumValue: 0
-                    maximumValue: 100
+                    from: 0
+                    to: 100
                     onValueChanged: {
                         Core.sineWaveGenerator.volume = value / 100
                         Core.settings.tuningForkVolume = value
@@ -288,40 +284,28 @@ Page {
                     Component.onCompleted: volumeSlider.value = tuningForkVolume
                 }
 
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    name: "audio-speakers-symbolic"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: volumeSlider.value = volumeSlider.maximumValue
-                    }
+                IconToolButton {
+                    iconSource: dataDirectory + "/icons/audio-speakers-symbolic.svg"
+                    onClicked: volumeSlider.value = volumeSlider.to
                 }
             }
 
             RowLayout {
                 anchors.left: parent.left
-                anchors.leftMargin: units.gu(2)
+                anchors.leftMargin: 5
                 anchors.right: parent.right
-                anchors.rightMargin: units.gu(2)
+                anchors.rightMargin: 5
 
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    source: "file://" + dataDirectory + "icons/frequency-low.svg"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: frequencySlider.value = frequencySlider.minimumValue
-                    }
+                IconToolButton {
+                    iconSource: dataDirectory + "/icons/frequency-low.svg"
+                    onClicked: frequencySlider.value = frequencySlider.from
                 }
 
                 Slider {
                     id: frequencySlider
                     Layout.fillWidth: true
-                    minimumValue: 300
-                    maximumValue: 500
+                    from: 300
+                    to: 500
                     value: 440
                     onValueChanged: {
                         Core.sineWaveGenerator.frequency = Math.round(value)
@@ -330,15 +314,9 @@ Page {
                     Component.onCompleted: frequencySlider.value = tuningForkFrequency
                 }
 
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    source: "file://" + dataDirectory + "icons/frequency-high.svg"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: frequencySlider.value = frequencySlider.maximumValue
-                    }
+                IconToolButton {
+                    iconSource: dataDirectory + "/icons/frequency-high.svg"
+                    onClicked: frequencySlider.value = frequencySlider.to
                 }
             }
         }

@@ -19,7 +19,10 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 import QtQuick 2.7
-import Ubuntu.Components 1.3
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
 
 Item {
@@ -29,17 +32,19 @@ Item {
 
     property var chord: Core.guitarPlayerChords.get(index)
 
-    UbuntuShape {
+    Rectangle {
         id: chrodShape
         anchors.fill: chordItem
-        anchors.margins: units.gu(1)
+        anchors.margins: 4
         x: chordItem.x
         y: chordItem.y
-        color: index === root.selectedIndex ? UbuntuColors.green : theme.palette.normal.base
+        color: index === root.selectedIndex ? Material.color(Material.Green) : Material.primary
+
+        radius: height / 4
 
         Label {
             anchors.centerIn: parent
-            text: chord? noteToString(chord.note) + chord.name : ""
+            text: chord ? noteToString(chord.note) + chord.name : ""
         }
 
         Behavior on opacity {
@@ -106,22 +111,22 @@ Item {
         }
     }
 
-    UbuntuShape {
+    Rectangle {
         id: removeShape
-        color: UbuntuColors.lightGrey
         anchors.left: chordItem.left
         anchors.top: chordItem.top
         width: chordsGridMouseArea.removeAreaWidth
         height: width
         z: 2
-        backgroundColor: "#CCff4444"
+        color: Material.color(Material.Red)
         opacity: editActive && (chord.note !== -1) ? 1 : 0
+        radius: height / 4
 
-        Icon {
-            anchors.centerIn: parent
-            implicitHeight: parent.height * 0.7
-            implicitWidth: parent.width * 0.7
-            name: "delete"
+        Image {
+            id: removeIcon
+            anchors.fill: parent
+            anchors.margins: parent.width / 4
+            source: dataDirectory + "/icons/delete.svg"
         }
 
         Behavior on opacity {

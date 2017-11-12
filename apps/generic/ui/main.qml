@@ -40,6 +40,15 @@ ApplicationWindow {
     property color green: "#3eb34f"
     property color red: "#ed3146"
 
+
+
+    Drawer {
+        id: drawer
+        width: 0.66 * app.width
+        height: app.height
+
+    }
+
 //    ScreenSaver {
 //        id: screenSaver
 //        screenSaverEnabled: !Core.settings.disableScreensaver
@@ -60,6 +69,17 @@ ApplicationWindow {
 //        target: Core.settings
 //        onDarkThemeEnabledChanged: Core.settings.darkThemeEnabled ? Theme.name = "Ubuntu.Components.Themes.SuruDark" : Theme.name = "Ubuntu.Components.Themes.Ambiance"
 //    }
+
+    onClosing: {
+        if(pageStack.depth > 1){
+            close.accepted = false
+            pageStack.pop();
+            console.log("About to close. Pop pagestack.")
+        }else{
+            return;
+        }
+    }
+
 
     StackView {
         id: pageStack

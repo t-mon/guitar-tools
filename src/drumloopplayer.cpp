@@ -25,7 +25,9 @@
 #include <QStandardPaths>
 #include <QtConcurrent/QtConcurrent>
 
+#ifdef SOUNDTOUCH
 using namespace soundtouch;
+#endif
 
 DrumLoopPlayer::DrumLoopPlayer(const double &volume, QObject *parent) :
     QObject(parent),
@@ -38,7 +40,9 @@ DrumLoopPlayer::DrumLoopPlayer(const double &volume, QObject *parent) :
     m_measuredBpm(100),
     m_fileChanged(false)
 {
+#ifdef SOUNDTOUCH
     qDebug() << "SoundTouch library version" << SoundTouch::getVersionString();
+#endif
     connect(m_watcher, SIGNAL(finished()), this, SLOT(processFinished()));
 }
 
@@ -120,12 +124,12 @@ void DrumLoopPlayer::play(const QString &filePath)
     } else {
         m_fileChanged = false;
     }
-
      m_watcher->setFuture(QtConcurrent::run(this, &DrumLoopPlayer::processFile));
 }
 
 void DrumLoopPlayer::processFile()
 {
+#ifdef SOUNDTOUCH
     qDebug() << "Start processing" << m_inputFileName;
     WavInFile *inputFile = new WavInFile(m_inputFileName.toStdString().c_str());
 
@@ -218,8 +222,10 @@ void DrumLoopPlayer::processFile()
     inputFile = 0;
     delete soundTouch;
     soundTouch = 0;
+#else
+    QFile::copy(m_inputFileName, m_outputFileName);
+#endif
 }
-
 
 void DrumLoopPlayer::processFinished()
 {

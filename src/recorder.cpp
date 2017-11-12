@@ -29,19 +29,7 @@ Recorder::Recorder(QObject *parent) :
     m_recordTime("00:00:00"),
     m_volumeLevel(0)
 {
-    QAudioEncoderSettings audioSettings;
-    audioSettings.setCodec("audio/vorbis");
-    audioSettings.setQuality(QMultimedia::HighQuality);
-
     m_audioRecorder = new QAudioRecorder(this);
-    m_audioRecorder->setAudioSettings(audioSettings);
-
-    m_audioProbe = new QAudioProbe(this);
-    m_audioProbe->setSource(m_audioRecorder);
-
-    connect(m_audioProbe, SIGNAL(audioBufferProbed(QAudioBuffer)), this, SLOT(onAudioBufferProbed(QAudioBuffer)));
-    connect(m_audioRecorder, SIGNAL(stateChanged(QMediaRecorder::State)), this, SLOT(onStateChanged(QMediaRecorder::State)));
-    connect(m_audioRecorder, SIGNAL(durationChanged(qint64)), this, SLOT(onDurationChanged(qint64)));
 
     qDebug() << "Supported audio codecs:";
     foreach (const QString &codecName, m_audioRecorder->supportedAudioCodecs()) {
@@ -52,6 +40,30 @@ Recorder::Recorder(QObject *parent) :
     foreach (const QString &audioInput, m_audioRecorder->audioInputs()) {
         qDebug() << "  ->" << audioInput;
     }
+
+    QAudioEncoderSettings audioSettings;
+    // Prefere vobis
+    if (m_audioRecorder->supportedAudioCodecs().contains("audio/x-vorbis")) {
+        audioSettings.setCodec("audio/x-vorbis");
+    } else if (m_audioRecorder->supportedAudioCodecs().contains("audio/vorbis")) {
+        audioSettings.setCodec("audio/vorbis");
+    } else if (m_audioRecorder->supportedAudioCodecs().contains("aac")) {
+        audioSettings.setCodec("aac");
+    } else {
+        audioSettings.setCodec(m_audioRecorder->supportedAudioCodecs().first());
+    }
+    audioSettings.setQuality(QMultimedia::HighQuality);
+
+    m_audioRecorder->setAudioSettings(audioSettings);
+
+    m_audioProbe = new QAudioProbe(this);
+    m_audioProbe->setSource(m_audioRecorder);
+
+    connect(m_audioProbe, SIGNAL(audioBufferProbed(QAudioBuffer)), this, SLOT(onAudioBufferProbed(QAudioBuffer)));
+    connect(m_audioRecorder, SIGNAL(stateChanged(QMediaRecorder::State)), this, SLOT(onStateChanged(QMediaRecorder::State)));
+    connect(m_audioRecorder, SIGNAL(durationChanged(qint64)), this, SLOT(onDurationChanged(qint64)));
+
+
 
     QDir dir(m_filePath);
     if (!dir.exists()) {

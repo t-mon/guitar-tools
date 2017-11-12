@@ -18,29 +18,42 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import QtMultimedia 5.4
-import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Pickers 1.0
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtMultimedia 5.9
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
 import "components"
 
 Page {
     id: root
-    header: PageHeader {
-        id: pageHeader
-        title: noteToString(chord.note) + chord.name
-        trailingActionBar.actions: [
-            Action {
-                iconName: "info"
-                onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("AboutPage.qml"))
-            },
-            Action {
-                iconName: "help"
-                onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("ChordsHelpPage.qml"))
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/back.svg"
+                onClicked: pageStack.pop()
             }
-        ]
+
+            Label {
+                text: noteToString(chord.note) + chord.name
+                elide: Label.ElideRight
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/help.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("ChordsHelpPage.qml"))
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/info.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+        }
     }
 
     property var chord: bottomEdge.chord
@@ -60,19 +73,19 @@ Page {
 
     GridLayout {
         id: mainColumn
-        anchors.top: pageHeader.bottom
-        anchors.topMargin: units.gu(5)
+        anchors.top: parent.top
+        anchors.topMargin: 20
         anchors.left: parent.left
-        anchors.leftMargin: units.gu(2)
+        anchors.leftMargin: 10
         anchors.right: parent.right
-        anchors.rightMargin: units.gu(2)
+        anchors.rightMargin:10
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: units.gu(5)
+        anchors.bottomMargin: 30
 
         rows: 2
         columns: 2
 
-        rowSpacing: units.gu(3)
+        rowSpacing: 10
 
         Row {
             id: noteRow
@@ -90,7 +103,7 @@ Page {
                     font.bold: true
                     font.pixelSize: parent.height * 0.7
                     text: guitarStringToString(Music.GuitarStringE2)
-                    color: theme.palette.normal.baseText
+                    color: Material.foreground
                 }
             }
 
@@ -104,7 +117,7 @@ Page {
                     font.bold: true
                     font.pixelSize: parent.height * 0.7
                     text: guitarStringToString(Music.GuitarStringA)
-                    color: theme.palette.normal.baseText
+                    color: Material.foreground
                 }
             }
 
@@ -118,7 +131,7 @@ Page {
                     font.bold: true
                     font.pixelSize: parent.height * 0.7
                     text: guitarStringToString(Music.GuitarStringD)
-                    color: theme.palette.normal.baseText
+                    color: Material.foreground
                 }
             }
 
@@ -132,7 +145,7 @@ Page {
                     font.bold: true
                     font.pixelSize: parent.height * 0.7
                     text: guitarStringToString(Music.GuitarStringG)
-                    color: theme.palette.normal.baseText
+                    color: Material.foreground
                 }
             }
 
@@ -146,7 +159,7 @@ Page {
                     font.bold: true
                     font.pixelSize: parent.height * 0.7
                     text: guitarStringToString(Music.GuitarStringB)
-                    color: theme.palette.normal.baseText
+                    color: Material.foreground
                 }
             }
 
@@ -160,7 +173,7 @@ Page {
                     font.bold: true
                     font.pixelSize: parent.height * 0.7
                     text: guitarStringToString(Music.GuitarStringE4)
-                    color: theme.palette.normal.baseText
+                    color: Material.foreground
                 }
             }
         }
@@ -181,7 +194,7 @@ Page {
                     anchors.right: parent.right
                     anchors.rightMargin: -fingerboardImage.widthOffset
                     text: chord ? chord.startFret : ""
-                    color: theme.palette.normal.baseText
+                    color: Material.foreground
                     font.pixelSize: fingerboardImage.fingerSize * 0.7
                 }
             }
@@ -195,7 +208,7 @@ Page {
                     anchors.right: parent.right
                     anchors.rightMargin: -fingerboardImage.widthOffset
                     text:  chord ? chord.startFret + 1 : ""
-                    color: theme.palette.normal.baseText
+                    color: Material.foreground
                     font.pixelSize: fingerboardImage.fingerSize * 0.7
                 }
             }
@@ -209,7 +222,7 @@ Page {
                     anchors.right: parent.right
                     anchors.rightMargin: -fingerboardImage.widthOffset
                     text: chord ? chord.startFret + 2 : ""
-                    color: theme.palette.normal.baseText
+                    color: Material.foreground
                     font.pixelSize: fingerboardImage.fingerSize * 0.7
                 }
             }
@@ -223,7 +236,7 @@ Page {
                     anchors.right: parent.right
                     anchors.rightMargin: -fingerboardImage.widthOffset
                     text: chord ? chord.startFret + 3 : ""
-                    color: theme.palette.normal.baseText
+                    color: Material.foreground
                     font.pixelSize: fingerboardImage.fingerSize * 0.7
                 }
             }
@@ -248,7 +261,7 @@ Page {
             property real heightOffset: (height - paintedHeight) / 2
 
             fillMode: Image.PreserveAspectFit
-            source: dataDirectory + "/images/fingerboard.png"
+            source: dataDirectory + "/images/fingerboard.svg"
 
             MouseArea {
                 anchors.fill: parent
@@ -280,15 +293,15 @@ Page {
                             height: width
                             radius: width / 2
                             border.width: radius / 4
-                            border.color: chord.positions.get(index).fret < 0 ? UbuntuColors.red : UbuntuColors.green
-                            color: theme.palette.normal.base
+                            border.color: chord.positions.get(index).fret < 0 ? Material.color(Material.Red) : Material.color(Material.Green)
+                            color: Material.background
 
                             ColorAnimation {
                                 id: pluckAnimation
                                 target: indicator
                                 property: "color"
-                                from: UbuntuColors.green
-                                to: theme.palette.normal.base
+                                from: Material.color(Material.Green)
+                                to: Material.background
                                 easing.type: Easing.InQuad
                                 duration: 1000
                             }
@@ -320,7 +333,7 @@ Page {
                     width: barreItem.length
                     height: fingerboardImage.fingerSize
                     radius: height / 2
-                    color: UbuntuColors.blue
+                    color: Material.color(Material.Blue)
 
                     Label {
                         anchors.centerIn: parent
@@ -355,7 +368,7 @@ Page {
                         width: parent.width * 0.8
                         height: width
                         radius: width / 2
-                        color: UbuntuColors.green
+                        color: Material.color(Material.Green)
 
                         Label {
                             anchors.centerIn: parent

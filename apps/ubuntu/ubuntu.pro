@@ -3,8 +3,9 @@ include(../../src/guitar-tools.pri)
 TEMPLATE = app
 TARGET = guitar-tools
 
-INCLUDEPATH += /usr/include/soundtouch
+CONFIG += soundtouch
 
+INCLUDEPATH += /usr/include/soundtouch
 LIBS += -lSoundTouch
 
 RESOURCES += qml.qrc

@@ -1,5 +1,15 @@
 QT += qml quick multimedia
 
+soundtouch {
+    message("Building with soundtouch support")
+    DEFINES += SOUNDTOUCH
+    HEADERS += $$PWD/wavfile.h
+    SOURCES += $$PWD/wavfile.cpp
+
+} else {
+    message("Building without soundtouch support")
+}
+
 CONFIG += c++11
 
 INCLUDEPATH += $$PWD
@@ -22,7 +32,6 @@ HEADERS += \
     $$PWD/volumeanalyzer.h \
     $$PWD/sinewavegenerator.h \
     $$PWD/drumloopplayer.h \
-    $$PWD/wavfile.h \
     $$PWD/scale.h \
     $$PWD/scales.h \
     $$PWD/fretposition.h \
@@ -52,7 +61,6 @@ SOURCES += \
     $$PWD/volumeanalyzer.cpp \
     $$PWD/sinewavegenerator.cpp \
     $$PWD/drumloopplayer.cpp \
-    $$PWD/wavfile.cpp \
     $$PWD/scale.cpp \
     $$PWD/scales.cpp \
     $$PWD/fretposition.cpp \
@@ -64,5 +72,3 @@ SOURCES += \
     $$PWD/composescale.cpp \
     $$PWD/composenote.cpp \
     $$PWD/composenotes.cpp \
-
-

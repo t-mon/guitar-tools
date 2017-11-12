@@ -40,7 +40,7 @@ Item {
     Flickable {
         id: fretBoardFlickable
         anchors.fill: parent
-        contentHeight: fretBoardImage.paintedHeight + 20
+        contentHeight: fretBoardImage.paintedHeight + 50
 
         flickableDirection: Flickable.VerticalFlick
 
@@ -49,9 +49,9 @@ Item {
             anchors.top: parent.top
             anchors.topMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width > 200 ? 200 * 0.65 : parent.width * 0.65
+            width: parent.width > 300 ? 300 * 0.65 : parent.width * 0.65
             fillMode: Image.PreserveAspectFit
-            source: dataDirectory + "/images/fingerboard-full.png"
+            source: dataDirectory + "/images/fingerboard-full.svg"
 
             Item {
                 id: positionsItem
@@ -86,12 +86,12 @@ Item {
                             width: parent.width * 0.9
                             height: width
                             radius: width / 2
-                            border.width: radius / 4
+                            border.width: radius / 8
                             border.color: {
                                 if (!colorfull && !root.selectMode && fretPositionItem.note === root.scale.note) {
-                                    return UbuntuColors.blue
+                                    return Material.color(Material.Blue)
                                 } else if (!colorfull && !root.selectMode) {
-                                    return UbuntuColors.green
+                                    return Material.color(Material.Green)
                                 } else if (colorfull && !root.selectMode) {
                                     return Core.getColorForNote(fretPositionItem.fretPosition.noteFileName)
                                 } else {
@@ -123,7 +123,7 @@ Item {
 
                             MouseArea {
                                 anchors.fill: parent
-                                onPressed: if (selectMode) positionRectangle.border.color = UbuntuColors.blue
+                                onPressed: if (selectMode) positionRectangle.border.color = Material.color(Material.Blue)
                                 onReleased: if (selectMode) positionRectangle.border.color = theme.palette.normal.base
                                 onClicked: {
                                     if (selectMode) {
@@ -145,7 +145,7 @@ Item {
         Column {
             id: fretNumberColumn
             anchors.right: fretBoardImage.left
-            anchors.rightMargin: 5
+            anchors.rightMargin: 12
             anchors.top: fretBoardImage.top
 
             Repeater {

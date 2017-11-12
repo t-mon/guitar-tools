@@ -56,8 +56,9 @@ Page {
         anchors.fill: parent
         anchors.topMargin: root.header.implicitHeight
         scale: Core.fretBoardScale
+        displayNotes: bottomEdge.displayFretboardNotes
         colorfull: true
     }
 
-    //FretBoardBottomEdge { id: bottomEdge }
+    FretBoardBottomEdge { id: bottomEdge }
 }

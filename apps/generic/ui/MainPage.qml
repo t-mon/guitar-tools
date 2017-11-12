@@ -33,18 +33,22 @@ Page {
             anchors.fill: parent
             anchors.leftMargin: 10
 
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/navigation-menu.svg"
+                onClicked: drawer.open()
+            }
 
             Label {
                 text: qsTr("Guitar Tools")
+                font.family: "Roboto"
                 elide: Label.ElideRight
-                //horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 Layout.fillWidth: true
             }
 
             IconToolButton {
                 iconSource: dataDirectory + "/icons/settings.svg"
-                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+                //onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
 
             IconToolButton {
@@ -66,86 +70,70 @@ Page {
             anchors.left: parent.left
             anchors.right: parent.right
 
-            MainMenuListItem {
-                id: guitarTunerToolItem
-                anchors.left: parent.left
-                anchors.right: parent.right
 
+            ItemDelegate {
+                width: parent.width
                 // TRANSLATORS: The name of the tuner tool
-                title: qsTr("Guitar tuner")
+                text: qsTr("Guitar tuner")
+
                 onClicked:  {
                     Core.activateGuitarTuner()
                     pageStack.push(Qt.resolvedUrl("GuitarTunerPage.qml"))
                 }
             }
 
-            MainMenuListItem {
-                id: guitarToolItem
-                anchors.left: parent.left
-                anchors.right: parent.right
-
-                // TRANSLATORS: The name of the tuner tool
-                title: qsTr("Guitar")
+            ItemDelegate {
+                width: parent.width
+                // TRANSLATORS: The name of the guitar tool
+                text: qsTr("Guitar")
                 onClicked:  {
                     Core.activateGuitarPlayer()
                     pageStack.push(Qt.resolvedUrl("GuitarPlayerPage.qml"))
                 }
             }
+
+            ItemDelegate {
+                width: parent.width
+                // TRANSLATORS: The name of the metronome tool
+                text: qsTr("Metronome")
+                onClicked:  {
+                    Core.activateMetronome()
+                    pageStack.push(Qt.resolvedUrl("MetronomePage.qml"))
+                }
+            }
+
+            ItemDelegate {
+                width: parent.width
+                // TRANSLATORS: The name of the chords tool
+                text: qsTr("Chords")
+                onClicked:  {
+                    Core.activateChord()
+                    pageStack.push(Qt.resolvedUrl("ChordPage.qml"))
+                }
+            }
+
+            ItemDelegate {
+                width: parent.width
+                // TRANSLATORS: The name of the scales tool
+                text: qsTr("Scales")
+                onClicked:  {
+                    Core.activateScales()
+                    pageStack.push(Qt.resolvedUrl("ScalesPage.qml"))
+                }
+            }
+
+            ItemDelegate {
+                width: parent.width
+                // TRANSLATORS: The name of the recorder tool
+                text: qsTr("Recorder")
+                onClicked:  {
+                    Core.activateRecorder()
+                    pageStack.push(Qt.resolvedUrl("RecorderPage.qml"))
+                }
+            }
         }
     }
 
-
-    //            MainMenuListItem {
-    //                id: guitarTunerToolItem
-    //                // TRANSLATORS: The name of the tuner tool
-    //                title: qsTr("Guitar tuner")
-    //                imageName: dataDirectory + "icons/guitar-tuner.svg"
-    //                onClicked:  {
-    //                    Core.activateGuitarTuner()
-    //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("GuitarTunerPage.qml"))
-    //                }
-    //            }
-
-    //            MainMenuListItem {
-    //                id: guitarToolItem
-    //                // TRANSLATORS: The name of the guitar player tool
-    //                title: qsTr("Guitar")
-    //                onClicked:  {
-    //                    Core.activateGuitarPlayer()
-    //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("GuitarPlayerPage.qml"))
-    //                }
-    //            }
-
-    //            MainMenuListItem {
-    //                id: metronomeToolItem
-    //                // TRANSLATORS: The name of the metronome tool
-    //                title: qsTr("Metronome")
-    //                onClicked:  {
-    //                    Core.activateMetronome()
-    //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("MetronomePage.qml"))
-    //                }
-    //            }
-
-    //            MainMenuListItem {
-    //                id: chordsToolItem
-    //                // TRANSLATORS: The name of the chord tool
-    //                title: qsTr("Chords")
-    //                onClicked:  {
-    //                    Core.activateChord()
-    //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("ChordPage.qml"))
-    //                }
-    //            }
-
-
-    //            MainMenuListItem {
-    //                id: scalesToolItem
-    //                // TRANSLATORS: The name of the scales tool
-    //                title: qsTr("Scales")
-    //                onClicked:  {
-    //                    Core.activateScales()
-    //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("ScalesPage.qml"))
-    //                }
-    //            }
 
     //            MainMenuListItem {
     //                id: recorderToolItem

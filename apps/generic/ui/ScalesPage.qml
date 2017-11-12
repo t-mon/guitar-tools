@@ -18,33 +18,44 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import QtMultimedia 5.4
-import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Pickers 1.0
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
 import "components"
 
 Page {
     id: root
-    header: PageHeader {
-        id: pageHeader
-        title: noteToString(root.scale.note) + " " + root.scale.name + " " + keyToString(root.scale.key).toLowerCase()
-        flickable: scale.flickable
-        trailingActionBar.actions: [
-            Action {
-                iconName: "info"
-                onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("AboutPage.qml"))
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/back.svg"
+                onClicked: pageStack.pop()
             }
-        ]
+
+            Label {
+                text: noteToString(root.scale.note) + " " + root.scale.name + " " + keyToString(root.scale.key).toLowerCase()
+                elide: Label.ElideRight
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/info.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+        }
     }
 
     property var scale: bottomEdge.scale
 
     ScaleItem {
-        id: scale
+        id: scaleItem
         anchors.fill: parent
+        anchors.topMargin: root.header.implicitHeight
         scale: root.scale
         displayNotes: bottomEdge.displayFretboardNotes
     }

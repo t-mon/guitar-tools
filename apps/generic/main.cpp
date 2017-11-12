@@ -27,6 +27,7 @@
 #include <QCommandLineOption>
 #include <QtQml>
 #include <QtQml/QQmlContext>
+#include <QFontDatabase>
 
 #include "core.h"
 #include "composegrid.h"
@@ -57,12 +58,23 @@ int main(int argc, char *argv[])
             exit(-1);
         }
     } else {
-        dataDir = QDir(QCoreApplication::applicationDirPath() + "/../../../guitar-tools/data/");
+        dataDir = QDir("/usr/share/guitar-tools");
     }
 
-    qDebug() << "Usinf data dir" << dataDir.canonicalPath();
+
+    qDebug() << "Using data dir" << dataDir.canonicalPath();
 
     Core::instance()->setDataDir(dataDir);
+
+    QFont applicationFont;
+    applicationFont.setFamily("Helvetica");
+    applicationFont.setCapitalization(QFont::MixedCase);
+    applicationFont.setPixelSize(30);
+    applicationFont.setPointSize(30);
+    applicationFont.setWeight(QFont::Medium);
+    QGuiApplication::setFont(applicationFont);
+    qDebug() << "Font" << app.font().family() << app.font().pixelSize() << app.font().pointSize();
+
 
     qmlRegisterSingletonType<Core>("GuitarTools", 1, 0, "Core", Core::qmlInstance);
     qmlRegisterType<ComposeGrid>("GuitarTools", 1, 0, "ComposeGrid");

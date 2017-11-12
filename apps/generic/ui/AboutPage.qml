@@ -89,7 +89,7 @@ Page {
 
                     Image {
                         anchors.fill: parent
-                        source: dataDirectory + "/icons/guitar-tools.svg"
+                        source: dataDirectory + "/icons/guitar-tools-android.svg"
                     }
                 }
 

@@ -19,23 +19,25 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Pickers 1.3
-import QtQuick.Layouts 1.1
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
 
 Item {
     id: root
     anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
-    height: units.gu(2)
+    height: 20
     z: 3
 
     property real progress: 0
     property real microphoneVolume: Core.settings.microphoneVolume
 
     Rectangle {
-        anchors {fill: parent; topMargin: -units.gu(200) }
+        anchors.fill: parent
+        anchors.topMargin: - root.parent.height
         color: "#88000000"
         opacity: root.progress
         MouseArea {
@@ -58,7 +60,7 @@ Item {
         onPressed: {
             gesturePoints = new Array();
             ignoring = false;
-            if (root.progress == 0 && mouseY < height - units.gu(2)) {
+            if (root.progress == 0 && mouseY < height - root.height) {
                 mouse.accepted = false;
                 ignoring = true;
             }
@@ -98,86 +100,65 @@ Item {
 
         Rectangle {
             id: contentRect
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.bottom
+            anchors.topMargin: -root.height - root.progress * (height - root.height)
 
-            anchors {
-                left: parent.left
-                right: parent.right
-                top: parent.bottom
-                topMargin: -units.gu(2) - root.progress * (height - units.gu(2))
-            }
 
-            height: contentColumn.height + units.gu(4)
+            height: contentColumn.implicitHeight + root.height
+            Behavior on anchors.topMargin { NumberAnimation { } }
 
-            Behavior on anchors.topMargin {
-                UbuntuNumberAnimation {}
-            }
-
-            color: theme.palette.normal.overlay
+            color: Material.primary
 
             Rectangle {
                 id: borderRectangle
                 anchors { left: contentRect.left; top: contentRect.top; right: contentRect.right }
-                height: units.gu(2)
+                height: root.height
 
-                UbuntuShape {
+                Rectangle {
                     anchors.centerIn: parent
-                    height: units.gu(1)
-                    width: units.gu(5)
-                    radius: "medium"
-                    color: UbuntuColors.inkstone
+                    height: 4
+                    width: 20
+                    radius: height / 2
+                    color: Material.background
                 }
 
-                color: theme.palette.normal.overlaySecondaryText
+                color: Material.color(Material.BlueGrey)
             }
 
             ColumnLayout {
                 id: contentColumn
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                    margins: units.gu(2)
-                }
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.margins: root.height
 
                 Item {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    height: units.gu(10)
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 50
 
                     RowLayout {
                         anchors.left: parent.left
                         anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
 
-                        Icon {
-                            Layout.minimumWidth: units.gu(3)
-                            implicitHeight: units.gu(3)
-                            implicitWidth: width
-                            name: "audio-input-microphone-muted-symbolic"
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: micorphoneVolumeSlider.value = micorphoneVolumeSlider.minimumValue
-                            }
+                        IconToolButton {
+                            iconSource: dataDirectory + "/icons/audio-input-microphone-muted-symbolic.svg"
+                            onClicked: micorphoneVolumeSlider.value = micorphoneVolumeSlider.from
                         }
 
                         Slider {
                             id: micorphoneVolumeSlider
                             Layout.fillWidth: true
-                            minimumValue: 0
-                            maximumValue: 100
+                            from: 0
+                            to: 100
                             onValueChanged: Core.settings.microphoneVolume = Math.round(value)
                             Component.onCompleted: micorphoneVolumeSlider.value = microphoneVolume
                         }
 
-                        Icon {
-                            Layout.minimumWidth: units.gu(3)
-                            implicitHeight: units.gu(3)
-                            implicitWidth: width
-                            name: "audio-input-microphone-symbolic"
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: micorphoneVolumeSlider.value = micorphoneVolumeSlider.maximumValue
-                            }
+                        IconToolButton {
+                            iconSource: dataDirectory + "/icons/audio-input-microphone-symbolic.svg"
+                            onClicked: micorphoneVolumeSlider.value = micorphoneVolumeSlider.to
                         }
                     }
                 }
@@ -185,4 +166,3 @@ Item {
         }
     }
 }
-

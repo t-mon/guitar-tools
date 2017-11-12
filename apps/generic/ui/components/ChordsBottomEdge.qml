@@ -19,24 +19,27 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Pickers 1.3
-import QtQuick.Layouts 1.1
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
 
 Item {
     id: root
     anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
-    height: units.gu(2)
+    height: 20
     z: 3
 
+
     property real progress: 0
-    property var chord: Core.chords.getChord(notePicker.model[notePicker.selectedIndex], namePicker.model[namePicker.selectedIndex])
+    property var chord: Core.chords.getChord(notePicker.model[notePicker.currentIndex], namePicker.model[namePicker.currentIndex])
     property real guitarPlayerVolume: Core.settings.guitarPlayerVolume
 
     Rectangle {
-        anchors {fill: parent; topMargin: -units.gu(200) }
+        anchors.fill: parent
+        anchors.topMargin: - root.parent.height
         color: "#88000000"
         opacity: root.progress
         MouseArea {
@@ -59,7 +62,7 @@ Item {
         onPressed: {
             gesturePoints = new Array();
             ignoring = false;
-            if (root.progress == 0 && mouseY < height - units.gu(2)) {
+            if (root.progress == 0 && mouseY < height - root.height) {
                 mouse.accepted = false;
                 ignoring = true;
             }
@@ -99,173 +102,137 @@ Item {
 
         Rectangle {
             id: contentRect
-            anchors {
-                left: parent.left
-                right: parent.right
-                top: parent.bottom
-                topMargin: -units.gu(2) - root.progress * (height - units.gu(2))
-            }
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.bottom
+            anchors.topMargin: -root.height - root.progress * (height - root.height)
 
-            height: contentColumn.height + units.gu(4)
-            Behavior on anchors.topMargin {
-                UbuntuNumberAnimation {}
-            }
 
-            color: theme.palette.normal.overlay
+            height: contentColumn.implicitHeight + root.height
+            Behavior on anchors.topMargin { NumberAnimation { } }
+
+            color: Material.primary
 
             Rectangle {
                 id: borderRectangle
                 anchors { left: contentRect.left; top: contentRect.top; right: contentRect.right }
-                height: units.gu(2)
+                height: root.height
 
-                UbuntuShape {
+                Rectangle {
                     anchors.centerIn: parent
-                    height: units.gu(1)
-                    width: units.gu(5)
-                    radius: "medium"
-                    color: UbuntuColors.inkstone
+                    height: 6
+                    width: 30
+                    radius: height / 2
+                    color: Material.background
                 }
 
-                color: theme.palette.normal.overlaySecondaryText
+                color: Material.color(Material.BlueGrey)
             }
 
             ColumnLayout {
                 id: contentColumn
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                    margins: units.gu(2)
-                }
-
-                spacing: units.gu(5)
-
-                Row {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.top: parent.top
-                    anchors.topMargin: units.gu(2)
-
-                    Picker {
-                        id: notePicker
-                        width: parent.width / 2
-                        model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
-                        circular: false
-                        delegate: PickerDelegate {
-                            Label {
-                                anchors.centerIn: parent
-                                text: app.noteToString(modelData)
-                            }
-                        }
-                    }
-
-                    Picker {
-                        id: namePicker
-                        width: parent.width / 2
-                        model: Core.chords.getNames(notePicker.model[notePicker.selectedIndex])
-                        circular: false
-                        delegate: PickerDelegate {
-                            Label {
-                                anchors.centerIn: parent
-                                text:  {
-                                    if (modelData === "") {
-                                        return app.keyToString(Music.NoteKeyMajor)
-                                    } else if (modelData === "m") {
-                                        return app.keyToString(Music.NoteKeyMinor)
-                                    } else {
-                                        return modelData
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.margins: root.height
 
                 Item {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    height: units.gu(4)
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 50
 
                     RowLayout {
                         anchors.left: parent.left
                         anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
 
-                        Icon {
-                            Layout.minimumWidth: units.gu(3)
-                            implicitHeight: units.gu(3)
-                            implicitWidth: width
-                            name: "remove"
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: chordPlayerSlider.value = chordPlayerSlider.minimumValue
-                            }
-                        }
-
-                        Slider {
-                            id: chordPlayerSlider
-                            Layout.fillWidth: true
-                            minimumValue: 0
-                            maximumValue: 1000
-                            onValueChanged: Core.settings.chordPlayerDelay = Math.round(value)
-                            Component.onCompleted: chordPlayerSlider.value = chordPlayerDelay
-
-                        }
-
-                        Icon {
-                            Layout.minimumWidth: units.gu(3)
-                            implicitHeight: units.gu(3)
-                            implicitWidth: width
-                            name: "add"
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: chordPlayerSlider.value = chordPlayerSlider.maximumValue
-                            }
-                        }
-                    }
-                }
-
-                Item {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    height: units.gu(4)
-
-                    RowLayout {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        Icon {
-                            Layout.minimumWidth: units.gu(3)
-                            implicitHeight: units.gu(3)
-                            implicitWidth: width
-                            name: "audio-speakers-muted-symbolic"
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.minimumValue
-                            }
+                        IconToolButton {
+                            iconSource: dataDirectory + "/icons/audio-speakers-muted-symbolic.svg"
+                            onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.from
                         }
 
                         Slider {
                             id: guitarPlayerVolumeSlider
                             Layout.fillWidth: true
-                            minimumValue: 0
-                            maximumValue: 100
+                            from: 0
+                            to: 200
                             value: guitarPlayerVolume
                             onValueChanged: Core.settings.guitarPlayerVolume = Math.round(value)
                             Component.onCompleted: guitarPlayerVolumeSlider.value = guitarPlayerVolume
                         }
 
+                        IconToolButton {
+                            iconSource: dataDirectory + "/icons/audio-speakers-symbolic.svg"
+                            onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.to
+                        }
+                    }
+                }
 
-                        Icon {
-                            Layout.minimumWidth: units.gu(3)
-                            implicitHeight: units.gu(3)
-                            implicitWidth: width
-                            name: "audio-speakers-symbolic"
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.maximumValue
+                Row {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 150
+
+                    Tumbler {
+                        id: notePicker
+                        height: parent.height
+                        width: parent.width / 2
+                        model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
+                        wrap: false
+                        delegate: Label {
+                            text: app.noteToString(modelData)
+                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+
+                    Tumbler {
+                        id: namePicker
+                        height: parent.height
+                        width: parent.width / 2
+                        model: Core.chords.getNames(notePicker.model[notePicker.currentIndex])
+                        wrap: false
+                        delegate: Label {
+                            text: {
+                                if (modelData === "") {
+                                    return app.keyToString(Music.NoteKeyMajor)
+                                } else if (modelData === "m") {
+                                    return app.keyToString(Music.NoteKeyMinor)
+                                } else {
+                                    return modelData
+                                }
                             }
+                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 50
+
+                    RowLayout {
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+
+                        IconToolButton {
+                            iconSource: dataDirectory + "/icons/remove.svg"
+                            onClicked: chordPlayerSlider.value = chordPlayerSlider.from
+                        }
+
+                        Slider {
+                            id: chordPlayerSlider
+                            Layout.fillWidth: true
+                            from: 0
+                            to: 1000
+                            value: guitarPlayerVolume
+                            onValueChanged: Core.settings.chordPlayerDelay = Math.round(value)
+                            Component.onCompleted: chordPlayerSlider.value = chordPlayerDelay
+                        }
+
+                        IconToolButton {
+                            iconSource: dataDirectory + "/icons/add.svg"
+                            onClicked: chordPlayerSlider.value = chordPlayerSlider.to
                         }
                     }
                 }
@@ -273,4 +240,5 @@ Item {
         }
     }
 }
+
 

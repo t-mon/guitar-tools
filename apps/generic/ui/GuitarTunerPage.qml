@@ -77,130 +77,126 @@ Page {
         onVolumeLevelChanged: frequencyCanvas.requestPaint()
     }
 
-    Item {
-        anchors.fill: parent
-        anchors.margins: 5
+    ColumnLayout {
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: frequency.top
 
+        //Rectangle { anchors.fill: parent; color: "blue" ; opacity: .2 }
 
-        ColumnLayout {
-            anchors.fill: parent
-            anchors.topMargin: root.header.height
-            anchors.bottomMargin: frequency.height
+        Label {
+            id: noteLabel
+            Layout.alignment: Qt.AlignCenter
+            Layout.minimumHeight: 40
+            //font.bold: true
+            font.pixelSize: 40
+            text: note
+            color: value >= -tolerance && value <= tolerance ? app.green : Material.foreground
+        }
 
-            Label {
-                id: noteLabel
-                Layout.alignment: Qt.AlignCenter
-                Layout.minimumHeight: 30
-                font.bold: true
-                font.pixelSize: 30
-                text: note
-                color: value >= -tolerance && value <= tolerance ? app.green : Material.foreground
-            }
+        Label {
+            id: frequencyLabel
+            Layout.alignment: Qt.AlignCenter
+            Layout.minimumHeight: 20
+            font.bold: true
+            font.pixelSize: 20
+            visible: Core.settings.debugEnabled
+            color: Material.foreground
+            text: Core.guitarTuner.frequency.toFixed(2) + " [Hz]"
+        }
 
-            Label {
-                id: frequencyLabel
-                Layout.alignment: Qt.AlignCenter
-                Layout.minimumHeight: 20
-                font.bold: true
-                font.pixelSize: 20
-                visible: Core.settings.debugEnabled
-                color: Material.foreground
-                text: Core.guitarTuner.frequency.toFixed(2) + " [Hz]"
-            }
+        Image {
+            id: scaleImage
+            fillMode: Image.PreserveAspectFit
+            Layout.fillHeight: landscape
+            Layout.fillWidth: !landscape
+            Layout.alignment: Qt.AlignHCenter
+            Layout.maximumWidth: parent.width
+            Layout.maximumHeight: parent.height
+
+            source: dataDirectory + "/images/tuner-scale.svg"
 
             Image {
-                id: scaleImage
+                id: needleImage
                 fillMode: Image.PreserveAspectFit
-                Layout.fillHeight: landscape
-                Layout.fillWidth: !landscape
-                Layout.alignment: Qt.AlignHCenter
-                Layout.maximumWidth: parent.width
-                Layout.maximumHeight: parent.height
+                height: scaleImage.paintedHeight
+                anchors.top: scaleImage.top
+                anchors.topMargin: ( scaleImage.height - scaleImage.paintedHeight ) / 2
+                anchors.horizontalCenter: scaleImage.horizontalCenter
 
-                source: dataDirectory + "/images/tuner-scale.svg"
+                source: dataDirectory + "/images/tuner-needle.svg"
 
-                Image {
-                    id: needleImage
-                    fillMode: Image.PreserveAspectFit
-                    height: scaleImage.paintedHeight
-                    anchors.top: scaleImage.top
-                    anchors.topMargin: ( scaleImage.height - scaleImage.paintedHeight ) / 2
-                    anchors.horizontalCenter: scaleImage.horizontalCenter
+                transform: Rotation {
+                    origin {
+                        x: needleImage.width / 2
+                        y: needleImage.height
+                    }
+                    axis { x: 0; y: 0; z: 1 }
+                    angle: root.angle
 
-                    source: dataDirectory + "/images/tuner-needle.svg"
-
-                    transform: Rotation {
-                        origin {
-                            x: needleImage.width / 2
-                            y: needleImage.height
-                        }
-                        axis { x: 0; y: 0; z: 1 }
-                        angle: root.angle
-
-                        Behavior on angle {
-                            SpringAnimation {
-                                spring: 1.4
-                                damping: 0.15
-                            }
+                    Behavior on angle {
+                        SpringAnimation {
+                            spring: 1.4
+                            damping: 0.15
                         }
                     }
                 }
             }
         }
-
-        Rectangle {
-            id: frequency
-            anchors.bottom: parent.bottom
-            anchors.left: parent.left
-            anchors.right: parent.right
-            height: 40
-
-            color: "transparent"
-
-            Canvas {
-                id: frequencyCanvas
-
-                property real time: 0
-                property real dt: 1.5
-
-                anchors.fill: parent
-                smooth: true
-                onPaint: {
-
-                    time += dt //Core.guitarTuner.volumeLevel / 10 + dt;
-                    if(time > 300){
-                        time = 0;
-                    }
-
-                    var dataLine = getContext("2d");
-                    dataLine.save();
-                    dataLine.reset();
-                    dataLine.beginPath();
-                    dataLine.lineWidth = 1;
-                    dataLine.lineCap = "round"
-                    dataLine.strokeStyle = Material.foreground;
-
-                    var f = 30;
-                    var dy = (frequencyCanvas.height / 2) - 1;
-                    var amplitude = Core.guitarTuner.volumeLevel * 2 * dy / 100;
-
-                    if (amplitude > dy)
-                        amplitude = dy
-
-                    for(var x = 0; x <= frequencyCanvas.width; x++) {
-                        var phase = x * 0.05 + time;
-                        var y = dy - amplitude * Math.sin(2 * Math.PI * f + phase)
-                        dataLine.lineTo(x, y);
-                    }
-
-                    dataLine.stroke();
-                    dataLine.restore();
-                }
-            }
-        }
-
     }
 
-    //TunerBottomEdge { id: bottomEdge }
+    Rectangle {
+        id: frequency
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: bottomEdge.top
+        height: 100
+
+        color: "transparent"
+
+        Canvas {
+            id: frequencyCanvas
+
+            property real time: 0
+            property real dt: 1.5
+
+            anchors.fill: parent
+            smooth: true
+            onPaint: {
+
+                time += dt //Core.guitarTuner.volumeLevel / 10 + dt;
+                if(time > 300){
+                    time = 0;
+                }
+
+                var dataLine = getContext("2d");
+                dataLine.save();
+                dataLine.reset();
+                dataLine.beginPath();
+                dataLine.lineWidth = 1;
+                dataLine.lineCap = "round"
+                dataLine.strokeStyle = Material.foreground;
+
+                var f = 30;
+                var dy = (frequencyCanvas.height / 2) - 1;
+                var amplitude = Core.guitarTuner.volumeLevel * 2 * dy / 100;
+
+                if (amplitude > dy)
+                    amplitude = dy
+
+                for(var x = 0; x <= frequencyCanvas.width; x++) {
+                    var phase = x * 0.05 + time;
+                    var y = dy - amplitude * Math.sin(2 * Math.PI * f + phase)
+                    dataLine.lineTo(x, y);
+                }
+
+                dataLine.stroke();
+                dataLine.restore();
+            }
+        }
+    }
+
+    TunerBottomEdge { id: bottomEdge }
 }
 

@@ -18,29 +18,39 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import QtMultimedia 5.4
-import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.3
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtMultimedia 5.9
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
 import "components"
 
 Page {
     id: root
-    header: PageHeader {
-        id: pageHeader
-        // TRANSLATORS: Title of the metronome page
-        title: qsTr("Metronome")
-        trailingActionBar.actions: [
-            Action {
-                iconName: "info"
-                onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("AboutPage.qml"))
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/back.svg"
+                onClicked: pageStack.pop()
             }
-        ]
+
+            Label {
+                text: qsTr("Metronome")
+                elide: Label.ElideRight
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/info.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+        }
     }
 
-    property bool landscape: width > height
 
     property int bpm: Core.metronome.bpm
     property int duration: Core.metronome.period * 1.02
@@ -53,13 +63,13 @@ Page {
 
     SoundEffect {
         id: tickSound
-        source: dataDirectory + "sounds/metronome/tick.wav"
+        source: dataDirectory + "/sounds/metronome/tick.wav"
         volume: metronomeVolume
     }
 
     SoundEffect {
         id: tockSound
-        source: dataDirectory + "sounds/metronome/tock.wav"
+        source: dataDirectory + "/sounds/metronome/tock.wav"
         volume: metronomeVolume
     }
 
@@ -105,17 +115,16 @@ Page {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.topMargin: pageHeader.height + units.gu(2)
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: units.gu(2)
+        anchors.bottom: bottomEdge.top
+        anchors.bottomMargin: 20
 
-        spacing: units.gu(2)
+        spacing: 5
 
         Label {
             Layout.alignment: Qt.AlignHCenter
-            font.pixelSize: units.gu(5)
+            font.pixelSize: 40
             font.bold: true
-            color: theme.palette.normal.baseText
+            color: Material.foreground
             text: Math.round(bpmSlider.value)
         }
 
@@ -123,9 +132,9 @@ Page {
             id: dtLabel
             Layout.alignment: Qt.AlignHCenter
             font.bold: true
-            font.pixelSize: units.gu(2)
+            font.pixelSize: 5
             visible: Core.settings.debugEnabled
-            color: theme.palette.normal.baseText
+            color: Material.foreground
             text: Math.round(60000 / bpmSlider.value) + " [ms]"
         }
 
@@ -141,7 +150,7 @@ Page {
             property real widthOffset: (metronomeBackgroundImage.width - metronomeBackgroundImage.paintedWidth) / 2
             property real heightOffset: (metronomeBackgroundImage.height - metronomeBackgroundImage.paintedHeight) / 2
 
-            source: dataDirectory + "/images/metronome.png"
+            source: dataDirectory + "/images/metronome.svg"
 
             Column {
                 anchors.left: parent.left
@@ -157,12 +166,11 @@ Page {
                     width: height
                     color: "transparent"
 
-                    Icon {
+                    Image {
                         anchors.fill: parent
-                        anchors.margins: units.gu(2)
-                        implicitHeight: metronomeBackgroundImage.paintedWidth / 5
-                        implicitWidth: width
-                        name: Core.metronome.running ? "media-playback-pause" : "media-playback-start"
+                        anchors.margins: parent.width / 4
+                        fillMode: Image.PreserveAspectFit
+                        source: Core.metronome.running ?  dataDirectory + "/icons/media-playback-pause.svg" : dataDirectory + "/icons/media-playback-start.svg"
                     }
 
                     MouseArea {
@@ -205,7 +213,7 @@ Page {
                     id: metronomePendulumImage
                     height: metronomeBackgroundImage.paintedHeight
                     fillMode: Image.PreserveAspectFit
-                    source: dataDirectory + "/images/metronome-pendulum.png"
+                    source: dataDirectory + "/images/metronome-pendulum.svg"
                 }
 
                 Image {
@@ -219,7 +227,7 @@ Page {
                     }
 
                     fillMode: Image.PreserveAspectFit
-                    source: dataDirectory + "/images/metronome-weight.png"
+                    source: dataDirectory + "/images/metronome-weight.svg"
                 }
             }
 
@@ -227,12 +235,9 @@ Page {
 
         Slider {
             id: bpmSlider
-            anchors.left: parent.left
-            anchors.leftMargin: units.gu(3)
-            anchors.right: parent.right
-            anchors.rightMargin: units.gu(3)
-            minimumValue: 40
-            maximumValue: 208
+            Layout.fillWidth: true
+            from: 40
+            to: 208
             value: bpm
             onValueChanged: {
                 Core.settings.metronomeSpeed = Math.round(bpmSlider.value)

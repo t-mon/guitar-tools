@@ -19,25 +19,27 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Pickers 1.3
-import QtQuick.Layouts 1.1
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
 
 Item {
     id: root
     anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
-    height: units.gu(2)
+    height: 20
     z: 3
 
     property real progress: 0
-    property var scale: Core.scales.getScale(notePicker.model[notePicker.selectedIndex], namePicker.model[namePicker.selectedIndex])
+    property var scale: Core.scales.getScale(notePicker.model[notePicker.currentIndex], namePicker.model[namePicker.currentIndex])
     property real guitarPlayerVolume: Core.settings.guitarPlayerVolume
     property bool displayFretboardNotes: Core.settings.displayFretboardNotes
 
     Rectangle {
-        anchors {fill: parent; topMargin: -units.gu(200) }
+        anchors.fill: parent
+        anchors.topMargin: - root.parent.height
         color: "#88000000"
         opacity: root.progress
         MouseArea {
@@ -60,7 +62,7 @@ Item {
         onPressed: {
             gesturePoints = new Array();
             ignoring = false;
-            if (root.progress == 0 && mouseY < height - units.gu(2)) {
+            if (root.progress == 0 && mouseY < height - root.height) {
                 mouse.accepted = false;
                 ignoring = true;
             }
@@ -100,136 +102,116 @@ Item {
 
         Rectangle {
             id: contentRect
-            anchors {
-                left: parent.left
-                right: parent.right
-                top: parent.bottom
-                topMargin: -units.gu(2) - root.progress * (height - units.gu(2))
-            }
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.bottom
+            anchors.topMargin: -root.height - root.progress * (height - root.height)
 
-            height: contentColumn.height + units.gu(4)
-            Behavior on anchors.topMargin {
-                UbuntuNumberAnimation {}
-            }
 
-            color: theme.palette.normal.overlay
+            height: contentColumn.implicitHeight + root.height
+            Behavior on anchors.topMargin { NumberAnimation { } }
+
+            color: Material.primary
 
             Rectangle {
                 id: borderRectangle
                 anchors { left: contentRect.left; top: contentRect.top; right: contentRect.right }
-                height: units.gu(2)
+                height: root.height
 
-                UbuntuShape {
+                Rectangle {
                     anchors.centerIn: parent
-                    height: units.gu(1)
-                    width: units.gu(5)
-                    radius: "medium"
-                    color: UbuntuColors.inkstone
+                    height: 6
+                    width: 30
+                    radius: height / 2
+                    color: Material.background
                 }
 
-                color: theme.palette.normal.overlaySecondaryText
+                color: Material.color(Material.BlueGrey)
             }
 
             ColumnLayout {
                 id: contentColumn
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                    margins: units.gu(4)
-                }
-
-                spacing: units.gu(2)
-
-                Row {
-                    Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignHCenter
-
-                    Picker {
-                        id: notePicker
-                        width: parent.width / 3
-                        model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
-                        circular: false
-                        delegate: PickerDelegate {
-                            Label {
-                                anchors.centerIn: parent
-                                text: app.noteToString(modelData)
-                            }
-                        }
-                    }
-
-                    Picker {
-                        id: namePicker
-                        width: parent.width * 2 / 3
-                        model: Core.scales.getNames(notePicker.model[notePicker.selectedIndex])
-                        circular: false
-                        delegate: PickerDelegate {
-                            Label {
-                                anchors.centerIn: parent
-                                text:  {
-                                    if (modelData === "") {
-                                        return app.keyToString(Music.NoteKeyMajor).toLowerCase()
-                                    } else {
-                                        return modelData + " " +  app.keyToString(Core.scales.getScale((notePicker.model[notePicker.selectedIndex]), modelData).key).toLowerCase()
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.margins: root.height
 
                 Item {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: units.gu(5)
+                    Layout.preferredHeight: 50
 
                     RowLayout {
                         anchors.left: parent.left
                         anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
 
-                        Icon {
-                            Layout.minimumWidth: units.gu(3)
-                            implicitHeight: units.gu(3)
-                            implicitWidth: width
-                            name: "audio-speakers-muted-symbolic"
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.minimumValue
-                            }
+                        IconToolButton {
+                            iconSource: dataDirectory + "/icons/audio-speakers-muted-symbolic.svg"
+                            onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.from
                         }
 
                         Slider {
                             id: guitarPlayerVolumeSlider
                             Layout.fillWidth: true
-                            minimumValue: 0
-                            maximumValue: 100
+                            from: 0
+                            to: 200
                             value: guitarPlayerVolume
                             onValueChanged: Core.settings.guitarPlayerVolume = Math.round(value)
                             Component.onCompleted: guitarPlayerVolumeSlider.value = guitarPlayerVolume
                         }
 
+                        IconToolButton {
+                            iconSource: dataDirectory + "/icons/audio-speakers-symbolic.svg"
+                            onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.to
+                        }
+                    }
+                }
 
-                        Icon {
-                            Layout.minimumWidth: units.gu(3)
-                            implicitHeight: units.gu(3)
-                            implicitWidth: width
-                            name: "audio-speakers-symbolic"
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.maximumValue
+                Row {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 150
+
+                    Tumbler {
+                        id: notePicker
+                        height: parent.height
+                        width: parent.width / 2
+                        model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
+                        wrap: false
+                        delegate: Label {
+                            text: app.noteToString(modelData)
+                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+
+                    Tumbler {
+                        id: namePicker
+                        height: parent.height
+                        width: parent.width / 2
+                        model: Core.scales.getNames(notePicker.model[notePicker.selectedIndex])
+                        wrap: false
+                        delegate: Label {
+                            text:  {
+                                if (modelData === "") {
+                                    return app.keyToString(Music.NoteKeyMajor).toLowerCase()
+                                } else {
+                                    return modelData + " " +  app.keyToString(Core.scales.getScale((notePicker.model[notePicker.selectedIndex]), modelData).key).toLowerCase()
+                                }
                             }
+                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
                         }
                     }
                 }
 
                 Item {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: units.gu(5)
+                    Layout.preferredHeight: 50
 
                     Label {
                         anchors.left: parent.left
-                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.verticalCenter: disableFretboardNotesCheckbox.verticalCenter
                         // TRANSLATORS: In the scales view, indicates if the notes on the fretboard should be displayed or not
                         text: qsTr("Show notes")
                     }
@@ -237,18 +219,9 @@ Item {
                     Switch {
                         id: disableFretboardNotesCheckbox
                         anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        onCheckedChanged: {
-                            Core.settings.displayFretboardNotes = disableFretboardNotesCheckbox.checked
-                        }
-
+                        onCheckedChanged: Core.settings.displayFretboardNotes = disableFretboardNotesCheckbox.checked
                         Component.onCompleted: checked = displayFretboardNotes
                     }
-                }
-
-                Item {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: units.gu(2)
                 }
             }
         }

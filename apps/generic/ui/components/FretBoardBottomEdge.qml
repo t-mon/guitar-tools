@@ -18,17 +18,17 @@
  *  along with guitar tools. If not, see <http://www.gnu.org/licenses/>.   *
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Material 2.2
 
-import QtQuick 2.7
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Pickers 1.3
-import QtQuick.Layouts 1.1
 import GuitarTools 1.0
 
 Item {
     id: root
     anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
-    height: units.gu(2)
+    height: 20
     z: 3
 
     property real progress: 0
@@ -36,7 +36,8 @@ Item {
     property bool displayFretboardNotes: Core.settings.displayFretboardNotes
 
     Rectangle {
-        anchors {fill: parent; topMargin: -units.gu(200) }
+        anchors.fill: parent
+        anchors.topMargin: - root.parent.height
         color: "#88000000"
         opacity: root.progress
         MouseArea {
@@ -59,7 +60,7 @@ Item {
         onPressed: {
             gesturePoints = new Array();
             ignoring = false;
-            if (root.progress == 0 && mouseY < height - units.gu(2)) {
+            if (root.progress == 0 && mouseY < height - root.height) {
                 mouse.accepted = false;
                 ignoring = true;
             }
@@ -99,96 +100,74 @@ Item {
 
         Rectangle {
             id: contentRect
-            anchors {
-                left: parent.left
-                right: parent.right
-                top: parent.bottom
-                topMargin: -units.gu(2) - root.progress * (height - units.gu(2))
-            }
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.bottom
+            anchors.topMargin: -root.height - root.progress * (height - root.height)
 
-            height: contentColumn.height + units.gu(4)
-            Behavior on anchors.topMargin {
-                UbuntuNumberAnimation {}
-            }
 
-            color: theme.palette.normal.overlay
+            height: contentColumn.implicitHeight + root.height
+            Behavior on anchors.topMargin { NumberAnimation { } }
+
+            color: Material.primary
 
             Rectangle {
                 id: borderRectangle
                 anchors { left: contentRect.left; top: contentRect.top; right: contentRect.right }
-                height: units.gu(2)
+                height: root.height
 
-                UbuntuShape {
+                Rectangle {
                     anchors.centerIn: parent
-                    height: units.gu(1)
-                    width: units.gu(5)
-                    radius: "medium"
-                    color: UbuntuColors.inkstone
+                    height: 4
+                    width: 20
+                    radius: height / 2
+                    color: Material.background
                 }
 
-                color: theme.palette.normal.overlaySecondaryText
+                color: Material.color(Material.BlueGrey)
             }
 
             ColumnLayout {
                 id: contentColumn
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                    margins: units.gu(4)
-                }
-
-                spacing: units.gu(5)
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.margins: root.height
 
                 Item {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    height: units.gu(5)
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 50
 
                     RowLayout {
                         anchors.left: parent.left
                         anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
 
-                        Icon {
-                            Layout.minimumWidth: units.gu(3)
-                            implicitHeight: units.gu(3)
-                            implicitWidth: width
-                            name: "audio-speakers-muted-symbolic"
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.minimumValue
-                            }
+                        IconToolButton {
+                            iconSource: dataDirectory + "/icons/audio-speakers-muted-symbolic.svg"
+                            onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.from
                         }
 
                         Slider {
                             id: guitarPlayerVolumeSlider
                             Layout.fillWidth: true
-                            minimumValue: 0
-                            maximumValue: 100
+                            from: 0
+                            to: 100
                             value: guitarPlayerVolume
                             onValueChanged: Core.settings.guitarPlayerVolume = Math.round(value)
                             Component.onCompleted: guitarPlayerVolumeSlider.value = guitarPlayerVolume
                         }
 
-
-                        Icon {
-                            Layout.minimumWidth: units.gu(3)
-                            implicitHeight: units.gu(3)
-                            implicitWidth: width
-                            name: "audio-speakers-symbolic"
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.maximumValue
-                            }
+                        IconToolButton {
+                            iconSource: dataDirectory + "/icons/audio-speakers-symbolic.svg"
+                            onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.to
                         }
                     }
                 }
 
+
                 Item {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    height: units.gu(5)
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 50
 
                     Label {
                         anchors.left: parent.left
@@ -200,10 +179,7 @@ Item {
                     Switch {
                         id: disableFretboardNotesCheckbox
                         anchors.right: parent.right
-                        onCheckedChanged: {
-                            Core.settings.displayFretboardNotes = disableFretboardNotesCheckbox.checked
-                        }
-
+                        onCheckedChanged: Core.settings.displayFretboardNotes = disableFretboardNotesCheckbox.checked
                         Component.onCompleted: checked = displayFretboardNotes
                     }
                 }
@@ -211,4 +187,3 @@ Item {
         }
     }
 }
-

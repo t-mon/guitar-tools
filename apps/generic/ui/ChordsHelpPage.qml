@@ -18,26 +18,38 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtMultimedia 5.9
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
+import "components"
 
 Page {
     id: root
-    header: PageHeader {
-        id: pageHeader
-        // TRANSLATORS: Chord help page title
-        title: qsTr("Help")
-        flickable: helpFlickable
-        trailingActionBar.actions: [
-            Action {
-                iconName: "info"
-                onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("AboutPage.qml"))
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/back.svg"
+                onClicked: pageStack.pop()
             }
-        ]
+
+            Label {
+                // TRANSLATORS: Chord help page title
+                text: qsTr("Help")
+                elide: Label.ElideRight
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/info.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+        }
     }
 
     Flickable {
@@ -48,13 +60,13 @@ Page {
         Column {
             id: helpColumn
             anchors.left: parent.left
-            anchors.leftMargin: units.gu(2)
+            anchors.leftMargin: 5
             anchors.right: parent.right
-            anchors.rightMargin: units.gu(2)
+            anchors.rightMargin: 5
 
-            spacing: units.gu(1)
+            spacing: 5
 
-            ThinDivider { }
+            Separator { }
 
             Label {
                 anchors.left: parent.left
@@ -64,20 +76,20 @@ Page {
                 wrapMode: Text.WordWrap
             }
 
-            ThinDivider { }
+            Separator { }
 
             Row {
                 anchors.left: parent.left
                 anchors.right: parent.right
-                spacing: units.gu(3)
+                spacing: 10
                 Rectangle {
                     id: dontPluckRectangle
-                    width: units.gu(4)
+                    width: 30
                     height: width
                     radius: width / 2
                     border.width: radius / 4
-                    border.color: UbuntuColors.red
-                    color: theme.palette.normal.base
+                    border.color: Material.color(Material.Red)
+                    color: Material.background
                 }
 
                 Label {
@@ -87,20 +99,20 @@ Page {
                 }
             }
 
-            ThinDivider { }
+            Separator { }
 
             Row {
                 anchors.left: parent.left
                 anchors.right: parent.right
-                spacing: units.gu(3)
+                spacing: 5
                 Rectangle {
                     id: pluckRectangle
-                    width: units.gu(4)
+                    width: 30
                     height: width
                     radius: width / 2
                     border.width: radius / 4
-                    border.color: UbuntuColors.green
-                    color: theme.palette.normal.base
+                    border.color: Material.color(Material.Green)
+                    color: Material.background
                 }
 
                 Label {
@@ -110,7 +122,7 @@ Page {
                 }
             }
 
-            ThinDivider { }
+            Separator { }
 
             Label {
                 // TRANSLATORS: Chord help page: description of the hand
@@ -125,7 +137,7 @@ Page {
                 id: handImage
 
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width > units.gu(50) ? units.gu(50) : parent.width
+                width: parent.width > 250 ? 250 : parent.width
 
                 fillMode: Image.PreserveAspectFit
                 source: dataDirectory + "/images/hand.svg"

@@ -1,6 +1,8 @@
-include(../../src/guitar-tools.pri)
-
 TARGET = guitar-tools
+
+CONFIG += soundtouch
+
+include(../../src/guitar-tools.pri)
 
 INCLUDEPATH += /usr/include/soundtouch
 LIBS += -lSoundTouch

@@ -22,29 +22,4 @@ import QtQuick 2.7
 import QtQuick.Controls 2.2
 import GuitarTools 1.0
 
-Item {
-    id: root
-
-    property string title
-    property string imageName
-
-    height: toolButton.implicitHeight
-
-    signal clicked()
-
-    Button {
-        id: toolButton
-        anchors.left: parent.left
-        anchors.right: parent.right
-
-        Label {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            text: root.title
-        }
-
-        onClicked: root.clicked()
-    }
-}
 

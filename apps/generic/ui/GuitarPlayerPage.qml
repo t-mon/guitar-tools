@@ -64,219 +64,219 @@ Page {
     Component.onCompleted: selectChord(0)
 
     ColumnLayout {
+        id: mainColumn
         anchors.fill: parent
         anchors.topMargin: 10
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: bottomEdge.height + 20
 
-        GridView {
-            id: chordsGridView
-            cellWidth: width / 4 > 50 ? 50 : width / 4
-            cellHeight: cellWidth
-
+        Item {
+            id: gridItem
             Layout.alignment: Qt.AlignHCenter
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.maximumWidth: parent.width - 5
+            Layout.maximumWidth: parent.width - 10
 
-            model: Core.guitarPlayerChords
-            delegate: GuitarChordItem { }
+            GridView {
+                id: chordsGridView
+                anchors.fill: parent
+                cellWidth: width / 4 > 70 ? 70 : width / 4
+                cellHeight: cellWidth
 
-            Item {
-                id: dragItem
-                width: chordsGridView.cellWidth
-                height: chordsGridView.cellHeight
-                visible: false
+                model: Core.guitarPlayerChords
+                delegate: GuitarChordItem { }
 
-                property string chordName
+                Item {
+                    id: dragItem
+                    width: chordsGridView.cellWidth
+                    height: chordsGridView.cellHeight
+                    visible: false
 
-                Rectangle {
-                    id: temporaryShape
-                    anchors.fill: dragItem
-                    anchors.margins: 2
-                    z: 1
-                    color: app.green
-                    radius: height / 4
+                    property string chordName
 
-                    Label {
-                        anchors.centerIn: parent
-                        text: dragItem.chordName
-                    }
+                    Rectangle {
+                        id: temporaryShape
+                        anchors.fill: dragItem
+                        anchors.margins: 2
+                        z: 1
+                        color: app.green
+                        radius: height / 4
 
-                    states: [
-                        State {
-                            name: "moving"
-                            when: dragItem.visible
-                            PropertyChanges {
-                                target: dragItem
-                                x: chordsGridMouseArea.mouseX + chordsGridMouseArea.offsetX
-                                y: chordsGridMouseArea.mouseY + chordsGridMouseArea.offsetY
-                                z: 10
+                        Label {
+                            anchors.centerIn: parent
+                            text: dragItem.chordName
+                        }
+
+                        states: [
+                            State {
+                                name: "moving"
+                                when: dragItem.visible
+                                PropertyChanges {
+                                    target: dragItem
+                                    x: chordsGridMouseArea.mouseX + chordsGridMouseArea.offsetX
+                                    y: chordsGridMouseArea.mouseY + chordsGridMouseArea.offsetY
+                                    z: 10
+                                }
+                            }
+                        ]
+
+                        RotationAnimation {
+                            target: temporaryShape
+                            running: !editActive
+                            loops: 1
+                            property: "rotation"
+                            to: 0
+                            duration: 100
+                        }
+
+                        SequentialAnimation {
+                            id: movingAnimation
+                            running: editActive
+                            loops: Animation.Infinite
+
+                            RotationAnimation {
+                                target: temporaryShape
+                                property: "rotation"
+                                to: 3
+                                duration: 60
+                            }
+                            RotationAnimation {
+                                target: temporaryShape
+                                property: "rotation"
+                                to: 0
+                                duration: 60
+                            }
+                            RotationAnimation {
+                                target: temporaryShape
+                                property: "rotation"
+                                to: -3
+                                duration: 60
+                            }
+                            RotationAnimation {
+                                target: temporaryShape
+                                property: "rotation"
+                                to: 0
+                                duration: 60
                             }
                         }
-                    ]
-
-                    RotationAnimation {
-                        target: temporaryShape
-                        running: !editActive
-                        loops: 1
-                        property: "rotation"
-                        to: 0
-                        duration: 100
-                    }
-
-                    SequentialAnimation {
-                        id: movingAnimation
-                        running: editActive
-                        loops: Animation.Infinite
-
-                        RotationAnimation {
-                            target: temporaryShape
-                            property: "rotation"
-                            to: 3
-                            duration: 60
-                        }
-                        RotationAnimation {
-                            target: temporaryShape
-                            property: "rotation"
-                            to: 0
-                            duration: 60
-                        }
-                        RotationAnimation {
-                            target: temporaryShape
-                            property: "rotation"
-                            to: -3
-                            duration: 60
-                        }
-                        RotationAnimation {
-                            target: temporaryShape
-                            property: "rotation"
-                            to: 0
-                            duration: 60
-                        }
                     }
                 }
-            }
 
-            MouseArea {
-                id: chordsGridMouseArea
-                anchors.fill: parent
-                hoverEnabled: true
-                preventStealing : true
+                MouseArea {
+                    id: chordsGridMouseArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    preventStealing : true
 
-                property int index: -1
-                property var activeItem: null
-                property int activeIndex: -1
-                property var fullName
-                property bool mousePressed: false
-                property bool removePressed: false
+                    property int index: -1
+                    property var activeItem: null
+                    property int activeIndex: -1
+                    property var fullName
+                    property bool mousePressed: false
+                    property bool removePressed: false
 
-                property real removeAreaWidth: chordsGridView.cellWidth / 4
-                property real offsetX
-                property real offsetY
+                    property real removeAreaWidth: chordsGridView.cellWidth / 4
+                    property real offsetX
+                    property real offsetY
 
-                onRemovePressedChanged: removePressed ? print("removing pressed") : print("not removing")
+                    onRemovePressedChanged: removePressed ? print("removing pressed") : print("not removing")
 
-                onClicked: {
-                    if (index == -1) {
+                    onClicked: {
+                        if (index == -1) {
+                            editActive = false
+                            return
+                        }
+
                         editActive = false
-                        return
                     }
 
-                    editActive = false
-                }
-
-                onPressed: {
-                    mousePressed = true
-                    index = chordsGridView.indexAt(mouseX, mouseY)
-                    if (index == -1)
-                        return
-
-                    selectChord(index)
-
-                    activeItem = chordsGridView.itemAt(mouseX, mouseY)
-                    activeIndex = index
-                    temporaryShape.x = activeItem.x
-                    temporaryShape.y = activeItem.y
-                    offsetX = activeItem.x - mouseX
-                    offsetY = activeItem.y - mouseY
-                    chordsGridMouseArea.fullName = currentChord ? currentChord.fullName : ""
-
-                    removePressed = Math.abs(offsetX) < removeAreaWidth && Math.abs(offsetY) < removeAreaWidth
-
-                    if (removePressed && editActive) {
-                        editActive = false
-                        Core.guitarPlayerChords.removeChord(Core.guitarPlayerChords.get(index))
-                        if (index >= Core.guitarPlayerChords.count()) {
-                            selectChord(Core.guitarPlayerChords.count() -1)
-                        } else {
-                            selectChord(index)
-                        }
-                        return
-                    }
-
-                    evaluateMoving()
-                }
-
-                onReleased: {
-                    mousePressed = false
-                    removePressed = false
-                    fullName = ""
-                    evaluateMoving()
-                }
-
-                onPressAndHold: {
-                    if (editActive || index == -1)
-                        return
-
-                    editActive = true
-                }
-
-                onPositionChanged: {
-                    if (mousePressed)
+                    onPressed: {
+                        mousePressed = true
                         index = chordsGridView.indexAt(mouseX, mouseY)
+                        if (index == -1)
+                            return
 
-                    if (editActive && mousePressed && !removePressed && fullName !== "" && index != -1 && index != activeIndex) {
-                        root.selectedIndex = chordsGridView.indexAt(mouseX, mouseY)
-                        chordsGridView.model.move(activeIndex, index)
+                        selectChord(index)
+
+                        activeItem = chordsGridView.itemAt(mouseX, mouseY)
                         activeIndex = index
+                        temporaryShape.x = activeItem.x
+                        temporaryShape.y = activeItem.y
+                        offsetX = activeItem.x - mouseX
+                        offsetY = activeItem.y - mouseY
+                        chordsGridMouseArea.fullName = currentChord ? currentChord.fullName : ""
+
+                        removePressed = Math.abs(offsetX) < removeAreaWidth && Math.abs(offsetY) < removeAreaWidth
+
+                        if (removePressed && editActive) {
+                            editActive = false
+                            Core.guitarPlayerChords.removeChord(Core.guitarPlayerChords.get(index))
+                            if (index >= Core.guitarPlayerChords.count()) {
+                                selectChord(Core.guitarPlayerChords.count() -1)
+                            } else {
+                                selectChord(index)
+                            }
+                            return
+                        }
+
+                        evaluateMoving()
+                    }
+
+                    onReleased: {
+                        mousePressed = false
+                        removePressed = false
+                        fullName = ""
+                        evaluateMoving()
+                    }
+
+                    onPressAndHold: {
+                        if (editActive || index == -1)
+                            return
+
+                        editActive = true
+                    }
+
+                    onPositionChanged: {
+                        if (mousePressed)
+                            index = chordsGridView.indexAt(mouseX, mouseY)
+
+                        if (editActive && mousePressed && !removePressed && fullName !== "" && index != -1 && index != activeIndex) {
+                            root.selectedIndex = chordsGridView.indexAt(mouseX, mouseY)
+                            chordsGridView.model.move(activeIndex, index)
+                            activeIndex = index
+                        }
                     }
                 }
-            }
 
-            add: Transition {
-                NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 500 }
-                NumberAnimation { property: "scale"; easing.type: Easing.OutBounce; from: 0; to: 1.0; duration: 800 }
-            }
+                add: Transition {
+                    NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 500 }
+                    NumberAnimation { property: "scale"; easing.type: Easing.OutBounce; from: 0; to: 1.0; duration: 800 }
+                }
 
-            addDisplaced: Transition {
-                NumberAnimation { properties: "x,y"; duration: 250; easing.type: Easing.InBack }
-            }
+                addDisplaced: Transition {
+                    NumberAnimation { properties: "x,y"; duration: 250; easing.type: Easing.InBack }
+                }
 
-            moveDisplaced: Transition {
-                NumberAnimation { properties: "x,y"; duration: 250; easing.type: Easing.Linear }
-            }
+                moveDisplaced: Transition {
+                    NumberAnimation { properties: "x,y"; duration: 250; easing.type: Easing.Linear }
+                }
 
-            remove: Transition {
-                NumberAnimation { property: "opacity"; to: 1.0; duration: 500 }
-                NumberAnimation { property: "width"; to: 0; duration: 250 }
-                NumberAnimation { property: "height"; to: 0; duration: 250 }
-            }
+                remove: Transition {
+                    NumberAnimation { property: "opacity"; to: 1.0; duration: 500 }
+                    NumberAnimation { property: "width"; to: 0; duration: 250 }
+                    NumberAnimation { property: "height"; to: 0; duration: 250 }
+                }
 
-            removeDisplaced: Transition {
-                NumberAnimation { properties: "x,y"; duration: 500; easing.type: Easing.OutBack }
+                removeDisplaced: Transition {
+                    NumberAnimation { properties: "x,y"; duration: 500; easing.type: Easing.OutBack }
+                }
             }
         }
-
         Item {
             id: guitarItem
-
-            Layout.preferredHeight: stringColumn.height + 2 * offset
+            Layout.preferredHeight: mainColumn.height * 2 / 5
             Layout.fillWidth: true
 
-            property real stringAreaHeight: 20
-            property real offset: 10
-
-            //Rectangle { anchors.fill: parent; color: "steelblue" ; opacity: .2 }
+            property real stringAreaHeight: guitarItem.height / 6
 
             Column {
                 id: stringColumn
@@ -290,7 +290,7 @@ Page {
                     anchors.right: parent.right
                     height: guitarItem.stringAreaHeight
                     noteName: guitarStringToString(Music.GuitarStringE4);
-                    thickness: 1.2
+                    thickness: 1
                     Component.onCompleted: source = dataDirectory + "/sounds/guitar/E4-0.wav"
                 }
 
@@ -300,7 +300,7 @@ Page {
                     anchors.right: parent.right
                     height: guitarItem.stringAreaHeight
                     noteName: guitarStringToString(Music.GuitarStringB);
-                    thickness: 1.22
+                    thickness: 1.2
                     Component.onCompleted: source = dataDirectory + "/sounds/guitar/B-0.wav"
                 }
 
@@ -310,7 +310,7 @@ Page {
                     anchors.right: parent.right
                     height: guitarItem.stringAreaHeight
                     noteName: guitarStringToString(Music.GuitarStringG);
-                    thickness: 1.24
+                    thickness: 1.4
                     Component.onCompleted: source = dataDirectory + "/sounds/guitar/G-0.wav"
                 }
 
@@ -320,7 +320,7 @@ Page {
                     anchors.right: parent.right
                     height: guitarItem.stringAreaHeight
                     noteName: guitarStringToString(Music.GuitarStringD);
-                    thickness: 1.26
+                    thickness: 1.6
                     Component.onCompleted: source = dataDirectory + "/sounds/guitar/D-0.wav"
                 }
 
@@ -330,7 +330,7 @@ Page {
                     anchors.right: parent.right
                     height: guitarItem.stringAreaHeight
                     noteName: guitarStringToString(Music.GuitarStringA);
-                    thickness: 1.3
+                    thickness: 1.8
                     Component.onCompleted: source = dataDirectory + "/sounds/guitar/A-0.wav"
                 }
 
@@ -340,33 +340,33 @@ Page {
                     anchors.right: parent.right
                     height: guitarItem.stringAreaHeight
                     noteName: guitarStringToString(Music.GuitarStringE2);
-                    thickness: 1.33
+                    thickness: 2
                     Component.onCompleted: source = dataDirectory + "/sounds/guitar/E2-0.wav"
                 }
             }
 
             function calculateCurrentString() {
-                if (guitarMouseArea.mouseY >= 0 && guitarMouseArea.mouseY < stringAreaHeight + offset) {
+                if (guitarMouseArea.mouseY >= 0 && guitarMouseArea.mouseY < stringAreaHeight) {
                     if (guitarMouseArea.currentGuitarString != e4String) {
                         guitarMouseArea.currentGuitarString = e4String
                     }
-                } else if(guitarMouseArea.mouseY >= bString.y && guitarMouseArea.mouseY < 2 * stringAreaHeight + offset) {
+                } else if (guitarMouseArea.mouseY >= bString.y && guitarMouseArea.mouseY < 2 * stringAreaHeight) {
                     if (guitarMouseArea.currentGuitarString != bString) {
                         guitarMouseArea.currentGuitarString = bString
                     }
-                } else if(guitarMouseArea.mouseY >= gString.y && guitarMouseArea.mouseY < 3 * stringAreaHeight + offset) {
+                } else if (guitarMouseArea.mouseY >= gString.y && guitarMouseArea.mouseY < 3 * stringAreaHeight) {
                     if (guitarMouseArea.currentGuitarString != gString) {
                         guitarMouseArea.currentGuitarString = gString
                     }
-                } else if(guitarMouseArea.mouseY >= dString.y && guitarMouseArea.mouseY < 4 * stringAreaHeight + offset) {
+                } else if (guitarMouseArea.mouseY >= dString.y && guitarMouseArea.mouseY < 4 * stringAreaHeight) {
                     if (guitarMouseArea.currentGuitarString != dString) {
                         guitarMouseArea.currentGuitarString = dString
                     }
-                } else if(guitarMouseArea.mouseY >= aString.y && guitarMouseArea.mouseY < 5 * stringAreaHeight + offset) {
+                } else if( guitarMouseArea.mouseY >= aString.y && guitarMouseArea.mouseY < 5 * stringAreaHeight) {
                     if (guitarMouseArea.currentGuitarString != aString) {
                         guitarMouseArea.currentGuitarString = aString
                     }
-                } else if(guitarMouseArea.mouseY >= e2String.y && guitarMouseArea.mouseY < 6 * stringAreaHeight + 2 * offset) {
+                } else if (guitarMouseArea.mouseY >= e2String.y && guitarMouseArea.mouseY < 6 * stringAreaHeight) {
                     if (guitarMouseArea.currentGuitarString != e2String) {
                         guitarMouseArea.currentGuitarString = e2String
                     }
@@ -467,11 +467,13 @@ Page {
 
     Popup {
         id: chordSelectionPopup
+
         leftMargin: root.width * 0.2 / 2
         topMargin: root.height * 0.2 / 2
         width: root.width * 0.8
         height: root.height * 0.8
         modal: true
+
         focus: true
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
@@ -482,59 +484,37 @@ Page {
             chord: chordSelectionPopup.chord
         }
 
-        contentItem: ColumnLayout {
+        ColumnLayout {
+            anchors.fill: parent
 
-            Row {
-                anchors.left: parent.left
-                anchors.right: parent.right
+            Frame {
+                Layout.fillWidth: true
                 Layout.fillHeight: true
+                Row {
+                    anchors.fill: parent
 
-                ListView {
-                    id: notePicker
-                    anchors.left: parent.left
-                    height: parent.height
-                    width: parent.width / 2
-                    model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
-                    focus: true
-                    clip: true
-                    currentIndex: 0
-                    highlightFollowsCurrentItem: true
-                    highlight: Rectangle { color: Material.primary; radius: 5 }
-                    snapMode: ListView.SnapOneItem
-                    delegate: Item {
-                        width: parent.width
-                        height: 30
-                        Label {
-                            anchors.centerIn: parent
+                    Tumbler {
+                        id: notePicker
+                        height: parent.height
+                        width: parent.width / 2
+                        model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
+                        wrap: false
+                        delegate: Label {
                             text: app.noteToString(modelData)
-                        }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: notePicker.currentIndex = index
+                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
                         }
                     }
-                }
 
-                ListView {
-                    id: namePicker
-                    anchors.right: parent.right
-                    height: parent.height
-                    width: parent.width / 2
-                    model: Core.chords.getNames(notePicker.model[notePicker.currentIndex])
-                    highlight: Rectangle { color: Material.primary; radius: 5 }
-                    focus: true
-                    clip: true
-                    currentIndex: 0
-                    snapMode: ListView.SnapOneItem
-                    highlightFollowsCurrentItem: true
-
-                    delegate: Item {
-                        width: parent.width
-                        height: 30
-                        Label {
-                            anchors.centerIn: parent
-                            text:  {
+                    Tumbler {
+                        id: namePicker
+                        height: parent.height
+                        width: parent.width / 2
+                        model: Core.chords.getNames(notePicker.model[notePicker.currentIndex])
+                        wrap: false
+                        delegate: Label {
+                            text: {
                                 if (modelData === "") {
                                     return app.keyToString(Music.NoteKeyMajor)
                                 } else if (modelData === "m") {
@@ -543,20 +523,16 @@ Page {
                                     return modelData
                                 }
                             }
-                        }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: namePicker.currentIndex = index
+                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
                         }
                     }
                 }
-
             }
 
             Button {
                 Layout.fillWidth: true
-
                 // TRANSLATORS: Play button in the chord selection popover (guitar)
                 text: qsTr("Play")
                 //color: Material.primary
@@ -566,7 +542,9 @@ Page {
                 }
             }
 
-            Separator { }
+            MenuSeparator {
+                Layout.fillWidth: true
+            }
 
             Button {
                 Layout.fillWidth: true
@@ -591,141 +569,7 @@ Page {
         }
     }
 
-
-
-    //    Component {
-    //        id: chordSelectionComponent
-
-    //        Dialog {
-    //            id: chordSelectionDialog
-    //            // TRANSLATORS: Title of the chord selection popover (guitar)
-    //            title: qsTr("Select chord")
-
-    //            property var chord: Core.chords.getChord(notePicker.model[notePicker.selectedIndex], namePicker.model[namePicker.selectedIndex])
-
-    //            ChordPlayer {
-    //                id: chordPlayer
-    //                chord: chordSelectionDialog.chord
-    //            }
-
-    //            Connections {
-    //                target: chordPlayer
-    //                onStringPlucked: indicatorRepeater.itemAt(stringNumber).pluck()
-    //            }
-
-    //            Row {
-    //                spacing: units.gu(0)
-
-    //                Picker {
-    //                    id: notePicker
-    //                    width: parent.width / 2
-    //                    model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
-    //                    circular: false
-    //                    delegate: PickerDelegate {
-    //                        Label {
-    //                            anchors.centerIn: parent
-    //                            text: app.noteToString(modelData)
-    //                        }
-    //                    }
-    //                }
-
-    //                Picker {
-    //                    id: namePicker
-    //                    width: parent.width / 2
-    //                    model: Core.chords.getNames(notePicker.model[notePicker.selectedIndex])
-    //                    circular: false
-    //                    delegate: PickerDelegate {
-    //                        Label {
-    //                            anchors.centerIn: parent
-    //                            text:  {
-    //                                if (modelData === "") {
-    //                                    return app.keyToString(Music.NoteKeyMajor)
-    //                                } else if (modelData === "m") {
-    //                                    return app.keyToString(Music.NoteKeyMinor)
-    //                                } else {
-    //                                    return modelData
-    //                                }
-    //                            }
-    //                        }
-    //                    }
-    //                }
-    //            }
-
-    //            ThinDivider { }
-
-    //            Row {
-    //                id: indicatorRow
-    //                anchors.left: parent.left
-    //                anchors.right: parent.right
-
-    //                Repeater {
-    //                    id: indicatorRepeater
-    //                    model: 6
-    //                    delegate: Item {
-    //                        width: parent.width / 6
-    //                        height: width
-
-    //                        function pluck() {
-    //                            pluckAnimation.restart()
-    //                        }
-
-    //                        Rectangle {
-    //                            id: indicator
-    //                            anchors.centerIn: parent
-    //                            width: parent.width * 0.8
-    //                            height: width
-    //                            radius: width / 2
-    //                            border.width: radius / 4
-    //                            border.color: chord.positions.get(index).fret < 0 ? UbuntuColors.red : UbuntuColors.green
-    //                            color: theme.palette.normal.base
-
-    //                            ColorAnimation {
-    //                                id: pluckAnimation
-    //                                target: indicator
-    //                                property: "color"
-    //                                from: UbuntuColors.green
-    //                                to: theme.palette.normal.base
-    //                                easing.type: Easing.InQuad
-    //                                duration: 1000
-    //                            }
-    //                        }
-    //                    }
-    //                }
-    //            }
-
-    //            Button  {
-    //                // TRANSLATORS: Play button in the chord selection popover (guitar)
-    //                text: qsTr("Play")
-    //                color: UbuntuColors.blue
-    //                onClicked: {
-    //                    console.log("Listen chord: " +  app.noteToString(chordPlayer.chord.note) + chordPlayer.chord.name)
-    //                    chordPlayer.playChord()
-    //                }
-    //            }
-
-    //            ThinDivider { }
-
-    //            Button  {
-    //                // TRANSLATORS: Add button in the chord selection popover (guitar)
-    //                text: qsTr("Add")
-    //                color: UbuntuColors.green
-    //                onClicked: {
-    //                    console.log("Add chord: " +  app.noteToString(chordSelectionDialog.chord.note) + chordSelectionDialog.chord.name)
-    //                    Core.guitarPlayerChords.addChord(chordSelectionDialog.chord)
-    //                    PopupUtils.close(chordSelectionDialog)
-    //                }
-    //            }
-
-    //            Button {
-    //                // TRANSLATORS: Close button in the chord selection popover (guitar)
-    //                text: qsTr("Close")
-    //                onClicked: PopupUtils.close(chordSelectionDialog)
-    //            }
-    //        }
-    //    }
-
-    //    GuitarBottomEdge { id: bottomEdge }
-
+    GuitarBottomEdge { id: bottomEdge }
 }
 
 

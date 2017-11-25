@@ -70,7 +70,10 @@ Page {
 
     Item {
         anchors.fill: parent
-        anchors.margins: 5
+        anchors.leftMargin: 5
+        anchors.rightMargin: 5
+        anchors.topMargin: 10
+        anchors.bottomMargin: 10
 
         ColumnLayout {
             anchors.fill: parent
@@ -79,9 +82,8 @@ Page {
             Label {
                 id: frequencyLabel
                 Layout.alignment: Qt.AlignHCenter
-                font.bold: true
-                font.pixelSize: 30
-                text: Math.round(Core.sineWaveGenerator.frequency) + " [Hz]"
+                font.pixelSize: 40
+                text: Math.round(Core.sineWaveGenerator.frequency) + " Hz"
                 color: Material.foreground
             }
 
@@ -258,6 +260,19 @@ Page {
                         }
                     }
                 }
+            }
+
+            SineWaveIndicator {
+                id: sineWave
+                anchors.left: parent.left
+                anchors.leftMargin: 5
+                anchors.right: parent.right
+                anchors.rightMargin: 5
+                indicatorValue: volumeSlider.value / 2
+                speed: 1
+                running: Core.sineWaveGenerator.running
+                opacity: Core.sineWaveGenerator.running ? 1 : 0
+                frequency: frequencySlider.value
             }
 
 

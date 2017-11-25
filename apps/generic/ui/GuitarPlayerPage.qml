@@ -44,6 +44,7 @@ Page {
             }
 
             IconToolButton {
+                hoverEnabled: true
                 iconSource: dataDirectory + "/icons/add.svg"
                 onClicked: chordSelectionPopup.open()
             }
@@ -98,7 +99,7 @@ Page {
                         anchors.fill: dragItem
                         anchors.margins: 2
                         z: 1
-                        color: app.green
+                        color: Material.color(Material.Green)
                         radius: height / 4
 
                         Label {
@@ -174,7 +175,7 @@ Page {
                     property bool mousePressed: false
                     property bool removePressed: false
 
-                    property real removeAreaWidth: chordsGridView.cellWidth / 4
+                    property real removeAreaWidth: chordsGridView.cellWidth / 3
                     property real offsetX
                     property real offsetY
 
@@ -482,6 +483,7 @@ Page {
         ChordPlayer {
             id: chordPlayer
             chord: chordSelectionPopup.chord
+            onStringPlucked: indicatorRepeater.itemAt(stringNumber).pluck()
         }
 
         ColumnLayout {
@@ -490,30 +492,39 @@ Page {
             Frame {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Row {
+                RowLayout {
                     anchors.fill: parent
 
                     Tumbler {
                         id: notePicker
-                        height: parent.height
-                        width: parent.width / 2
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+
                         model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
                         wrap: false
                         delegate: Label {
-                            text: app.noteToString(modelData)
-                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
+                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                            text: app.noteToString(modelData)
+                            color: notePicker.currentIndex == index ? Material.accent : Material.foreground
                         }
                     }
 
+                    ToolSeparator { Layout.fillHeight: true }
+
                     Tumbler {
                         id: namePicker
-                        height: parent.height
-                        width: parent.width / 2
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+
                         model: Core.chords.getNames(notePicker.model[notePicker.currentIndex])
                         wrap: false
                         delegate: Label {
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                            color: namePicker.currentIndex == index ? Material.accent : Material.foreground
                             text: {
                                 if (modelData === "") {
                                     return app.keyToString(Music.NoteKeyMajor)
@@ -523,13 +534,50 @@ Page {
                                     return modelData
                                 }
                             }
-                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
                         }
                     }
                 }
             }
+
+            Row {
+                Layout.fillWidth: true
+
+                Repeater {
+                    id: indicatorRepeater
+                    model: 6
+                    delegate: Item {
+                        width: parent.width / 6
+                        height: width
+
+                        function pluck() {
+                            pluckAnimation.restart()
+                        }
+
+                        Rectangle {
+                            id: indicator
+                            anchors.centerIn: parent
+                            width: parent.width * 0.8
+                            height: width
+                            radius: width / 2
+                            border.width: radius / 4
+                            border.color: chordSelectionPopup.chord.positions.get(index).fret < 0 ? Material.color(Material.Red) : Material.color(Material.Green)
+                            color: Material.background
+
+                            ColorAnimation {
+                                id: pluckAnimation
+                                target: indicator
+                                property: "color"
+                                from: Material.color(Material.Green)
+                                to: Material.background
+                                easing.type: Easing.InQuad
+                                duration: 1000
+                            }
+                        }
+                    }
+                }
+
+            }
+
 
             Button {
                 Layout.fillWidth: true
@@ -551,7 +599,6 @@ Page {
 
                 // TRANSLATORS: Add button in the chord selection popover (guitar)
                 text: qsTr("Add")
-                //color: UbuntuColors.green
                 onClicked: {
                     console.log("Add chord: " +  app.noteToString(chordSelectionPopup.chord.note) + chordSelectionPopup.chord.name)
                     Core.guitarPlayerChords.addChord(chordSelectionPopup.chord)

@@ -47,8 +47,8 @@ Recorder::Recorder(QObject *parent) :
         audioSettings.setCodec("audio/x-vorbis");
     } else if (m_audioRecorder->supportedAudioCodecs().contains("audio/vorbis")) {
         audioSettings.setCodec("audio/vorbis");
-    } else if (m_audioRecorder->supportedAudioCodecs().contains("aac")) {
-        audioSettings.setCodec("aac");
+    } else if (m_audioRecorder->supportedAudioCodecs().contains("amr-nb")) {
+        audioSettings.setCodec("amr-nb"); // Note: Android
     } else {
         audioSettings.setCodec(m_audioRecorder->supportedAudioCodecs().first());
     }
@@ -62,8 +62,6 @@ Recorder::Recorder(QObject *parent) :
     connect(m_audioProbe, SIGNAL(audioBufferProbed(QAudioBuffer)), this, SLOT(onAudioBufferProbed(QAudioBuffer)));
     connect(m_audioRecorder, SIGNAL(stateChanged(QMediaRecorder::State)), this, SLOT(onStateChanged(QMediaRecorder::State)));
     connect(m_audioRecorder, SIGNAL(durationChanged(qint64)), this, SLOT(onDurationChanged(qint64)));
-
-
 
     QDir dir(m_filePath);
     if (!dir.exists()) {

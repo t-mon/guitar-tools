@@ -47,9 +47,9 @@ Item {
         Image {
             id: fretBoardImage
             anchors.top: parent.top
-            anchors.topMargin: 10
+            anchors.topMargin: 20
             anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width > 300 ? 300 * 0.65 : parent.width * 0.65
+            width: parent.width > 350 ? 350 * 0.65 : parent.width * 0.65
             fillMode: Image.PreserveAspectFit
             source: dataDirectory + "/images/fingerboard-full.svg"
 
@@ -95,7 +95,7 @@ Item {
                                 } else if (colorfull && !root.selectMode) {
                                     return Core.getColorForNote(fretPositionItem.fretPosition.noteFileName)
                                 } else {
-                                    return theme.palette.normal.baseText
+                                    return Material.foreground
                                 }
                             }
 
@@ -124,7 +124,7 @@ Item {
                             MouseArea {
                                 anchors.fill: parent
                                 onPressed: if (selectMode) positionRectangle.border.color = Material.color(Material.Blue)
-                                onReleased: if (selectMode) positionRectangle.border.color = theme.palette.normal.base
+                                onReleased: if (selectMode) positionRectangle.border.color = Material.background
                                 onClicked: {
                                     if (selectMode) {
                                         print("Selected " + currentIndex + " " + noteToString(fretPositionItem.note) + " " + fretPositionItem.fretPosition.noteFileName)

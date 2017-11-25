@@ -18,23 +18,39 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import QtQuick.Layouts 1.1
-import QtGraphicalEffects 1.0
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.Pickers 1.3
-import Ubuntu.Components.ListItems 1.3
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtMultimedia 5.9
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
+import "components"
 
 Page {
     id: root
-    header: PageHeader {
-        id: pageHeader
-        // TRANSLATORS: Title of the settings page
-        title: qsTr("Settings")
-        flickable: settingsFlickable
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/back.svg"
+                onClicked: pageStack.pop()
+            }
+
+            Label {
+                text: qsTr("Settings")
+                elide: Label.ElideRight
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/info.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+        }
     }
+
 
     property bool debug: Core.settings.debugEnabled
     property bool disableScreensaver: Core.settings.disableScreensaver
@@ -45,6 +61,7 @@ Page {
     property real guitarPlayerVolume: Core.settings.guitarPlayerVolume
     property real drumLoopsVolume: Core.settings.drumLoopsVolume
     property real microphoneVolume: Core.settings.microphoneVolume
+    property real pitchStandard: Core.settings.pitchStandard
     property real chordPlayerDelay: Core.settings.chordPlayerDelay
 
     property color color1: Core.settings.color1
@@ -61,38 +78,37 @@ Page {
         ColumnLayout {
             id: paramColumn
             anchors.left: parent.left
-            anchors.leftMargin: units.gu(2)
+            anchors.leftMargin: 5
             anchors.right: parent.right
-            anchors.rightMargin: units.gu(2)
+            anchors.rightMargin: 5
 
-            spacing: units.gu(1)
+            spacing: 2
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
             Label {
                 Layout.alignment: Qt.AlignHCenter
                 font.bold: true
-                fontSize: "large"
                 // TRANSLATORS: In the settings page the metronome volume.
                 text: qsTr("General settings")
             }
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
-            Item {
+
+            RowLayout {
                 Layout.fillWidth: true
-                Layout.preferredHeight: units.gu(3)
 
                 Label {
-                    anchors.left: parent.left
-                    anchors.verticalCenter: debugCheckbox.verticalCenter
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.fillWidth: true
                     // TRANSLATORS: In the settings page the Debug checkbox description.
                     text: qsTr("Show details")
                 }
 
                 Switch {
                     id: debugCheckbox
-                    anchors.right: parent.right
+                    Layout.alignment: Qt.AlignVCenter
                     onCheckedChanged: {
                         Core.settings.debugEnabled = debugCheckbox.checked
                     }
@@ -101,22 +117,21 @@ Page {
                 }
             }
 
-            ThinDivider { }
+            //MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
-            Item {
+            RowLayout {
                 Layout.fillWidth: true
-                Layout.preferredHeight: units.gu(3)
 
                 Label {
-                    anchors.left: parent.left
-                    anchors.verticalCenter: screensaverCheckbox.verticalCenter
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.fillWidth: true
                     // TRANSLATORS: In the settings page the screen saver checkbox description.
                     text: qsTr("Disable screen saver")
                 }
 
                 Switch {
                     id: screensaverCheckbox
-                    anchors.right: parent.right
+                    Layout.alignment: Qt.AlignVCenter
                     onCheckedChanged: {
                         Core.settings.disableScreensaver = screensaverCheckbox.checked
                     }
@@ -124,22 +139,21 @@ Page {
                 }
             }
 
-            ThinDivider { }
+            // MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
-            Item {
+            RowLayout {
                 Layout.fillWidth: true
-                Layout.preferredHeight: units.gu(3)
 
                 Label {
-                    anchors.left: parent.left
-                    anchors.verticalCenter: darkThemeCheckbox.verticalCenter
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.fillWidth: true
                     // TRANSLATORS: In the settings page the dark theme checkbox description.
                     text: qsTr("Dark theme")
                 }
 
                 Switch {
                     id: darkThemeCheckbox
-                    anchors.right: parent.right
+                    Layout.alignment: Qt.AlignVCenter
                     onCheckedChanged: {
                         Core.settings.darkThemeEnabled = darkThemeCheckbox.checked
                     }
@@ -147,7 +161,8 @@ Page {
                 }
             }
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
+
 
             Label {
                 // TRANSLATORS: In the settings page the chord player delay.
@@ -155,104 +170,95 @@ Page {
             }
 
             RowLayout {
-                Layout.fillWidth: true
+                anchors.left: parent.left
+                anchors.right: parent.right
 
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    name: "remove"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: chordPlayerSlider.value = chordPlayerSlider.minimumValue
-                    }
+                IconToolButton {
+                    iconSource: dataDirectory + "/icons/remove.svg"
+                    onClicked: chordPlayerSlider.value = chordPlayerSlider.from
                 }
 
                 Slider {
                     id: chordPlayerSlider
                     Layout.fillWidth: true
-                    minimumValue: 0
-                    maximumValue: 1000
+                    from: 0
+                    to: 1000
+                    value: chordPlayerDelay
                     onValueChanged: Core.settings.chordPlayerDelay = Math.round(value)
                     Component.onCompleted: chordPlayerSlider.value = chordPlayerDelay
-
                 }
 
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    name: "add"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: chordPlayerSlider.value = chordPlayerSlider.maximumValue
-                    }
+                IconToolButton {
+                    iconSource: dataDirectory + "/icons/add.svg"
+                    onClicked: chordPlayerSlider.value = chordPlayerSlider.to
                 }
             }
 
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
-            ThinDivider { }
 
             Label {
                 Layout.alignment: Qt.AlignHCenter
                 font.bold: true
-                fontSize: "large"
                 // TRANSLATORS: In the settings page the metronome volume.
                 text: qsTr("Guitar tuner")
             }
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
-            OptionSelector {
-                id: pitchStandardSelector
-                model: ["434 Hz", "440 Hz"]
-                Layout.fillWidth: true
-
+            Label {
+                Layout.alignment: Qt.AlignLeft
                 // TRANSLATORS: In the settings page the pitch standard selection
                 text: qsTr("Pitch standard")
+            }
 
-                onSelectedIndexChanged: {
-                    if (selectedIndex === 0)
+            ComboBox {
+                id: pitchStandardSelector
+                Layout.fillWidth: true
+                displayText: currentText + " Hz"
+                model: [434, 440]
+                onCurrentIndexChanged: {
+                    if (currentIndex === 0)
                         Core.settings.pitchStandard = 434
 
-                    if (selectedIndex === 1)
+                    if (currentIndex === 1)
                         Core.settings.pitchStandard = 440
                 }
 
-                Component.onCompleted: {
-                    if (Core.settings.pitchStandard === 434)
-                        selectedIndex = 0
+                onModelChanged: {
+                    if (pitchStandard === 434)
+                        currentIndex = 0
 
-                    if (Core.settings.pitchStandard === 440)
-                        selectedIndex = 1
+                    if (pitchStandard === 440)
+                        currentIndex = 1
                 }
             }
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
+
 
             Label {
                 Layout.alignment: Qt.AlignHCenter
                 font.bold: true
-                fontSize: "large"
                 text: qsTr("Guitar")
             }
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
-            Item {
+            RowLayout {
                 Layout.fillWidth: true
-                Layout.preferredHeight: units.gu(3)
 
                 Label {
-                    anchors.left: parent.left
-                    anchors.verticalCenter: markNotAssociatedStringsCheckbox.verticalCenter
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.fillWidth: true
                     // TRANSLATORS: In the settings page. Section guitar: if true, the not associated chord string will be marked red.
                     text: qsTr("Mark not associated chord strings")
                 }
 
                 Switch {
                     id: markNotAssociatedStringsCheckbox
-                    anchors.right: parent.right
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.fillWidth: true
                     onCheckedChanged: {
                         Core.settings.markNotAssociatedStrings = markNotAssociatedStringsCheckbox.checked
                     }
@@ -261,22 +267,24 @@ Page {
                 }
             }
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
-            Item {
+
+            RowLayout {
                 Layout.fillWidth: true
-                Layout.preferredHeight: units.gu(3)
 
                 Label {
-                    anchors.left: parent.left
-                    anchors.verticalCenter: disableNotAssociatedStringsCheckbox.verticalCenter
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.fillWidth: true
                     // TRANSLATORS: In the settings page. Section guitar: if true, the not associated chord string can not be played.
                     text: qsTr("Disable not associated chord strings")
                 }
 
                 Switch {
                     id: disableNotAssociatedStringsCheckbox
-                    anchors.right: parent.right
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.fillWidth: true
+
                     onCheckedChanged: {
                         Core.settings.disableNotAssociatedStrings = disableNotAssociatedStringsCheckbox.checked
                     }
@@ -285,77 +293,67 @@ Page {
                 }
             }
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
+
 
             Label {
                 Layout.alignment: Qt.AlignHCenter
                 font.bold: true
-                fontSize: "large"
                 // TRANSLATORS: In the settings page the metronome volume.
                 text: qsTr("Audio input")
             }
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
+
 
             Label {
                 // TRANSLATORS: In the settings page the microphone volume.
-                text: qsTr("Microphone volume") + " ( " + Math.round(micorphoneVolumeSlider.value) + "% )"
+                text: qsTr("Microphone volume") + " ( " + Math.round(microphoneVolumeSlider.value) + "% )"
             }
 
             RowLayout {
                 Layout.fillWidth: true
 
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    name: "audio-input-microphone-muted-symbolic"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: micorphoneVolumeSlider.value = micorphoneVolumeSlider.minimumValue
-                    }
+                IconToolButton {
+                    iconSource: dataDirectory + "/icons/audio-speakers-muted-symbolic.svg"
+                    onClicked: microphoneVolumeSlider.value = microphoneVolumeSlider.from
                 }
 
                 Slider {
-                    id: micorphoneVolumeSlider
+                    id: microphoneVolumeSlider
                     Layout.fillWidth: true
-                    minimumValue: 0
-                    maximumValue: 100
+                    from: 0
+                    to: 100
+                    value: microphoneVolume
                     onValueChanged: Core.settings.microphoneVolume = Math.round(value)
-                    Component.onCompleted: micorphoneVolumeSlider.value = microphoneVolume
+                    Component.onCompleted: microphoneVolumeSlider.value = microphoneVolume
                 }
 
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    name: "audio-input-microphone-symbolic"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: micorphoneVolumeSlider.value = micorphoneVolumeSlider.maximumValue
-                    }
+                IconToolButton {
+                    iconSource: dataDirectory + "/icons/audio-speakers-symbolic.svg"
+                    onClicked: microphoneVolumeSlider.value = microphoneVolumeSlider.to
                 }
             }
 
             ProgressBar {
                 id: volumeProgressBar
                 Layout.fillWidth: true
-                minimumValue: 0
-                maximumValue: 100
+                from: 0
+                to: 100
                 value: Core.settings.currentMicrophoneVolume
             }
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
             Label {
                 Layout.alignment: Qt.AlignHCenter
                 font.bold: true
-                fontSize: "large"
                 // TRANSLATORS: In the settings page the metronome volume.
                 text: qsTr("Audio output")
             }
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
+
 
             Label {
                 // TRANSLATORS: In the settings page the metronome volume.
@@ -363,42 +361,31 @@ Page {
             }
 
             RowLayout {
-                Layout.fillWidth: true
+                anchors.left: parent.left
+                anchors.right: parent.right
 
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    name: "audio-speakers-muted-symbolic"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: metronomeVolumeSlider.value = metronomeVolumeSlider.minimumValue
-                    }
+                IconToolButton {
+                    iconSource: dataDirectory + "/icons/audio-speakers-muted-symbolic.svg"
+                    onClicked: metronomeVolumeSlider.value = metronomeVolumeSlider.from
                 }
 
                 Slider {
                     id: metronomeVolumeSlider
                     Layout.fillWidth: true
-                    minimumValue: 0
-                    maximumValue: 100
+                    from: 0
+                    to: 100
                     value: metronomeVolume
                     onValueChanged: Core.settings.metronomeVolume = Math.round(value)
+                    Component.onCompleted: metronomeVolumeSlider.value = metronomeVolume
                 }
 
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    name: "audio-speakers-symbolic"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: metronomeVolumeSlider.value = metronomeVolumeSlider.maximumValue
-                    }
+                IconToolButton {
+                    iconSource: dataDirectory + "/icons/audio-speakers-symbolic.svg"
+                    onClicked: metronomeVolumeSlider.value = metronomeVolumeSlider.to
                 }
-
             }
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
             Label {
                 // TRANSLATORS: In the settings page the guitar player volume.
@@ -406,96 +393,85 @@ Page {
             }
 
             RowLayout {
-                Layout.fillWidth: true
+                anchors.left: parent.left
+                anchors.right: parent.right
 
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    name: "audio-speakers-muted-symbolic"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.minimumValue
-                    }
+                IconToolButton {
+                    iconSource: dataDirectory + "/icons/audio-speakers-muted-symbolic.svg"
+                    onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.from
                 }
 
                 Slider {
                     id: guitarPlayerVolumeSlider
                     Layout.fillWidth: true
-                    minimumValue: 0
-                    maximumValue: 100
+                    from: 0
+                    to: 100
                     value: guitarPlayerVolume
                     onValueChanged: Core.settings.guitarPlayerVolume = Math.round(value)
                     Component.onCompleted: guitarPlayerVolumeSlider.value = guitarPlayerVolume
                 }
 
-
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    name: "audio-speakers-symbolic"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.maximumValue
-                    }
+                IconToolButton {
+                    iconSource: dataDirectory + "/icons/audio-speakers-symbolic.svg"
+                    onClicked: guitarPlayerVolumeSlider.value = guitarPlayerVolumeSlider.to
                 }
             }
 
-            ThinDivider { }
+//            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
-            Label {
-                // TRANSLATORS: In the settings page the drum loops volume.
-                text: qsTr("Drum loops volume") + " ( " + Math.round(drumLoopsVolumeSlider.value) + "% )"
-            }
+//            Label {
+//                // TRANSLATORS: In the settings page the drum loops volume.
+//                text: qsTr("Drum loops volume") + " ( " + Math.round(drumLoopsVolumeSlider.value) + "% )"
+//            }
 
-            RowLayout {
-                Layout.fillWidth: true
+//            RowLayout {
+//                Layout.fillWidth: true
 
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    name: "audio-speakers-muted-symbolic"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: drumLoopsVolumeSlider.value = drumLoopsVolumeSlider.minimumValue
-                    }
-                }
+//                Icon {
+//                    Layout.minimumWidth: units.gu(3)
+//                    implicitHeight: units.gu(3)
+//                    implicitWidth: width
+//                    name: "audio-speakers-muted-symbolic"
+//                    MouseArea {
+//                        anchors.fill: parent
+//                        onClicked: drumLoopsVolumeSlider.value = drumLoopsVolumeSlider.minimumValue
+//                    }
+//                }
 
-                Slider {
-                    id: drumLoopsVolumeSlider
-                    Layout.fillWidth: true
-                    minimumValue: 0
-                    maximumValue: 100
-                    value: drumLoopsVolume
-                    onValueChanged: Core.settings.drumLoopsVolume = Math.round(value)
-                }
+//                Slider {
+//                    id: drumLoopsVolumeSlider
+//                    Layout.fillWidth: true
+//                    minimumValue: 0
+//                    maximumValue: 100
+//                    value: drumLoopsVolume
+//                    onValueChanged: Core.settings.drumLoopsVolume = Math.round(value)
+//                }
 
-                Icon {
-                    Layout.minimumWidth: units.gu(3)
-                    implicitHeight: units.gu(3)
-                    implicitWidth: width
-                    name: "audio-speakers-symbolic"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: drumLoopsVolumeSlider.value = drumLoopsVolumeSlider.maximumValue
-                    }
-                }
-            }
+//                Icon {
+//                    Layout.minimumWidth: units.gu(3)
+//                    implicitHeight: units.gu(3)
+//                    implicitWidth: width
+//                    name: "audio-speakers-symbolic"
+//                    MouseArea {
+//                        anchors.fill: parent
+//                        onClicked: drumLoopsVolumeSlider.value = drumLoopsVolumeSlider.maximumValue
+//                    }
+//                }
+//            }
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
             Item {
                 Layout.fillWidth: true
-                Layout.preferredHeight: units.gu(5)
+                Layout.preferredHeight: 50
 
-                UbuntuShape {
+                Rectangle {
                     id: color1Shape
                     height: parent.height
                     width: height
                     anchors.left: parent.left
                     anchors.top: parent.top
+                    radius: height / 3
                     color: root.color1
                     MouseArea {
                         anchors.fill: parent
@@ -503,11 +479,12 @@ Page {
                     }
                 }
 
-                UbuntuShape {
+                Rectangle {
                     id: color2Shape
                     height: parent.height
                     width: height
                     anchors.centerIn: parent
+                    radius: height / 3
                     color: root.color2
                     MouseArea {
                         anchors.fill: parent
@@ -515,10 +492,11 @@ Page {
                     }
                 }
 
-                UbuntuShape {
+                Rectangle {
                     id: color3Shape
                     height: parent.height
                     width: height
+                    radius: height / 3
                     anchors.right: parent.right
                     anchors.top: parent.top
                     color: root.color3
@@ -529,19 +507,18 @@ Page {
                 }
             }
 
-            ThinDivider { }
-
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
             Item {
                 Layout.fillWidth: true
-                Layout.preferredHeight: units.gu(10)
+                Layout.preferredHeight: 50
 
                 Rectangle {
                     width: parent.height
                     height: parent.width
                     anchors.centerIn: parent
                     rotation: 90
-                    radius: units.gu(1)
+                    radius: 5
                     gradient: Gradient {
                         GradientStop { position: 0.0; color: root.color3 }
                         GradientStop { position: 0.5; color: root.color2 }
@@ -590,7 +567,8 @@ Page {
                 }
             }
 
-            ThinDivider { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
+
         }
     }
 

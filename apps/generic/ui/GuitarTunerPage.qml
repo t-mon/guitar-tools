@@ -63,7 +63,7 @@ Page {
     property real minValue: 50
     property real maxValue: -50
 
-    property int tolerance: 5
+    property int tolerance: 10
 
     property bool landscape: width > height
 
@@ -81,6 +81,7 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
+        anchors.topMargin: 10
         anchors.bottom: frequency.top
 
         //Rectangle { anchors.fill: parent; color: "blue" ; opacity: .2 }
@@ -89,10 +90,9 @@ Page {
             id: noteLabel
             Layout.alignment: Qt.AlignCenter
             Layout.minimumHeight: 40
-            //font.bold: true
             font.pixelSize: 40
             text: note
-            color: value >= -tolerance && value <= tolerance ? app.green : Material.foreground
+            color: value >= -tolerance && value <= tolerance ? Material.color(Material.Green) : Material.foreground
         }
 
         Label {

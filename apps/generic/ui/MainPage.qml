@@ -48,7 +48,7 @@ Page {
 
             IconToolButton {
                 iconSource: dataDirectory + "/icons/settings.svg"
-                //onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
 
             IconToolButton {
@@ -131,19 +131,19 @@ Page {
                     pageStack.push(Qt.resolvedUrl("RecorderPage.qml"))
                 }
             }
+
+            ItemDelegate {
+                width: parent.width
+                // TRANSLATORS: The name of the compose tool tool
+                text: qsTr("Compose tool")
+                onClicked:  {
+                    pageStack.push(Qt.resolvedUrl("ComposePage.qml"))
+                }
+            }
         }
     }
 
 
-    //            MainMenuListItem {
-    //                id: recorderToolItem
-    //                // TRANSLATORS: The name of the recorder tool
-    //                title: qsTr("Recorder")
-    //                onClicked:  {
-    //                    Core.activateRecorder()
-    //                    root.pageStack.addPageToNextColumn(root, Qt.resolvedUrl("RecorderPage.qml"))
-    //                }
-    //            }
 
     //            MainMenuListItem {
     //                id: drumLoopsToolItem

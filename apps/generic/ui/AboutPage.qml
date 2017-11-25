@@ -69,7 +69,7 @@ Page {
                 Item {
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    height: 15
+                    height: 30
 
                     Label {
                         anchors.centerIn: parent
@@ -80,12 +80,11 @@ Page {
                 }
 
 
-                Rectangle {
+                Item {
                     id: iconImage
                     anchors.horizontalCenter: parent.horizontalCenter
-                    width: 50
+                    width: 70
                     height: width
-                    radius: 10
 
                     Image {
                         anchors.fill: parent
@@ -96,23 +95,44 @@ Page {
                 Label {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: version
-                    font.bold: true
                     font.pixelSize: 20
                 }
 
                 Label {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: "2016 © Simon Stürz"
+                    text: "2017 © Simon Stürz"
                 }
-
-                Separator { }
             }
-
 
             Column {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 spacing: 10
+
+                MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
+
+                Label {
+                    // TRANSLATORS: Donate button description
+                    text: qsTr("Enjoying the app?")
+                    font.bold: true
+                    wrapMode: Text.WordWrap
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+
+                Button {
+                    id: donateButton
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+
+                    // TRANSLATORS: Text in the Donate button
+                    text: qsTr("Donate (PayPal)")
+                    font.underline: true
+                    onClicked: Qt.openUrlExternally("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=C3UKTC3XY9SJ6")
+                }
+
+                MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
                 Row {
                     anchors.left: parent.left
@@ -235,47 +255,18 @@ Page {
                     }
                 }
 
-                Separator { }
-
-                Label {
-                    // TRANSLATORS: Donate button description
-                    text: qsTr("Enjoying the app?")
-                    font.bold: true
-                    wrapMode: Text.WordWrap
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-
-                Button {
-                    id: donateButton
-                    anchors.left: parent.left
-                    anchors.leftMargin: 10
-                    anchors.right: parent.right
-                    anchors.rightMargin: 10
-
-//                    background: Rectangle {
-//                        anchors.fill: parent
-//                        color: app.green
-//                    }
-
-                    //color: "green"
-                    // TRANSLATORS: Text in the Donate button
-                    text: qsTr("Donate (PayPal)")
-                    font.underline: true
-                    onClicked: Qt.openUrlExternally("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=C3UKTC3XY9SJ6")
-                }
-
-                Separator { }
+                MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
                 Label {
                     id: sounds
                     anchors.left: parent.left
                     anchors.right: parent.right
                     // TRANSLATORS: In the about screen.
-                    text: qsTr("Thanks to Fabian Baumgartner and Alfred Bushi for recording the guitar sounds with me. We release the sounds under the <b>CC BY-NC 3.0</b>.")
+                    text: qsTr("Thanks to Fabian Baumgartner and Alfred Bushi for recording the guitar sounds with me. We release the sounds under the CC BY-NC 3.0.")
                     wrapMode: Text.WordWrap
                 }
 
-                Separator { }
+                MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
                 Row {
                     anchors.left: parent.left
@@ -303,7 +294,7 @@ Page {
                     }
                 }
 
-                Separator { }
+                MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
                 Row {
                     anchors.left: parent.left
@@ -331,7 +322,7 @@ Page {
                     }
                 }
 
-                Separator { }
+                MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
                 Row {
                     anchors.left: parent.left
@@ -359,7 +350,7 @@ Page {
                     }
                 }
 
-                Separator { }
+                MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
             }
         }
     }

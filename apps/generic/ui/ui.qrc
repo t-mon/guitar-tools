@@ -13,15 +13,13 @@
         <!-- <file>DrumLoopPage.qml</file> -->
         <file>RecorderPage.qml</file>
         <file>RecorderPlaylistPage.qml</file>
-        <file>RecorderPlaylistHelpPage.qml</file>
         <file>TuningForkPage.qml</file>
         <file>ScalesPage.qml</file>
         <file>FretBoardPage.qml</file>
-        <!-- <file>ComposePage.qml</file> -->
-        <!-- <file>ComposeSettingsPage.qml</file> -->
-        <!-- <file>ComposeSelectorPage.qml</file> -->
-        <!-- <file>ComposeLoadPage.qml</file> -->
-        <file>components/MainMenuListItem.qml</file>
+        <file>ComposePage.qml</file>
+        <file>ComposeSettingsPage.qml</file>
+        <file>ComposeSelectorPage.qml</file>
+        <file>ComposeLoadPage.qml</file>
         <file>components/ChordPlayer.qml</file>
         <file>components/GuitarStringItem.qml</file>
         <file>components/GuitarSoundEffect.qml</file>
@@ -33,9 +31,9 @@
         <file>components/ScaleItem.qml</file>
         <file>components/FretBoardBottomEdge.qml</file>
         <file>components/TunerBottomEdge.qml</file>
-        <!-- <file>components/ComposeBottomEdge.qml</file>  -->
+        <file>components/ComposeBottomEdge.qml</file>
         <file>components/GuitarChordItem.qml</file>
         <file>components/IconToolButton.qml</file>
-        <file>components/Separator.qml</file>
+        <file>components/SineWaveIndicator.qml</file>
     </qresource>
 </RCC>

@@ -40,6 +40,7 @@ ApplicationWindow {
     property color green: "#3eb34f"
     property color red: "#ed3146"
 
+    font: Qt.application.font
 
 
     Drawer {

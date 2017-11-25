@@ -100,7 +100,7 @@ Page {
                 Label {
                     id: e2Label
                     anchors.centerIn: parent
-                    font.bold: true
+                    //font.bold: true
                     font.pixelSize: parent.height * 0.7
                     text: guitarStringToString(Music.GuitarStringE2)
                     color: Material.foreground
@@ -114,7 +114,7 @@ Page {
                 Label {
                     id: aLabel
                     anchors.centerIn: parent
-                    font.bold: true
+                    //font.bold: true
                     font.pixelSize: parent.height * 0.7
                     text: guitarStringToString(Music.GuitarStringA)
                     color: Material.foreground
@@ -128,7 +128,7 @@ Page {
                 Label {
                     id: dLabel
                     anchors.centerIn: parent
-                    font.bold: true
+                    //font.bold: true
                     font.pixelSize: parent.height * 0.7
                     text: guitarStringToString(Music.GuitarStringD)
                     color: Material.foreground
@@ -142,7 +142,7 @@ Page {
                 Label {
                     id: gLabel
                     anchors.centerIn: parent
-                    font.bold: true
+                    //font.bold: true
                     font.pixelSize: parent.height * 0.7
                     text: guitarStringToString(Music.GuitarStringG)
                     color: Material.foreground
@@ -156,7 +156,7 @@ Page {
                 Label {
                     id: bLabel
                     anchors.centerIn: parent
-                    font.bold: true
+                    //font.bold: true
                     font.pixelSize: parent.height * 0.7
                     text: guitarStringToString(Music.GuitarStringB)
                     color: Material.foreground
@@ -170,7 +170,7 @@ Page {
                 Label {
                     id: e4Label
                     anchors.centerIn: parent
-                    font.bold: true
+                    //font.bold: true
                     font.pixelSize: parent.height * 0.7
                     text: guitarStringToString(Music.GuitarStringE4)
                     color: Material.foreground

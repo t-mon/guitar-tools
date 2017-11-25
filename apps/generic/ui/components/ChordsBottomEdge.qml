@@ -166,47 +166,6 @@ Item {
                     }
                 }
 
-                Row {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 150
-
-                    Tumbler {
-                        id: notePicker
-                        height: parent.height
-                        width: parent.width / 2
-                        model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
-                        wrap: false
-                        delegate: Label {
-                            text: app.noteToString(modelData)
-                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
-
-                    Tumbler {
-                        id: namePicker
-                        height: parent.height
-                        width: parent.width / 2
-                        model: Core.chords.getNames(notePicker.model[notePicker.currentIndex])
-                        wrap: false
-                        delegate: Label {
-                            text: {
-                                if (modelData === "") {
-                                    return app.keyToString(Music.NoteKeyMajor)
-                                } else if (modelData === "m") {
-                                    return app.keyToString(Music.NoteKeyMinor)
-                                } else {
-                                    return modelData
-                                }
-                            }
-                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
-                }
-
                 Item {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 50
@@ -233,6 +192,56 @@ Item {
                         IconToolButton {
                             iconSource: dataDirectory + "/icons/add.svg"
                             onClicked: chordPlayerSlider.value = chordPlayerSlider.to
+                        }
+                    }
+                }
+
+                Frame {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    RowLayout {
+                        anchors.fill: parent
+
+                        Tumbler {
+                            id: notePicker
+                            Layout.fillHeight: true
+                            Layout.fillWidth: true
+
+                            model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
+                            wrap: false
+                            delegate: Label {
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                                opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                                text: app.noteToString(modelData)
+                                color: notePicker.currentIndex == index ? Material.accent : Material.foreground
+                            }
+                        }
+
+                        ToolSeparator { Layout.fillHeight: true }
+
+                        Tumbler {
+                            id: namePicker
+                            Layout.fillHeight: true
+                            Layout.fillWidth: true
+
+                            model: Core.chords.getNames(notePicker.model[notePicker.currentIndex])
+                            wrap: false
+                            delegate: Label {
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                                opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                                color: namePicker.currentIndex == index ? Material.accent : Material.foreground
+                                text: {
+                                    if (modelData === "") {
+                                        return app.keyToString(Music.NoteKeyMajor)
+                                    } else if (modelData === "m") {
+                                        return app.keyToString(Music.NoteKeyMinor)
+                                    } else {
+                                        return modelData
+                                    }
+                                }
+                            }
                         }
                     }
                 }

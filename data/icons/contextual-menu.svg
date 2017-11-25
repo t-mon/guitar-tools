@@ -15,10 +15,7 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    viewBox="0 0 96 96.000001"
-   sodipodi:docname="audio-input-microphone-symbolic.svg"
-   inkscape:export-filename="/home/timon/development/guitar-tools/guitar-tools/data/images/audio-microphone.png"
-   inkscape:export-xdpi="468.75"
-   inkscape:export-ydpi="468.75">
+   sodipodi:docname="contextual-menu.svg">
   <defs
      id="defs4876" />
   <sodipodi:namedview
@@ -28,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="4.4959994"
-     inkscape:cx="-72.586761"
-     inkscape:cy="31.427913"
+     inkscape:zoom="8.7812489"
+     inkscape:cx="31.828983"
+     inkscape:cy="74.759936"
      inkscape:document-units="px"
      inkscape:current-layer="g4780"
      showgrid="true"
@@ -104,7 +101,7 @@
        position="84,-8.0000001"
        id="guide4080" />
     <sodipodi:guide
-       position="48,-8.0000001"
+       position="48,79.000001"
        orientation="1,0"
        id="guide4170" />
     <sodipodi:guide
@@ -156,32 +153,30 @@
              x="-438.00244"
              y="345.36221"
              transform="scale(-1,1)" />
-          <path
-             style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#f9f9f9;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;enable-background:accumulate"
-             d="M 48,8.7001297e-8 C 41.2234,8.7001297e-8 36,4.0575635 36,12.210938 l 0,18.28125 0,5.085937 0,12.210937 C 36,55.942437 41.2234,60 48,60 54.7766,60 60,55.929422 60,47.789062 l 0,-12.210937 0,-5.085937 0,-18.28125 C 60,4.0705784 54.7766,8.7001297e-8 48,8.7001297e-8 Z M 48,4.0781251 c 2.58797,0 4.570789,0.7678307 5.849609,1.9765625 1.14505,1.0824317 2.177735,3.0694875 2.177735,6.1542964 l 0,18.28125 0,5.087891 0,12.212891 c 0,3.084809 -1.032695,5.071865 -2.177735,6.154296 -1.27881,1.208712 -3.261639,1.976563 -5.849609,1.976563 -2.59033,0 -4.573013,-0.765124 -5.851562,-1.972656 -1.14302,-1.079573 -2.175782,-3.065717 -2.175782,-6.158203 l 0,-12.212891 0,-5.087891 0,-18.28125 c 0,-3.0924959 1.032762,-5.0786298 2.175782,-6.1582027 C 43.426998,4.8432191 45.40968,4.0781251 48,4.0781251 Z"
-             transform="matrix(0,-1,-1.0003957,0,438.00245,441.36222)"
-             id="path4358"
-             inkscape:connector-curvature="0"
-             sodipodi:nodetypes="ssccsssccssscsccscscsccsss" />
-          <rect
-             y="-373.97714"
-             x="-396.36212"
-             height="28.011103"
-             width="5.9998922"
-             id="rect2014"
-             style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#f9f9f9;stroke:none;stroke-width:3;marker:none;enable-background:accumulate"
+          <ellipse
+             style="opacity:1;fill:#f9f9f9;fill-opacity:1;fill-rule:evenodd;stroke:#f9f9f9;stroke-width:5.48792362;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+             id="path4154"
+             cx="-393.36221"
+             cy="-419.49512"
+             transform="matrix(0,-1,-1,0,0,0)"
+             rx="3.7560382"
+             ry="3.7586098" />
+          <ellipse
+             style="display:inline;opacity:1;fill:#f9f9f9;fill-opacity:1;fill-rule:evenodd;stroke:#f9f9f9;stroke-width:5.48792315;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+             id="path4154-3"
+             cx="-393.36221"
+             cy="-389.98346"
+             rx="3.7560382"
+             ry="3.7586102"
              transform="matrix(0,-1,-1,0,0,0)" />
-          <path
-             inkscape:connector-curvature="0"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#f9f9f9;fill-opacity:1;stroke:none"
-             d="m 347.96683,393.36217 c 0,5.33314 -0.95467,10.67715 -2.75107,15.99995 l -3.25127,0 0,-31.9999 3.25127,0 c 1.75818,5.33419 2.75107,10.66681 2.75107,15.99995 z"
-             id="path1687-9" />
-          <path
-             style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;baseline-shift:baseline;text-anchor:start;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;color-interpolation:sRGB;color-interpolation-filters:linearRGB;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:4.00079107;stroke-miterlimit:4;stroke-dasharray:none;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-             d="m 394.98544,417.36222 -5.00198,0 c -6.74692,0 -13.33973,-2.49674 -17.7964,-7.2962 -4.41223,-4.75146 -6.2131,-10.90027 -6.2131,-16.7038 0,-5.809 1.80049,-11.95369 6.2131,-16.7018 4.45687,-4.79586 11.0518,-7.2982 17.7964,-7.2982 l 5.00198,0 0,4.21678 -5.00198,0 c -5.69238,0 -11.20471,2.13469 -14.7297,5.92779 -3.56031,3.83103 -5.06334,8.91061 -5.06334,13.85543 0,4.93838 1.50243,10.02285 5.06334,13.85742 3.52481,3.796 9.03291,5.92779 14.7297,5.92779 l 5.00198,0 z"
-             id="path2060"
-             inkscape:connector-curvature="0"
-             sodipodi:nodetypes="cscsssccssscscc" />
+          <ellipse
+             style="display:inline;opacity:1;fill:#f9f9f9;fill-opacity:1;fill-rule:evenodd;stroke:#f9f9f9;stroke-width:5.48792315;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+             id="path4154-3-6"
+             cx="-393.36221"
+             cy="-360.4718"
+             rx="3.7560382"
+             ry="3.7586102"
+             transform="matrix(0,-1,-1,0,0,0)" />
         </g>
       </g>
     </g>

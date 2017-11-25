@@ -69,8 +69,7 @@ int main(int argc, char *argv[])
     QFont applicationFont;
     applicationFont.setFamily("Helvetica");
     applicationFont.setCapitalization(QFont::MixedCase);
-    applicationFont.setPixelSize(30);
-    applicationFont.setPointSize(30);
+    applicationFont.setPixelSize(14);
     applicationFont.setWeight(QFont::Medium);
     QGuiApplication::setFont(applicationFont);
     qDebug() << "Font" << app.font().family() << app.font().pixelSize() << app.font().pointSize();

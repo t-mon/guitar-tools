@@ -55,30 +55,28 @@ Page {
         }
     }
 
-    Column {
-        anchors.top: parent.top
-        anchors.topMargin: 10
+    ColumnLayout {
         anchors.left: parent.left
         anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.topMargin: 10
+        anchors.bottom: frequency.top
 
-        spacing: 5
+        Image {
+            Layout.alignment: Qt.AlignHCenter
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.maximumWidth: parent.width
+            Layout.maximumHeight: parent.height
 
-        Item {
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: 150
-            height: width
 
-            Image {
-                anchors.fill: parent
-                fillMode: Image.PreserveAspectFit
-                source: dataDirectory + "/icons/audio-input-microphone-symbolic.svg"
-            }
+            fillMode: Image.PreserveAspectFit
+            source: dataDirectory + "/images/audio-microphone.png"
         }
-
 
         Label {
             id: recordTimeLable
-            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.alignment: Qt.AlignHCenter
             text: Core.recorder.recordTime
             font.bold: true
             font.pixelSize: 30
@@ -118,7 +116,7 @@ Page {
 
         Rectangle {
             id: recordButton
-            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.alignment: Qt.AlignHCenter
             width: 100
             height: width / 2
             color: Material.background
@@ -149,55 +147,58 @@ Page {
             target: Core.recorder
             onVolumeLevelChanged: frequencyCanvas.requestPaint()
         }
+    }
 
-        Item {
-            id: sineWave
-            anchors.left: parent.left
-            anchors.right: parent.right
-            height: 50
+    Item {
+        id: frequency
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: bottomEdge.top
+        height: 60
+
+        Canvas {
+            id: frequencyCanvas
+
+            property real time: 0
+            property real dt: 1.5
+
             opacity: Core.recorder.running ? 1 : 0
             Behavior on opacity {
                 NumberAnimation { duration: 500 }
             }
 
-            Canvas {
-                id: frequencyCanvas
+            anchors.fill: parent
+            smooth: true
+            onPaint: {
 
-                property real time: 0
-                property real dt: 0.5
-
-                anchors.fill: parent
-                smooth: true
-                onPaint: {
-
-                    time += dt
-                    if(time > 300)
-                        time = 0;
-
-                    var dataLine = getContext("2d");
-                    dataLine.save();
-                    dataLine.reset();
-                    dataLine.beginPath();
-                    dataLine.lineWidth = 2;
-                    dataLine.lineCap = "round"
-                    dataLine.strokeStyle = Material.foreground;
-
-                    var f = 30;
-                    var dy = (frequencyCanvas.height / 2) - 2;
-                    var amplitude = Core.recorder.volumeLevel * dy / 100;
-
-                    if (amplitude > dy)
-                        amplitude = dy
-
-                    for(var x = 0; x <= frequencyCanvas.width; x++) {
-                        var phase = x * 0.05 + time;
-                        var y = dy - amplitude * Math.sin(2 * Math.PI * f + phase)
-                        dataLine.lineTo(x, y);
-                    }
-
-                    dataLine.stroke();
-                    dataLine.restore();
+                time += dt //Core.guitarTuner.volumeLevel / 10 + dt;
+                if(time > 300){
+                    time = 0;
                 }
+
+                var dataLine = getContext("2d");
+                dataLine.save();
+                dataLine.reset();
+                dataLine.beginPath();
+                dataLine.lineWidth = 1;
+                dataLine.lineCap = "round"
+                dataLine.strokeStyle = Material.foreground;
+
+                var f = 30;
+                var dy = (frequencyCanvas.height / 2) - 1;
+                var amplitude = Core.recorder.volumeLevel * 2 * dy / 100;
+
+                if (amplitude > dy)
+                    amplitude = dy
+
+                for(var x = 0; x <= frequencyCanvas.width; x++) {
+                    var phase = x * 0.05 + time;
+                    var y = dy - amplitude * Math.sin(2 * Math.PI * f + phase)
+                    dataLine.lineTo(x, y);
+                }
+
+                dataLine.stroke();
+                dataLine.restore();
             }
         }
     }

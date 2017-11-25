@@ -166,44 +166,44 @@ Item {
                     }
                 }
 
-                Row {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 150
+                //                Row {
+                //                    Layout.fillWidth: true
+                //                    Layout.preferredHeight: 150
 
-                    Tumbler {
-                        id: notePicker
-                        height: parent.height
-                        width: parent.width / 2
-                        model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
-                        wrap: false
-                        delegate: Label {
-                            text: app.noteToString(modelData)
-                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
+                //                    Tumbler {
+                //                        id: notePicker
+                //                        height: parent.height
+                //                        width: parent.width / 2
+                //                        model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
+                //                        wrap: false
+                //                        delegate: Label {
+                //                            text: app.noteToString(modelData)
+                //                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                //                            horizontalAlignment: Text.AlignHCenter
+                //                            verticalAlignment: Text.AlignVCenter
+                //                        }
+                //                    }
 
-                    Tumbler {
-                        id: namePicker
-                        height: parent.height
-                        width: parent.width / 2
-                        model: Core.scales.getNames(notePicker.model[notePicker.selectedIndex])
-                        wrap: false
-                        delegate: Label {
-                            text:  {
-                                if (modelData === "") {
-                                    return app.keyToString(Music.NoteKeyMajor).toLowerCase()
-                                } else {
-                                    return modelData + " " +  app.keyToString(Core.scales.getScale((notePicker.model[notePicker.selectedIndex]), modelData).key).toLowerCase()
-                                }
-                            }
-                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
-                }
+                //                    Tumbler {
+                //                        id: namePicker
+                //                        height: parent.height
+                //                        width: parent.width / 2
+                //                        model: Core.scales.getNames(notePicker.model[notePicker.selectedIndex])
+                //                        wrap: false
+                //                        delegate: Label {
+                //                            text:  {
+                //                                if (modelData === "") {
+                //                                    return app.keyToString(Music.NoteKeyMajor).toLowerCase()
+                //                                } else {
+                //                                    return modelData + " " +  app.keyToString(Core.scales.getScale((notePicker.model[notePicker.selectedIndex]), modelData).key).toLowerCase()
+                //                                }
+                //                            }
+                //                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                //                            horizontalAlignment: Text.AlignHCenter
+                //                            verticalAlignment: Text.AlignVCenter
+                //                        }
+                //                    }
+                //                }
 
                 Item {
                     Layout.fillWidth: true
@@ -221,6 +221,61 @@ Item {
                         anchors.right: parent.right
                         onCheckedChanged: Core.settings.displayFretboardNotes = disableFretboardNotesCheckbox.checked
                         Component.onCompleted: checked = displayFretboardNotes
+                    }
+                }
+
+                Frame {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    RowLayout {
+                        anchors.fill: parent
+
+                        Tumbler {
+                            id: notePicker
+                            Layout.fillHeight: true
+                            Layout.fillWidth: true
+
+                            model: [Music.NoteC, Music.NoteCSharp, Music.NoteD, Music.NoteDSharp, Music.NoteE, Music.NoteF, Music.NoteFSharp, Music.NoteG, Music.NoteGSharp, Music.NoteA, Music.NoteASharp, Music.NoteB]
+                            wrap: false
+                            delegate:  Label {
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                                opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                                color: notePicker.currentIndex == index ? Material.accent : Material.foreground
+
+                                Behavior on color {  ColorAnimation { } }
+
+                                text: app.noteToString(modelData)
+                            }
+                        }
+
+                        ToolSeparator { Layout.fillHeight: true }
+
+                        Tumbler {
+                            id: namePicker
+                            Layout.fillHeight: true
+                            Layout.fillWidth: true
+
+                            model: Core.scales.getNames(notePicker.model[notePicker.selectedIndex])
+                            wrap: false
+                            delegate: Label {
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                                opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                                color: namePicker.currentIndex == index ? Material.accent : Material.foreground
+
+                                Behavior on color {  ColorAnimation { } }
+
+                                text:  {
+                                    if (modelData === "") {
+                                        return app.keyToString(Music.NoteKeyMajor).toLowerCase()
+                                    } else {
+                                        return modelData + " " +  app.keyToString(Core.scales.getScale((notePicker.model[notePicker.selectedIndex]), modelData).key).toLowerCase()
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

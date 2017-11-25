@@ -18,40 +18,55 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-import QtQuick 2.7
-import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtMultimedia 5.9
+import QtQuick.Dialogs 1.2
+import QtQuick.Controls.Material 2.2
+
 import GuitarTools 1.0
 import "components"
 
 Page {
     id: root
-    header: PageHeader {
-        id: pageHeader
-        title: Core.composeTool.songName
-        trailingActionBar.actions: [
-            Action {
-                iconName: "navigation-menu"
-                onTriggered: PopupUtils.open(menuComponent)
-            },
-            Action {
-                iconName: "info"
-                onTriggered: pageLayout.addPageToNextColumn(root, Qt.resolvedUrl("AboutPage.qml"))
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/back.svg"
+                onClicked: pageStack.pop()
             }
-        ]
+
+            Label {
+                text: Core.composeTool.songName
+                elide: Label.ElideRight
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/info.svg"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/contextual-menu.svg"
+                onClicked: composeMenu.open()
+            }
+
+        }
     }
 
     // Sizes
-    property real stepWidth: units.gu(4) + units.gu(4) * Core.composeTool.scaleValue
-    property real trackHeight: units.gu(8)
+    property real stepWidth: 20 + 20 * Core.composeTool.scaleValue
+    property real trackHeight: 40
     property real backgroundWidth: Core.composeTool.measureCount * Core.composeTool.rythmTicks * stepWidth
     property real backgroundHeight: Core.composeTool.trackCount * trackHeight
     property real gridCellWidth: backgroundWidth / stepWidth
     property real gridCellHeight: backgroundHeight / Core.composeTool.trackCount
     property real markerCenterOffset: mainItem.width / 2
-    property real removeRectangleWidth: units.gu(3)
+    property real removeRectangleWidth: gridCellHeight / 3
 
     // Marker position properties
     property bool markerVisible: true
@@ -130,16 +145,16 @@ Page {
     ColumnLayout {
         id: mainGridLayout
         anchors.fill: parent
-        anchors.topMargin: pageHeader.height
-        anchors.bottomMargin: units.gu(3)
+        anchors.topMargin: 10
+        anchors.bottomMargin: 10
 
         spacing: 0
 
         Rectangle {
             id: infoBar
             Layout.fillWidth: true
-            Layout.preferredHeight: units.gu(3)
-            color: theme.palette.normal.base
+            Layout.preferredHeight: 10
+            color: Material.background
 
             RowLayout {
                 anchors.fill: parent
@@ -147,8 +162,6 @@ Page {
                 Item {
                     Layout.fillWidth: true
                     height: parent.height
-
-                    Rectangle { anchors.fill: parent; color: "blue" ; opacity: .2 }
 
                     Label {
                         anchors.centerIn: parent
@@ -160,8 +173,6 @@ Page {
                     Layout.fillWidth: true
                     height: parent.height
 
-                    Rectangle { anchors.fill: parent; color: "red" ; opacity: .2 }
-
                     Label {
                         anchors.centerIn: parent
                         text: "bpm: " + Core.composeTool.bpm
@@ -171,7 +182,6 @@ Page {
                 Item {
                     Layout.fillWidth: true
                     height: parent.height
-                    Rectangle { anchors.fill: parent; color: "green" ; opacity: .2 }
 
                     Label {
                         anchors.centerIn: parent
@@ -181,12 +191,13 @@ Page {
             }
         }
 
+        MenuSeparator { Layout.fillWidth: true; }
 
         Flickable {
             id: scaleFlickable
             Layout.fillWidth: true
             Layout.preferredHeight: contentHeight
-            contentHeight: units.gu(6)
+            contentHeight: headerColumn.implicitHeight
             clip: true
             contentWidth: composeItem.width
             flickableDirection: Flickable.HorizontalFlick
@@ -194,15 +205,17 @@ Page {
 
             onContentXChanged: if(moving) flickable.contentX = contentX
 
-            Column {
-                anchors.fill: parent
+            ColumnLayout {
+                id: headerColumn
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.leftMargin: 5
+                anchors.rightMargin: 5
+
                 Item {
                     id: scaleItem
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.leftMargin: units.gu(2)
-                    anchors.rightMargin: units.gu(2)
-                    height: units.gu(4)
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 40
 
                     Repeater {
                         anchors.left: parent.left
@@ -217,8 +230,8 @@ Page {
                     ComposeScale {
                         id: composeScale
                         anchors.fill: parent
-                        color: theme.palette.normal.baseText
-                        textColor: theme.palette.normal.foregroundText
+                        color: Material.foreground
+                        textColor: Material.foreground
                         measureCount: Core.composeTool.measureCount
                         rythmTicks: Core.composeTool.rythmTicks
                         trackCount: Core.composeTool.trackCount
@@ -228,14 +241,11 @@ Page {
 
                 Rectangle {
                     id: playMarkArea
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.leftMargin: units.gu(2)
-                    anchors.rightMargin: units.gu(2)
-                    color: "red"
-                    opacity: 0.3
-                    height: units.gu(2)
-                    radius: units.gu(0.5)
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 10
+                    color: Material.color(Material.Red)
+                    opacity: 0.5
+                    radius: 2
 
                     MouseArea {
                         id: playMarkMouseArea
@@ -266,6 +276,14 @@ Page {
                 flickableDirection: Flickable.HorizontalAndVerticalFlick
                 interactive: !Core.composeTool.playing
 
+                ScrollIndicator.horizontal: ScrollIndicator {
+                    id: horizontalScollbar
+                }
+
+                ScrollIndicator.vertical: ScrollIndicator {
+                    id: verticalScollbar
+                }
+
                 onContentXChanged: {
                     if (moving) scaleFlickable.contentX = contentX
                     if (Core.composeTool.playing) scaleFlickable.contentX = contentX
@@ -274,23 +292,23 @@ Page {
 
                 Item {
                     id: composeItem
-                    width: backgroundWidth + units.gu(4)
+                    width: backgroundWidth + 10
                     height: backgroundHeight
 
                     Rectangle {
                         id: backgroundShape
                         anchors.fill: parent
-                        anchors.leftMargin: units.gu(2)
-                        anchors.rightMargin: units.gu(2)
-                        border.color: theme.palette.normal.baseText
-                        border.width: units.gu(0.1)
-                        color: theme.palette.normal.base
-                        radius: units.gu(1)
+                        anchors.leftMargin: 5
+                        anchors.rightMargin: 5
+                        border.color: Material.foreground
+                        border.width: 1
+                        color: Material.background
+                        radius: 1
 
                         ComposeGrid {
                             id: scaleGrid
                             anchors.fill: parent
-                            color: theme.palette.normal.baseText
+                            color: Material.foreground
                             measureCount: Core.composeTool.measureCount
                             rythmTicks: Core.composeTool.rythmTicks
                             trackCount: Core.composeTool.trackCount
@@ -310,13 +328,13 @@ Page {
                                 }
                             }
 
-                            delegate: UbuntuShape {
+                            delegate: Rectangle {
                                 id: noteShape
                                 width: gridView.cellWidth
                                 height: gridView.cellHeight
                                 property var noteColor: Core.getColorForNote(model.source)
 
-                                radius: "large"
+                                radius: height / 4
                                 color: noteColor
                                 opacity: 0
                                 visible: {
@@ -332,13 +350,13 @@ Page {
                                     return true
                                 }
 
-                                UbuntuShape {
+                                Rectangle {
                                     id: innerNoteRectangle
                                     anchors.fill: parent
-                                    anchors.margins: units.gu(0.8)
+                                    anchors.margins: 3
                                     opacity: 0.5
-                                    color: theme.palette.normal.base
-                                    radius: "large"
+                                    color: Material.background
+                                    radius: height / 4
                                 }
 
                                 ParallelAnimation {
@@ -348,7 +366,7 @@ Page {
                                         target: innerNoteRectangle
                                         property: "color"
                                         from: noteColor
-                                        to: theme.palette.normal.base
+                                        to: Material.background
                                         easing.type: Easing.InQuad
                                         duration: 1000
                                     }
@@ -379,23 +397,22 @@ Page {
                                 Behavior on x { NumberAnimation { duration: 250; easing.type: Easing.OutBack } }
                                 Behavior on y { NumberAnimation { duration: 250; easing.type: Easing.OutBack } }
 
-                                UbuntuShape {
+                                Rectangle {
                                     id: removeShape
-                                    color: UbuntuColors.lightGrey
                                     anchors.left: noteShape.left
                                     anchors.top: noteShape.top
                                     width: removeRectangleWidth
                                     height: width
-                                    radius: "large"
+                                    radius: height / 4
                                     z: 2
-                                    backgroundColor: "#CCff4444"
+                                    color: Material.color(Material.Red)
                                     opacity: editActive ? 1 : 0
 
-                                    Icon {
-                                        anchors.centerIn: parent
-                                        implicitHeight: parent.height * 0.7
-                                        implicitWidth: parent.width * 0.7
-                                        name: "delete"
+                                    Image {
+                                        id: removeIcon
+                                        anchors.fill: parent
+                                        anchors.margins: parent.width / 4
+                                        source: dataDirectory + "/icons/delete.svg"
                                     }
 
                                     Behavior on opacity { NumberAnimation { duration: 250 } }
@@ -495,22 +512,22 @@ Page {
                                 height: gridCellHeight
                             }
 
-                            UbuntuShape {
+                            Rectangle {
                                 id: movingNoteShape
                                 width: gridView.cellWidth
                                 height: gridView.cellHeight
                                 z: 2
-                                radius: "large"
-                                color: UbuntuColors.blue
+                                radius: height / 4
+                                color: Material.color(Material.Blue)
                                 visible: false
 
-                                UbuntuShape {
+                                Rectangle {
                                     id: movingiInnerNoteRectangle
                                     anchors.fill: parent
-                                    anchors.margins: units.gu(0.8)
+                                    anchors.margins: 3
                                     opacity: 0.5
-                                    color: theme.palette.normal.base
-                                    radius: "large"
+                                    color: Material.background
+                                    radius: height / 4
                                 }
 
                                 Label {
@@ -607,11 +624,11 @@ Page {
                                         if (editActive) {
                                             editActive = false
                                         } else {
-                                            pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("ComposeSelectorPage.qml"), { selectionIndex: currentIndex } )
+                                            pageStack.push(Qt.resolvedUrl("ComposeSelectorPage.qml"), { selectionIndex: currentIndex } )
                                         }
                                     } else {
                                         if (!currentComposeNote) return
-                                        Core.notePlayer.play(dataDirectory + "sounds/guitar/" + currentComposeNote.source)
+                                        Core.notePlayer.play(dataDirectory + "/sounds/guitar/" + currentComposeNote.source)
                                         currentComposeNote.plucked()
                                     }
                                 }
@@ -677,8 +694,8 @@ Page {
                         Rectangle {
                             id: playMark
                             height: backgroundHeight
-                            width: units.gu(0.3)
-                            color: UbuntuColors.red
+                            width: 1
+                            color: Material.color(Material.Red)
                             y: 0
                             x: backgroundShape.width * Core.composeTool.positionPercentage - width / 2
                             z: 20
@@ -706,39 +723,41 @@ Page {
                     }
                 }
             }
-
-            Scrollbar {
-                id: horizontalScollbar
-                flickableItem: flickable
-                align: Qt.AlignBottom
-            }
-
-            Scrollbar {
-                id: verticalScollbar
-                flickableItem: flickable
-                align: Qt.AlignRight
-            }
         }
 
         RowLayout {
             id: toolRowLayout
             Layout.fillWidth: true
-            Layout.maximumWidth: parent.width - units.gu(2)
+            Layout.maximumWidth: parent.width - 5
             Layout.alignment: Qt.AlignHCenter
 
             Button {
                 id: playPauseButton
                 Layout.fillWidth: true
-                color: theme.palette.normal.base
-                iconName: Core.composeTool.playing ? "media-playback-pause" : "media-playback-start"
+
+                Image {
+                    anchors.centerIn: parent
+                    height: parent.height * 0.8
+                    width: height
+                    fillMode: Image.PreserveAspectFit
+                    source: Core.composeTool.playing ?  dataDirectory + "/icons/media-playback-pause.svg" : dataDirectory + "/icons/media-playback-start.svg"
+                }
+
                 onClicked: Core.composeTool.togglePlayPause()
             }
 
             Button {
                 id: resetButton
                 Layout.fillWidth: true
-                iconName: "media-playback-stop"
-                color: theme.palette.normal.base
+
+                Image {
+                    anchors.centerIn: parent
+                    height: parent.height * 0.8
+                    width: height
+                    fillMode: Image.PreserveAspectFit
+                    source: dataDirectory + "/icons/media-playback-stop.svg"
+                }
+
                 onClicked: {
                     flickable.contentX = 0
                     Core.composeTool.stop()
@@ -747,10 +766,19 @@ Page {
             }
 
             Button {
-                id: settingsButton
+                id: metronomeButton
                 Layout.fillWidth: true
-                iconName: "camera-self-timer"
-                color: Core.composeTool.enableMetronome ? UbuntuColors.green : theme.palette.normal.base
+
+                Image {
+                    anchors.centerIn: parent
+                    height: parent.height * 0.6
+                    width: height
+                    fillMode: Image.PreserveAspectFit
+                    source: dataDirectory + "/icons/camera-self-timer.svg"
+                }
+
+                highlighted: Core.composeTool.enableMetronome
+
                 onClicked: {
                     Core.composeTool.enableMetronome = !Core.composeTool.enableMetronome
                     Core.composeTool.save()
@@ -758,18 +786,25 @@ Page {
             }
 
             Button {
-                id: metronomeButton
+                id: settingsButton
                 Layout.fillWidth: true
-                color: theme.palette.normal.base
-                iconName: "settings"
-                onClicked: if (!Core.composeTool.playing) root.pageStack.addPageToCurrentColumn(root, Qt.resolvedUrl("ComposeSettingsPage.qml"))
+                Image {
+                    anchors.centerIn: parent
+                    height: parent.height * 0.6
+                    width: height
+                    fillMode: Image.PreserveAspectFit
+                    source: dataDirectory + "/icons/settings.svg"
+                }
 
+                onClicked: if (!Core.composeTool.playing) pageStack.push(Qt.resolvedUrl("ComposeSettingsPage.qml"))
             }
         }
     }
 
     function evaluateMoving() {
         if (gridMouseArea.mousePressed && editActive && !gridMouseArea.removePressed && gridMouseArea.movedIndex != -1) {
+            if (!gridMouseArea.currentComposeNote) return
+
             console.log("Start moving item")
             movingNoteShape.visible = true
             movingRectangleLabel.text =  app.noteToString(gridMouseArea.currentComposeNote.note)
@@ -780,258 +815,352 @@ Page {
         }
     }
 
-    Component {
-        id: menuComponent
-        Dialog {
-            id: menuDialog
-            // TRANSLATORS: Title of the song menu in the compose tool
-            title: qsTr("Song menu")
 
-            Button {
-                id: newSongButton
-                // TRANSLATORS: Button in the menu of the compose tool
-                text: qsTr("New song")
-                onClicked: {
-                    PopupUtils.close(menuDialog)
-                    PopupUtils.open(newSongComponent)
-                }
+    Menu {
+        id: composeMenu
+
+        MenuItem {
+            text: qsTr("New song")
+            onClicked: {
+                composeMenu.close()
+                newSongPopup.open()
+            }
+        }
+
+        MenuItem {
+            text: qsTr("Save")
+            onClicked: {
+                composeMenu.close()
+                Core.composeTool.save()
+            }
+        }
+
+        MenuItem {
+            text: qsTr("Save as")
+            onClicked: {
+                composeMenu.close()
+                saveAsPopup.open()
             }
 
+        }
 
-            Button {
-                id: saveButton
-                // TRANSLATORS: Button in the menu of the compose tool (Save the current song)
-                text: qsTr("Save")
-                onClicked: {
-                    PopupUtils.close(menuDialog)
-                    Core.composeTool.save()
-                }
-            }
+        MenuItem {
+            text: qsTr("Load song")
+            onClicked: pageStack.push(Qt.resolvedUrl("ComposeLoadPage.qml"), { songsModel: Core.composeTool.songs })
+        }
 
-            Button {
-                id: saveAsButton
-                // TRANSLATORS: Button in the menu of the compose tool (Save the current song as...)
-                text: qsTr("Save as")
-                onClicked: {
-                    PopupUtils.close(menuDialog)
-                    PopupUtils.open(saveAsComponent)
-                }
-            }
+        MenuItem {
+            text: qsTr("Load example")
+            onClicked: pageStack.push(Qt.resolvedUrl("ComposeLoadPage.qml"), { songsModel: Core.composeTool.exampleSongs(), loadExamples: true })
 
-            Button {
-                id: loadButton
-                // TRANSLATORS: Button in the menu of the compose tool (Load a song)
-                text: qsTr("Load song")
-                onClicked: {
-                    PopupUtils.close(menuDialog)
-                    pageLayout.addPageToNextColumn(root, Qt.resolvedUrl("ComposeLoadPage.qml"), { songsModel: Core.composeTool.songs })
-                }
-            }
+        }
 
-            Button {
-                id: loadExampleButton
-                // TRANSLATORS: Button in the menu of the compose tool (Load examples)
-                text: qsTr("Load example")
-                onClicked: {
-                    PopupUtils.close(menuDialog)
-                    pageLayout.addPageToNextColumn(root, Qt.resolvedUrl("ComposeLoadPage.qml"), { songsModel: Core.composeTool.exampleSongs(), loadExamples: true })
-                }
-            }
+        MenuSeparator { }
 
-            ThinDivider { }
+        MenuItem {
+            text: qsTr("Rename song")
+        }
 
-            Button {
-                id: renameButton
-                // TRANSLATORS: Rename the current song
-                text: qsTr("Rename song")
-                onClicked: {
-                    PopupUtils.close(menuDialog)
-                    PopupUtils.open(renameComponent)
-                }
-            }
-
-            Button {
-                id: deleteButton
-                // TRANSLATORS: Delete the current song
-                text: qsTr("Delete song")
-                onClicked: {
-                    PopupUtils.close(menuDialog)
-                    PopupUtils.open(removeComponent)
-                }
-            }
-
-            ThinDivider { }
-
-            Button {
-                // TRANSLATORS: Close button in the compose song menu popover
-                text: qsTr("Close")
-                onClicked: PopupUtils.close(menuDialog)
-            }
+        MenuItem {
+            text: qsTr("Delete song")
         }
     }
 
-    Component {
-        id: newSongComponent
-        Dialog {
-            id: newSongDialog
 
-            // TRANSLATORS: Title of the new song as dialog
-            title: qsTr("New song")
+    Popup {
+        id: newSongPopup
+
+        x: (root.width - width) / 2
+        y: (root.height - height) / 2
+
+        contentWidth: newSongColumn.implicitWidth + 20
+        contentHeight: newSongColumn.implicitHeight + 20
+
+        modal: true
+
+        focus: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+
+        ColumnLayout {
+            id: newSongColumn
+            anchors.fill: parent
+
+            Label {
+                Layout.alignment: Qt.AlignHCenter
+                text: qsTr("New song")
+            }
+
+            MenuSeparator { Layout.fillWidth: true }
 
             TextField {
                 id: songNameTextField
+                Layout.fillWidth: true
+
                 // TRANSLATORS: Placeholder text for a new song name
                 placeholderText: qsTr("Song name")
             }
 
-            ThinDivider { }
-
             Button {
+                Layout.fillWidth: true
+
                 // TRANSLATORS: Create new song button
                 text: qsTr("Create")
-                color: UbuntuColors.green
                 onClicked: {
+                    if (!songNameTextField.text)
+                        return
+
                     Core.composeTool.newSong(songNameTextField.text);
-                    PopupUtils.close(newSongDialog)
+                    newSongPopup.close()
                 }
             }
 
             Button {
+                Layout.fillWidth: true
+
                 text: qsTr("Cancel")
-                onClicked: PopupUtils.close(newSongDialog)
+                onClicked: newSongPopup.close()
             }
         }
     }
 
 
-    Component {
-        id: saveAsComponent
-        Dialog {
-            id: saveAsDialog
+    Popup {
+        id: saveAsPopup
 
-            // TRANSLATORS: Title of the save as dialog
-            title: qsTr("Save as")
+        x: (root.width - width) / 2
+        y: (root.height - height) / 2
 
-            TextField {
-                id: songNameTextField
-                placeholderText: Core.composeTool.songName
+        contentWidth: saveAsColumn.implicitWidth + 20
+        contentHeight: saveAsColumn.implicitHeight + 20
+
+        modal: true
+
+        focus: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+
+        ColumnLayout {
+            id: saveAsColumn
+            anchors.fill: parent
+
+            Label {
+                Layout.alignment: Qt.AlignHCenter
+                text: qsTr("Save as")
             }
 
-            ThinDivider { }
+            MenuSeparator { Layout.fillWidth: true }
+
+            TextField {
+                id: newSongNameTextField
+                Layout.fillWidth: true
+                // TRANSLATORS: Placeholder text for a new song name in copmpoese popover
+                placeholderText: qsTr("Song name")
+            }
 
             Button {
-                // TRANSLATORS: Save button in the 'Save as' dialog
+                Layout.fillWidth: true
+
+                // TRANSLATORS: Save as button in compose popover
                 text: qsTr("Save")
-                color: UbuntuColors.green
                 onClicked: {
-                    Core.composeTool.saveAs(songNameTextField.text);
-                    PopupUtils.close(saveAsDialog)
-                }
-            }
-
-            Button {
-                text: qsTr("Cancel")
-                onClicked: PopupUtils.close(saveAsDialog)
-            }
-        }
-    }
-
-    Component {
-        id: loadComponent
-        Dialog {
-            id: loadDialog
-
-            // TRANSLATORS: Title of the load song as dialog
-            title: qsTr("Load song")
-            UbuntuListView {
-                id: songsListView
-                clip: true
-                model: Core.composeTool.songs
-                width: parent.width
-                height: units.gu(20)
-                delegate: ListItem {
-                    id: songItem
-                    ListItemLayout { title.text: modelData }
-                    onClicked: {
-                        PopupUtils.close(loadDialog)
-                        Core.composeTool.load(modelData)
+                    if (!newSongNameTextField.text) {
+                        return
                     }
-                }
-            }
 
-            ThinDivider { }
-
-            Button {
-                text: qsTr("Cancel")
-                onClicked: PopupUtils.close(loadDialog)
-            }
-
-        }
-    }
-
-    Component {
-        id: renameComponent
-        Dialog {
-            id: renameDialog
-
-            // TRANSLATORS: Title of the rename song dialog
-            title: qsTr("Rename song")
-
-            TextField {
-                id: songNameTextField
-                placeholderText: Core.composeTool.songName
-            }
-
-            ThinDivider { }
-
-            Button {
-                // TRANSLATORS: Save button in the 'Save as' dialog
-                text: qsTr("Rename")
-                color: UbuntuColors.green
-                onClicked: {
-                    Core.composeTool.renameSong(songNameTextField.text);
-                    PopupUtils.close(renameDialog)
+                    Core.composeTool.saveAs(newSongNameTextField.text);
+                    saveAsPopup.close()
                 }
             }
 
             Button {
+                Layout.fillWidth: true
                 text: qsTr("Cancel")
-                onClicked: PopupUtils.close(renameDialog)
+                onClicked: saveAsPopup.close()
             }
         }
     }
 
+    //            Button {
+    //                id: loadButton
+    //                // TRANSLATORS: Button in the menu of the compose tool (Load a song)
+    //                text: qsTr("Load song")
+    //                onClicked: {
+    //                    PopupUtils.close(menuDialog)
+    //                    pageLayout.addPageToNextColumn(root, Qt.resolvedUrl("ComposeLoadPage.qml"), { songsModel: Core.composeTool.songs })
+    //                }
+    //            }
 
-    Component {
-        id: removeComponent
-        Dialog {
-            id: removeDialog
+    //            Button {
+    //                id: loadExampleButton
+    //                // TRANSLATORS: Button in the menu of the compose tool (Load examples)
+    //                text: qsTr("Load example")
+    //                onClicked: {
+    //                    PopupUtils.close(menuDialog)
+    //                    pageLayout.addPageToNextColumn(root, Qt.resolvedUrl("ComposeLoadPage.qml"), { songsModel: Core.composeTool.exampleSongs(), loadExamples: true })
+    //                }
+    //            }
 
-            // TRANSLATORS: Title of the delete song as dialog
-            title: qsTr("Delete song")
+    //            ThinDivider { }
 
-            // TRANSLATORS: Delete question for the delete song dialog. The place holder represents the song name.
-            text: qsTr("Are you sure you want to delete \"%1\"?").arg(Core.composeTool.songName)
+    //            Button {
+    //                id: renameButton
+    //                // TRANSLATORS: Rename the current song
+    //                text: qsTr("Rename song")
+    //                onClicked: {
+    //                    PopupUtils.close(menuDialog)
+    //                    PopupUtils.open(renameComponent)
+    //                }
+    //            }
 
-            Button {
-                id: deleteButton
-                text: qsTr("Delete")
-                color: UbuntuColors.red
-                onClicked: {
-                    PopupUtils.close(removeDialog)
-                    Core.composeTool.deleteSong(Core.composeTool.songName)
-                }
-            }
+    //            Button {
+    //                id: deleteButton
+    //                // TRANSLATORS: Delete the current song
+    //                text: qsTr("Delete song")
+    //                onClicked: {
+    //                    PopupUtils.close(menuDialog)
+    //                    PopupUtils.open(removeComponent)
+    //                }
+    //            }
 
-            ThinDivider { }
+    //            ThinDivider { }
 
-            Button {
-                text: qsTr("Cancel")
-                color: UbuntuColors.green
-                onClicked: PopupUtils.close(removeDialog)
-            }
-        }
-    }
+    //            Button {
+    //                // TRANSLATORS: Close button in the compose song menu popover
+    //                text: qsTr("Close")
+    //                onClicked: PopupUtils.close(menuDialog)
+    //            }
+    //        }
 
-    ComposeBottomEdge { id: bottomEdge }
+
+
+
+    //    Component {
+    //        id: saveAsComponent
+    //        Dialog {
+    //            id: saveAsDialog
+
+    //            // TRANSLATORS: Title of the save as dialog
+    //            title: qsTr("Save as")
+
+    //            TextField {
+    //                id: songNameTextField
+    //                placeholderText: Core.composeTool.songName
+    //            }
+
+    //            ThinDivider { }
+
+    //            Button {
+    //                // TRANSLATORS: Save button in the 'Save as' dialog
+    //                text: qsTr("Save")
+    //                color: UbuntuColors.green
+    //                onClicked: {
+    //                    Core.composeTool.saveAs(songNameTextField.text);
+    //                    PopupUtils.close(saveAsDialog)
+    //                }
+    //            }
+
+    //            Button {
+    //                text: qsTr("Cancel")
+    //                onClicked: PopupUtils.close(saveAsDialog)
+    //            }
+    //        }
+    //    }
+
+    //    Component {
+    //        id: loadComponent
+    //        Dialog {
+    //            id: loadDialog
+
+    //            // TRANSLATORS: Title of the load song as dialog
+    //            title: qsTr("Load song")
+    //            UbuntuListView {
+    //                id: songsListView
+    //                clip: true
+    //                model: Core.composeTool.songs
+    //                width: parent.width
+    //                height: units.gu(20)
+    //                delegate: ListItem {
+    //                    id: songItem
+    //                    ListItemLayout { title.text: modelData }
+    //                    onClicked: {
+    //                        PopupUtils.close(loadDialog)
+    //                        Core.composeTool.load(modelData)
+    //                    }
+    //                }
+    //            }
+
+    //            ThinDivider { }
+
+    //            Button {
+    //                text: qsTr("Cancel")
+    //                onClicked: PopupUtils.close(loadDialog)
+    //            }
+
+    //        }
+    //    }
+
+    //    Component {
+    //        id: renameComponent
+    //        Dialog {
+    //            id: renameDialog
+
+    //            // TRANSLATORS: Title of the rename song dialog
+    //            title: qsTr("Rename song")
+
+    //            TextField {
+    //                id: songNameTextField
+    //                placeholderText: Core.composeTool.songName
+    //            }
+
+    //            ThinDivider { }
+
+    //            Button {
+    //                // TRANSLATORS: Save button in the 'Save as' dialog
+    //                text: qsTr("Rename")
+    //                color: UbuntuColors.green
+    //                onClicked: {
+    //                    Core.composeTool.renameSong(songNameTextField.text);
+    //                    PopupUtils.close(renameDialog)
+    //                }
+    //            }
+
+    //            Button {
+    //                text: qsTr("Cancel")
+    //                onClicked: PopupUtils.close(renameDialog)
+    //            }
+    //        }
+    //    }
+
+
+    //    Component {
+    //        id: removeComponent
+    //        Dialog {
+    //            id: removeDialog
+
+    //            // TRANSLATORS: Title of the delete song as dialog
+    //            title: qsTr("Delete song")
+
+    //            // TRANSLATORS: Delete question for the delete song dialog. The place holder represents the song name.
+    //            text: qsTr("Are you sure you want to delete \"%1\"?").arg(Core.composeTool.songName)
+
+    //            Button {
+    //                id: deleteButton
+    //                text: qsTr("Delete")
+    //                color: UbuntuColors.red
+    //                onClicked: {
+    //                    PopupUtils.close(removeDialog)
+    //                    Core.composeTool.deleteSong(Core.composeTool.songName)
+    //                }
+    //            }
+
+    //            ThinDivider { }
+
+    //            Button {
+    //                text: qsTr("Cancel")
+    //                color: UbuntuColors.green
+    //                onClicked: PopupUtils.close(removeDialog)
+    //            }
+    //        }
+    //    }
+
+    //ComposeBottomEdge { id: bottomEdge }
 }

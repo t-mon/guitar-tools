@@ -42,18 +42,18 @@ int main(int argc, char *argv[])
     app.setOrganizationName("guitar-tools");
     app.setApplicationVersion("1.0.0");
 
-
     qDebug() << "Fonts:";
     foreach (const QString &font, QFontDatabase().families()) {
         qDebug() << "  -" << font;
     }
+
     qDebug() << "Font" << app.font().family() << app.font().pixelSize() << app.font().pointSize();
     QFont applicationFont;
-    applicationFont.setFamily("Helvetica");
+    applicationFont.setFamily("Roboto");
     applicationFont.setCapitalization(QFont::MixedCase);
-    applicationFont.setPixelSize(30);
-    applicationFont.setPointSize(30);
-    applicationFont.setWeight(QFont::Medium);
+    applicationFont.setPixelSize(20);
+    //applicationFont.setPointSize(30);
+    applicationFont.setWeight(QFont::DemiBold);
     QGuiApplication::setFont(applicationFont);
     qDebug() << "Font" << app.font().family() << app.font().pixelSize() << app.font().pointSize();
 

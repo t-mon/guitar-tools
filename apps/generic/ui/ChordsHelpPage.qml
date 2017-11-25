@@ -66,7 +66,7 @@ Page {
 
             spacing: 5
 
-            Separator { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
             Label {
                 anchors.left: parent.left
@@ -76,7 +76,7 @@ Page {
                 wrapMode: Text.WordWrap
             }
 
-            Separator { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
             Row {
                 anchors.left: parent.left
@@ -99,7 +99,7 @@ Page {
                 }
             }
 
-            Separator { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
             Row {
                 anchors.left: parent.left
@@ -122,7 +122,7 @@ Page {
                 }
             }
 
-            Separator { }
+            MenuSeparator { anchors.left: parent.left; anchors.right: parent.right }
 
             Label {
                 // TRANSLATORS: Chord help page: description of the hand
@@ -142,7 +142,6 @@ Page {
                 fillMode: Image.PreserveAspectFit
                 source: dataDirectory + "/images/hand.svg"
             }
-
         }
     }
 }

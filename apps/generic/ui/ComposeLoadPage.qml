@@ -19,27 +19,33 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 import QtQuick 2.7
-import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
 import GuitarTools 1.0
+
 import "components"
 
 Page {
     id: root
-    header: PageHeader {
-        id: pageHeader
-        // TRANSLATORS: Title of the load song page
-        title: loadExamples ? qsTr("Load example") : qsTr("Load song")
-        flickable: songsListView
-        trailingActionBar.actions: [
-            Action {
-                iconName: "info"
-                onTriggered: pageLayout.addPageToNextColumn(root, Qt.resolvedUrl("AboutPage.qml"))
+    title: qsTr("Load example")
+
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            IconToolButton {
+                iconSource: dataDirectory + "/icons/back.svg"
+                onClicked: pageStack.pop()
             }
-        ]
+
+            Label {
+                text: qsTr("About")
+                elide: Label.ElideRight
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+        }
     }
+
 
     property var songsModel
     property bool loadExamples: false
@@ -48,16 +54,17 @@ Page {
         id: songsListView
         anchors.fill: parent
         model: songsModel
-        delegate: ListItem {
-            id: songItem
-            ListItemLayout { title.text: modelData }
-            onClicked: {
+        delegate:
+            ItemDelegate {
+            width: parent.width
+            text: modelData
+            onClicked:  {
                 if (!loadExamples) {
                     Core.composeTool.load(modelData)
-                    pageLayout.removePages(root)
+                    pageStack.pop()
                 } else {
                     Core.composeTool.loadExample(modelData)
-                    pageLayout.removePages(root)
+                    pageStack.pop()
                 }
             }
         }

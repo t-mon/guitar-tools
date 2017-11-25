@@ -115,15 +115,15 @@ Page {
 
     ColumnLayout {
         anchors.fill: parent
+        anchors.topMargin: 10
         anchors.bottom: bottomEdge.top
         anchors.bottomMargin: 20
 
-        spacing: 5
+        spacing: 10
 
         Label {
             Layout.alignment: Qt.AlignHCenter
             font.pixelSize: 40
-            font.bold: true
             color: Material.foreground
             text: Math.round(bpmSlider.value)
         }
@@ -131,7 +131,6 @@ Page {
         Label {
             id: dtLabel
             Layout.alignment: Qt.AlignHCenter
-            font.bold: true
             font.pixelSize: 5
             visible: Core.settings.debugEnabled
             color: Material.foreground
@@ -157,18 +156,16 @@ Page {
                 anchors.right: parent.right
 
                 anchors.bottom: metronomeBackgroundImage.bottom
-                anchors.bottomMargin: (metronomeBackgroundImage.paintedWidth * 0.01) + metronomeBackgroundImage.heightOffset
+                anchors.bottomMargin: (metronomeBackgroundImage.paintedWidth * 0.02) + metronomeBackgroundImage.heightOffset
 
-                Rectangle {
+                Item {
                     id: playPauseButton
                     anchors.horizontalCenter: parent.horizontalCenter
-                    height: metronomeBackgroundImage.paintedWidth / 4
+                    height: metronomeBackgroundImage.paintedWidth / 6
                     width: height
-                    color: "transparent"
 
                     Image {
                         anchors.fill: parent
-                        anchors.margins: parent.width / 4
                         fillMode: Image.PreserveAspectFit
                         source: Core.metronome.running ?  dataDirectory + "/icons/media-playback-pause.svg" : dataDirectory + "/icons/media-playback-start.svg"
                     }
@@ -189,6 +186,7 @@ Page {
                 Label {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: Core.metronome.tempoName
+                    font.pixelSize: metronomeBackgroundImage.paintedWidth / 15
                 }
             }
 

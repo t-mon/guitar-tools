@@ -47,11 +47,6 @@ Page {
             }
 
             IconToolButton {
-                iconSource: dataDirectory + "/icons/help.svg"
-                onClicked: pageStack.push(Qt.resolvedUrl("RecorderPlaylistHelpPage.qml"))
-            }
-
-            IconToolButton {
                 iconSource: dataDirectory + "/icons/info.svg"
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
@@ -93,8 +88,8 @@ Page {
             width: parent.width
             text: model.fileBaseName
             highlighted: ListView.isCurrentItem
-            //subtitle.text: Math.round(model.fileSize / 1000) < 1024 ? (model.fileSize / 1000).toFixed(2) + " kB" : (model.fileSize / (1000 * 1024)).toFixed(1) + " MB"
 
+            //subtitle.text: Math.round(model.fileSize / 1000) < 1024 ? (model.fileSize / 1000).toFixed(2) + " kB" : (model.fileSize / (1000 * 1024)).toFixed(1) + " MB"
             //                Icon {
             //                    name: "media-playback-stop"
             //                    visible: player.playbackState === Audio.PlayingState && root.fileName === model.fileName
@@ -144,22 +139,19 @@ Page {
             onPressAndHold: menu.open()
 
             onClicked: {
-                if (recordItem.mouseArea.pressedButtons & Qt.RightButton) {
-                    menu.open()
+                recordsListView.currentIndex = index
+                if (player.playbackState !== Audio.PlayingState) {
+                    root.sourceFile = "file://" + Core.recorder.filePath + "/" + model.fileName
+                    root.fileNamePath = Core.recorder.filePath + "/" + model.fileName
+                    root.fileName = model.fileName
+                    player.source = sourceFile
+                    console.log("Player play")
+                    player.play()
                 } else {
-                    recordsListView.currentIndex = index
-                    if (player.playbackState !== Audio.PlayingState) {
-                        root.sourceFile = "file://" + Core.recorder.filePath + "/" + model.fileName
-                        root.fileNamePath = Core.recorder.filePath + "/" + model.fileName
-                        root.fileName = model.fileName
-                        player.source = sourceFile
-                        console.log("Player play")
-                        player.play()
-                    } else {
-                        console.log("Player stop")
-                        player.stop()
-                    }
+                    console.log("Player stop")
+                    player.stop()
                 }
+
             }
 
             Menu {
@@ -168,7 +160,6 @@ Page {
 
                 MenuItem {
                     text: qsTr("Rename")
-
                 }
                 MenuItem {
                     text: qsTr("Delete")
@@ -182,131 +173,131 @@ Page {
         ScrollIndicator.vertical: ScrollIndicator { }
     }
 
-    Component {
-        id: removeComponent
-        Dialog {
-            id: removeDialog
-            // TRANSLATORS: Title of the record remove dialog
-            title: qsTr("Delete record")
-            // TRANSLATORS: Question of the record remove dialog.
-            //text: qsTr("Are you sure you want to delete this file?")
-
-            Label {
-                text: root.fileName
-            }
-
-            Separator {}
-
-            Button {
-                // TRANSLATORS: Delete button in the remove record dialog
-                text: qsTr("Delete")
-                onClicked: {
-                    Core.recorder.deleteRecordFile(root.fileNamePath);
-                    PopupUtils.close(removeDialog)
-                }
-            }
-
-            Button {
-                // TRANSLATORS: Cancel button in the remove record dialog
-                text: qsTr("Cancel")
-                onClicked: PopupUtils.close(removeDialog)
-            }
-        }
-    }
-
 //    Component {
-//        id: renameComponent
+//        id: removeComponent
 //        Dialog {
-//            id: renameDialog
-//            // TRANSLATORS: Title of the rename record dialog
-//            title: qsTr("Rename record file")
-//            // TRANSLATORS: Instructions of the record rename dialog.
-//            text: qsTr("Please enter the new file name.")
+//            id: removeDialog
+//            // TRANSLATORS: Title of the record remove dialog
+//            title: qsTr("Delete record")
+//            // TRANSLATORS: Question of the record remove dialog.
+//            //text: qsTr("Are you sure you want to delete this file?")
 
-//            TextField {
-//                id: fileNameTextField
-//                placeholderText: root.fileName
+//            Label {
+//                text: root.fileName
 //            }
 
-//            Separator {}
+//            MenuSeparator { anchors.left: parent.left; anchors.right: parnt.right}
 
 //            Button {
-//                // TRANSLATORS: Rename button in the rename record dialog
-//                text: qsTr("Rename")
-//                color: UbuntuColors.green
+//                // TRANSLATORS: Delete button in the remove record dialog
+//                text: qsTr("Delete")
 //                onClicked: {
-//                    Core.recorder.renameRecordFile(root.fileNamePath, fileNameTextField.text);
-//                    PopupUtils.close(renameDialog)
+//                    Core.recorder.deleteRecordFile(root.fileNamePath);
+//                    PopupUtils.close(removeDialog)
 //                }
 //            }
 
 //            Button {
+//                // TRANSLATORS: Cancel button in the remove record dialog
 //                text: qsTr("Cancel")
-//                onClicked: PopupUtils.close(renameDialog)
+//                onClicked: PopupUtils.close(removeDialog)
 //            }
 //        }
 //    }
 
-//    Component {
-//        id: infoComponent
-//        Dialog {
-//            id: infoDialog
-//            // TRANSLATORS: Title of the rename record dialog
-//            title: qsTr("Record information")
+    //    Component {
+    //        id: renameComponent
+    //        Dialog {
+    //            id: renameDialog
+    //            // TRANSLATORS: Title of the rename record dialog
+    //            title: qsTr("Rename record file")
+    //            // TRANSLATORS: Instructions of the record rename dialog.
+    //            text: qsTr("Please enter the new file name.")
 
-//            Label {
-//                // TRANSLATORS: The name lable in the record information dialog
-//                text: qsTr("Name:")
-//                font.bold: true
-//            }
+    //            TextField {
+    //                id: fileNameTextField
+    //                placeholderText: root.fileName
+    //            }
 
-//            Label {
-//                text: folderModel.get(root.index, "fileBaseName")
-//            }
+    //            Separator {}
 
-//            Separator { }
+    //            Button {
+    //                // TRANSLATORS: Rename button in the rename record dialog
+    //                text: qsTr("Rename")
+    //                color: UbuntuColors.green
+    //                onClicked: {
+    //                    Core.recorder.renameRecordFile(root.fileNamePath, fileNameTextField.text);
+    //                    PopupUtils.close(renameDialog)
+    //                }
+    //            }
 
-//            Label {
-//                // TRANSLATORS: The type lable in the record information dialog
-//                text: qsTr("Type:")
-//                font.bold: true
-//            }
+    //            Button {
+    //                text: qsTr("Cancel")
+    //                onClicked: PopupUtils.close(renameDialog)
+    //            }
+    //        }
+    //    }
 
-//            Label {
-//                text: folderModel.get(root.index, "fileSuffix")
-//            }
+    //    Component {
+    //        id: infoComponent
+    //        Dialog {
+    //            id: infoDialog
+    //            // TRANSLATORS: Title of the rename record dialog
+    //            title: qsTr("Record information")
 
-//            Separator { }
+    //            Label {
+    //                // TRANSLATORS: The name lable in the record information dialog
+    //                text: qsTr("Name:")
+    //                font.bold: true
+    //            }
 
-//            Label {
-//                // TRANSLATORS: The size lable in the record information dialog
-//                text: qsTr("Size:")
-//                font.bold: true
-//            }
+    //            Label {
+    //                text: folderModel.get(root.index, "fileBaseName")
+    //            }
 
-//            Label {
-//                text: Math.round(folderModel.get(root.index, "fileSize") / 1000) < 1024 ? (folderModel.get(root.index, "fileSize") / 1000).toFixed(2) + " kB" : (folderModel.get(root.index, "fileSize") / (1000 * 1024)).toFixed(1) + " MB"
-//            }
+    //            Separator { }
 
-//            Separator { }
+    //            Label {
+    //                // TRANSLATORS: The type lable in the record information dialog
+    //                text: qsTr("Type:")
+    //                font.bold: true
+    //            }
 
-//            Label {
-//                // TRANSLATORS: The modified lable in the record information dialog
-//                text: qsTr("Modified:")
-//                font.bold: true
-//            }
+    //            Label {
+    //                text: folderModel.get(root.index, "fileSuffix")
+    //            }
 
-//            Label {
-//                text: folderModel.get(root.index, "fileModified")
-//            }
+    //            Separator { }
 
-//            Separator { }
+    //            Label {
+    //                // TRANSLATORS: The size lable in the record information dialog
+    //                text: qsTr("Size:")
+    //                font.bold: true
+    //            }
 
-//            Button {
-//                // TRANSLATORS: The close button of the record information dialog
-//                text: qsTr("Close")
-//                onClicked: PopupUtils.close(infoDialog)
-//            }
-//        }
-//    }
+    //            Label {
+    //                text: Math.round(folderModel.get(root.index, "fileSize") / 1000) < 1024 ? (folderModel.get(root.index, "fileSize") / 1000).toFixed(2) + " kB" : (folderModel.get(root.index, "fileSize") / (1000 * 1024)).toFixed(1) + " MB"
+    //            }
+
+    //            Separator { }
+
+    //            Label {
+    //                // TRANSLATORS: The modified lable in the record information dialog
+    //                text: qsTr("Modified:")
+    //                font.bold: true
+    //            }
+
+    //            Label {
+    //                text: folderModel.get(root.index, "fileModified")
+    //            }
+
+    //            Separator { }
+
+    //            Button {
+    //                // TRANSLATORS: The close button of the record information dialog
+    //                text: qsTr("Close")
+    //                onClicked: PopupUtils.close(infoDialog)
+    //            }
+    //        }
+    //    }
 }

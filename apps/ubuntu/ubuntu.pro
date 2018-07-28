@@ -18,9 +18,8 @@ QML_FILES += $$files(*.qml,true) \
 #show all the files in QtCreator
 OTHER_FILES += $${QML_FILES}
 
-soundtouchLib.files += /usr/lib/$$system('dpkg-architecture -q DEB_HOST_MULTIARCH')/libSoundTouch.so.0.0.0
-soundtouchLib.files += /usr/lib/$$system('dpkg-architecture -q DEB_HOST_MULTIARCH')/libSoundTouch.so.0
-soundtouchLib.path = $${UBUNTU_CLICK_BINARY_PATH}/..
+soundtouchLib.files += /usr/lib/$$system('dpkg-architecture -q DEB_HOST_MULTIARCH')/libSoundTouch.so.*
+soundtouchLib.path = $${UBUNTU_CLICK_BINARY_PATH}/lib/$$system('dpkg-architecture -q DEB_HOST_MULTIARCH')
 
 #load Ubuntu specific features
 load(ubuntu-click)

@@ -220,6 +220,21 @@ Page {
                     }
                 }
 
+                Row {
+                    anchors.left: parent.left
+                    spacing: units.gu(2)
+
+                    Label {
+                        // TRANSLATORS: In the about screen.
+                        text: i18n.tr("Click packaging:")
+                        font.bold: true
+                    }
+
+                    Label {
+                        text: "Jonatan Hatakeyama Zeidler"
+                    }
+                }
+
                 ThinDivider { }
 
                 Label {

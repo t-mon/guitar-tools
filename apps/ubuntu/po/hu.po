@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guitar-tools\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-28 18:32+0000\n"
+"POT-Creation-Date: 2018-11-22 07:32+0000\n"
 "PO-Revision-Date: 2017-01-01 13:59+0000\n"
 "Last-Translator: Richard Somlói <ricsipontaz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -52,18 +52,23 @@ msgstr "E-mail cím:"
 msgid "Design:"
 msgstr "Dizájn:"
 
+#. TRANSLATORS: In the about screen.
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:229
+msgid "Click packaging:"
+msgstr ""
+
 #. TRANSLATORS: Donate button description
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:227
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:242
 msgid "Enjoying the app?"
 msgstr "Tetszik az alkalmazás?"
 
 #. TRANSLATORS: Text in the Donate button
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:241
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:256
 msgid "Donate (PayPal)"
 msgstr "Támogatás (PayPal)"
 
 #. TRANSLATORS: In the about screen.
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:253
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:268
 msgid ""
 "Thanks to Fabian Baumgartner and Alfred Bushi for recording the guitar "
 "sounds with me. We release the sounds under the <b>CC BY-NC 3.0</b>."
@@ -72,17 +77,17 @@ msgstr ""
 "velem a gitárok hangját. Ezeket a  <b>CC BY-NC 3.0</b> licenc alatt adtuk ki."
 
 #. TRANSLATORS: In the about screen.
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:268
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:283
 msgid "Metronome sounds:"
 msgstr "Metronóm hangok:"
 
 #. TRANSLATORS: In the about screen.
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:296
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:311
 msgid "Drum loops:"
 msgstr "Dob loop-ok:"
 
 #. TRANSLATORS: In the about screen.
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:324
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:339
 msgid "External library:"
 msgstr "Külső könyvtár:"
 

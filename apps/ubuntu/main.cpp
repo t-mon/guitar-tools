@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     app.setApplicationName("guitar-tools.t-mon");
     app.setOrganizationName("guitar-tools.t-mon");
-    app.setApplicationVersion("0.5.1");
+    app.setApplicationVersion("0.5.3");
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QString("\nGuitar tools is a mobile application containing tools for guitar players like a tuner, a guitar player, "

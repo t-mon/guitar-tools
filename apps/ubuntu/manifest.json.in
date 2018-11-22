@@ -9,7 +9,7 @@
             "desktop": "guitar-tools/guitar-tools.desktop"
         }
     },
-    "version": "0.5.1",
+    "version": "0.5.3",
     "maintainer": "Simon Stürz <stuerz.simon@gmail.com>",
     "framework": "ubuntu-sdk-16.04"
 }

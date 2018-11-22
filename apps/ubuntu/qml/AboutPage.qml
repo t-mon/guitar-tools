@@ -1,6 +1,6 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                                         *
- *  Copyright (C) 2016-2017 Simon Stuerz <stuerz.simon@gmail.com>          *
+ *  Copyright (C) 2016-2018 Simon Stuerz <stuerz.simon@gmail.com>          *
  *                                                                         *
  *  This file is part of guitar tools.                                     *
  *                                                                         *
@@ -87,7 +87,7 @@ Page {
 
                 Label {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: "2016 © Simon Stürz"
+                    text: "2016 - 2018 © Simon Stürz"
                 }
 
                 ThinDivider { }

@@ -1,5 +1,7 @@
 QT += qml quick multimedia
 
+CONFIG+=soundtouch
+
 soundtouch {
     message("Building with soundtouch support")
     DEFINES += SOUNDTOUCH

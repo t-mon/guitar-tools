@@ -76,19 +76,12 @@ int DrumLoopPlayer::originalBpm() const
 
 int DrumLoopPlayer::minBpm() const
 {
-    if (m_measuredBpm > 30)
-    {
-        return m_measuredBpm - 30;
-    }
-    else
-    {
-        return 1;
-    }
+	return 0.8*m_measuredBpm;
 }
 
 int DrumLoopPlayer::maxBpm() const
 {
-    return m_measuredBpm + 30;
+    return 1.2*m_measuredBpm;
 }
 
 void DrumLoopPlayer::stop()

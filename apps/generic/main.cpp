@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     QCommandLineParser parser;
     parser.setApplicationDescription(QString("\nGuitar tools is a mobile application containing tools for guitar players like a tuner, a guitar player, "
                                              "a metronome and much more.\n\n"
-                                             "Copyright %1 2016-2018 Simon Stürz <stuerz.simon@gmail.com>\n"
+                                             "Copyright %1 2016 - 2018 Simon Stürz <stuerz.simon@gmail.com>\n"
                                              "Released under the GNU GPLv3.").arg(QChar(0xA9)));
     parser.addPositionalArgument("dataPath", "The relative file path where the \"data\" folders can be found (optional).", "[dataPath]");
     parser.process(app);
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
             exit(-1);
         }
     } else {
-        dataDir = QDir("../guitar-tools/data");
+        dataDir = QDir("../../../guitar-tools/data/");
     }
 
 

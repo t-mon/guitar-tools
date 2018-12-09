@@ -100,7 +100,7 @@ Page {
 
                 Label {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: "2017 © Simon Stürz"
+                    text: "2016 - 2018 © Simon Stürz"
                 }
             }
 

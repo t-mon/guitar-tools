@@ -10,7 +10,8 @@ ubuntu {
     SUBDIRS += ubuntu
 }
 
-generic {
+buildGeneric = $$find(CONFIG, "android") $$find(CONFIG, "ubuntu")
+count(buildGeneric, 0) {
     message("Building generic version")
     SUBDIRS += generic
 }

@@ -35,12 +35,12 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     app.setApplicationName("guitar-tools.t-mon");
     app.setOrganizationName("guitar-tools.t-mon");
-    app.setApplicationVersion("0.5.3");
+    app.setApplicationVersion("0.5.4");
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QString("\nGuitar tools is a mobile application containing tools for guitar players like a tuner, a guitar player, "
                                              "a metronome and much more.\n\n"
-                                             "Copyright %1 2016 Simon Stürz <stuerz.simon@gmail.com>\n"
+                                             "Copyright %1 2016 - 2018 Simon Stürz <stuerz.simon@gmail.com>\n"
                                              "Released under the GNU GPLv3.").arg(QChar(0xA9)));
     parser.addPositionalArgument("dataPath", "The relative file path where the \"data\" folders can be found (optional).", "[dataPath]");
     parser.process(app);

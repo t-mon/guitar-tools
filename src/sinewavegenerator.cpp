@@ -23,6 +23,7 @@
 
 #include <QDebug>
 #include <QtEndian>
+#include <math.h>
 
 AudioBuffer::AudioBuffer(QAudioFormat format, double frequency, QObject *parent):
     QIODevice(parent),

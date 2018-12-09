@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guitar-tools\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-22 07:32+0000\n"
+"POT-Creation-Date: 2018-12-09 09:45+0000\n"
 "PO-Revision-Date: 2016-11-29 06:38+0000\n"
 "Last-Translator: Walter Garcia-Fontes <walter.garcia@upf.edu>\n"
 "Language-Team: Catalan <ca@li.org>\n"
@@ -181,7 +181,7 @@ msgstr "Esborra la cançó"
 #. TRANSLATORS: Close button in the chord selection popover (guitar)
 #. TRANSLATORS: The close button of the record information dialog
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:867
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:608
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:587
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:269
 msgid "Close"
 msgstr "Tanca"
@@ -294,7 +294,7 @@ msgstr "Bucles de percussió"
 msgid "Fretboard"
 msgstr "Diapasó"
 
-#. TRANSLATORS: Title of the guitar page
+#. TRANSLATORS: Title of the guitar player page
 #. TRANSLATORS: The name of the guitar player tool
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:36
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/MainPage.qml:71
@@ -303,17 +303,17 @@ msgid "Guitar"
 msgstr "Guitarra"
 
 #. TRANSLATORS: Title of the chord selection popover (guitar)
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:489
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:468
 msgid "Select chord"
 msgstr "Seleccioneu l'acord"
 
 #. TRANSLATORS: Play button in the chord selection popover (guitar)
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:585
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:564
 msgid "Play"
 msgstr "Reprodueix"
 
 #. TRANSLATORS: Add button in the chord selection popover (guitar)
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:597
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:576
 msgid "Add"
 msgstr "Afegeix"
 

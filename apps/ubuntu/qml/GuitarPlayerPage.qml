@@ -32,7 +32,7 @@ Page {
     id: root
     header: PageHeader {
         id: pageHeader
-        // TRANSLATORS: Title of the guitar page
+        // TRANSLATORS: Title of the guitar player page
         title: i18n.tr("Guitar")
         trailingActionBar.actions: [
             Action {
@@ -40,36 +40,15 @@ Page {
                 onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("AboutPage.qml"))
             },
             Action {
-                iconSource: "file://" + dataDirectory + "icons/tuning-fork.svg"
-                onTriggered: {
-                    Core.activateTuningFork()
-                    pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("TuningForkPage.qml"))
-                }
+                iconName: "add"
+                onTriggered: PopupUtils.open(chordSelectionComponent)
+            },
+            Action {
+                iconSource: "file://" + dataDirectory + "icons/fretboard.svg"
+                onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("FretBoardPage.qml"))
             }
         ]
     }
-
-
-
-//    header: PageHeader {
-//        id: pageHeader
-//        // TRANSLATORS: Title of the guitar player page
-//        title: i18n.tr("Guitar")
-//        trailingActionBar.actions: [
-//            Action {
-//                iconName: "info"
-//                onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("AboutPage.qml"))
-//            },
-//            Action {
-//                iconName: "add"
-//                onTriggered: PopupUtils.open(chordSelectionComponent)
-//            },
-//            Action {
-//                iconSource: "file://" + dataDirectory + "icons/fretboard.svg"
-//                onTriggered: pageLayout.addPageToCurrentColumn(root, Qt.resolvedUrl("FretBoardPage.qml"))
-//            }
-//        ]
-//    }
 
     property int selectedIndex: 0
     property var currentChord: Core.chords.emptyChord()

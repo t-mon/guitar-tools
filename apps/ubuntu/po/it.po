@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guitar-tools\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-22 07:32+0000\n"
+"POT-Creation-Date: 2018-12-09 09:45+0000\n"
 "PO-Revision-Date: 2017-05-13 07:38+0000\n"
 "Last-Translator: Gabriele <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -182,7 +182,7 @@ msgstr "Cancella traccia"
 #. TRANSLATORS: Close button in the chord selection popover (guitar)
 #. TRANSLATORS: The close button of the record information dialog
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/ComposePage.qml:867
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:608
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:587
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/RecorderPlaylistPage.qml:269
 msgid "Close"
 msgstr "Chiudi"
@@ -295,7 +295,7 @@ msgstr "Loop tamburo"
 msgid "Fretboard"
 msgstr "Tastiera"
 
-#. TRANSLATORS: Title of the guitar page
+#. TRANSLATORS: Title of the guitar player page
 #. TRANSLATORS: The name of the guitar player tool
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:36
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/MainPage.qml:71
@@ -304,17 +304,17 @@ msgid "Guitar"
 msgstr "Chitarra"
 
 #. TRANSLATORS: Title of the chord selection popover (guitar)
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:489
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:468
 msgid "Select chord"
 msgstr "Seleziona corda"
 
 #. TRANSLATORS: Play button in the chord selection popover (guitar)
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:585
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:564
 msgid "Play"
 msgstr "Suonare"
 
 #. TRANSLATORS: Add button in the chord selection popover (guitar)
-#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:597
+#: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/GuitarPlayerPage.qml:576
 msgid "Add"
 msgstr "Aggiungi"
 

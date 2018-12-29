@@ -35,7 +35,7 @@ msgstr "Code source :"
 #. TRANSLATORS: In the about screen.
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:150
 msgid "Bugtracker:"
-msgstr "Suivi des bogues :"
+msgstr "Suivi des problèmes :"
 
 #. TRANSLATORS: Thank you very much for helping with the translations!! :)
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:171
@@ -55,7 +55,7 @@ msgstr "Conception :"
 #. TRANSLATORS: In the about screen.
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:229
 msgid "Click packaging:"
-msgstr ""
+msgstr "Paquet Click :"
 
 #. TRANSLATORS: Donate button description
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:242

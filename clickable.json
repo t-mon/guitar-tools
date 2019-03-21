@@ -1,5 +1,6 @@
 {
+  "clickable_minimum_required": "6.9.1",
   "template": "qmake",
   "build_args": "CONFIG+='ubuntu soundtouch'",
-  "dependencies": ["libsoundtouch-dev"]
+  "dependencies_target": "libsoundtouch-dev"
 }

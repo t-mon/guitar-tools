@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: guitar-tools\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-09 09:45+0000\n"
-"PO-Revision-Date: 2016-11-27 12:37+0000\n"
+"PO-Revision-Date: 2019-03-22 01:07+0100\n"
 "Last-Translator: Simon Stürz <stuerz.simon@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2017-01-15 06:48+0000\n"
-"X-Generator: Launchpad (build 18302)\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:32
 msgid "About"
@@ -55,7 +55,7 @@ msgstr "Design:"
 #. TRANSLATORS: In the about screen.
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:229
 msgid "Click packaging:"
-msgstr ""
+msgstr "Click-Paketierung:"
 
 #. TRANSLATORS: Donate button description
 #: /home/timon/development/guitar-tools/guitar-tools/apps/ubuntu/qml/AboutPage.qml:242

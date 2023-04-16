@@ -21,10 +21,10 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import QtGraphicalEffects 1.0
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.Pickers 1.3
-import Ubuntu.Components.ListItems 1.3
+import Lomiri.Components 1.3
+import Lomiri.Components.Popups 1.3
+import Lomiri.Components.Pickers 1.3
+import Lomiri.Components.ListItems 1.3
 import GuitarTools 1.0
 
 Page {
@@ -490,7 +490,7 @@ Page {
                 Layout.fillWidth: true
                 Layout.preferredHeight: units.gu(5)
 
-                UbuntuShape {
+                LomiriShape {
                     id: color1Shape
                     height: parent.height
                     width: height
@@ -503,7 +503,7 @@ Page {
                     }
                 }
 
-                UbuntuShape {
+                LomiriShape {
                     id: color2Shape
                     height: parent.height
                     width: height
@@ -515,7 +515,7 @@ Page {
                     }
                 }
 
-                UbuntuShape {
+                LomiriShape {
                     id: color3Shape
                     height: parent.height
                     width: height

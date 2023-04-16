@@ -21,9 +21,9 @@
 import QtQuick 2.4
 import QtMultimedia 5.4
 import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3
+import Lomiri.Components 1.3
+import Lomiri.Components.Popups 1.3
+import Lomiri.Components.ListItems 1.3
 import GuitarTools 1.0
 
 Item {
@@ -90,9 +90,9 @@ Item {
                             border.width: radius / 4
                             border.color: {
                                 if (!colorfull && !root.selectMode && fretPositionItem.note === root.scale.note) {
-                                    return UbuntuColors.blue
+                                    return LomiriColors.blue
                                 } else if (!colorfull && !root.selectMode) {
-                                    return UbuntuColors.green
+                                    return LomiriColors.green
                                 } else if (colorfull && !root.selectMode) {
                                     return Core.getColorForNote(fretPositionItem.fretPosition.noteFileName)
                                 } else {
@@ -123,7 +123,7 @@ Item {
 
                             MouseArea {
                                 anchors.fill: parent
-                                onPressed: if (selectMode) positionRectangle.border.color = UbuntuColors.blue
+                                onPressed: if (selectMode) positionRectangle.border.color = LomiriColors.blue
                                 onReleased: if (selectMode) positionRectangle.border.color = theme.palette.normal.base
                                 onClicked: {
                                     if (selectMode) {

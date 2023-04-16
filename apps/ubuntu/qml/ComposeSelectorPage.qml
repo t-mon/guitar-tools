@@ -20,9 +20,9 @@
 
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.3
-import Ubuntu.Components.Pickers 1.3
+import Lomiri.Components 1.3
+import Lomiri.Components.ListItems 1.3
+import Lomiri.Components.Pickers 1.3
 import "components"
 import GuitarTools 1.0
 
@@ -53,7 +53,7 @@ Page {
                 anchors.margins: units.gu(1)
                 // TRANSLATORS: Button in the note selection page of the compose tool (play mode -> click on note plays note, select mode -> click on note selects note)
                 text: scale.selectMode ? i18n.tr("Play mode") : i18n.tr("Select mode")
-                color: scale.selectMode ? UbuntuColors.green : UbuntuColors.graphite
+                color: scale.selectMode ? LomiriColors.green : LomiriColors.graphite
                 Behavior on color { ColorAnimation { duration: 400 ; easing.type: scale.selectMode ? Easing.OutQuad : Easing.InQuad} }
                 onClicked: scale.selectMode = !scale.selectMode
             }

@@ -21,8 +21,8 @@
 import QtQuick 2.4
 import QtMultimedia 5.4
 import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Pickers 1.0
+import Lomiri.Components 1.3
+import Lomiri.Components.Pickers 1.0
 import GuitarTools 1.0
 import "components"
 
@@ -280,14 +280,14 @@ Page {
                             height: width
                             radius: width / 2
                             border.width: radius / 4
-                            border.color: chord.positions.get(index).fret < 0 ? UbuntuColors.red : UbuntuColors.green
+                            border.color: chord.positions.get(index).fret < 0 ? LomiriColors.red : LomiriColors.green
                             color: theme.palette.normal.base
 
                             ColorAnimation {
                                 id: pluckAnimation
                                 target: indicator
                                 property: "color"
-                                from: UbuntuColors.green
+                                from: LomiriColors.green
                                 to: theme.palette.normal.base
                                 easing.type: Easing.InQuad
                                 duration: 1000
@@ -320,7 +320,7 @@ Page {
                     width: barreItem.length
                     height: fingerboardImage.fingerSize
                     radius: height / 2
-                    color: UbuntuColors.blue
+                    color: LomiriColors.blue
 
                     Label {
                         anchors.centerIn: parent
@@ -355,7 +355,7 @@ Page {
                         width: parent.width * 0.8
                         height: width
                         radius: width / 2
-                        color: UbuntuColors.green
+                        color: LomiriColors.green
 
                         Label {
                             anchors.centerIn: parent

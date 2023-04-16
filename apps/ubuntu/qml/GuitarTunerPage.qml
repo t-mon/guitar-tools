@@ -19,7 +19,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 import QtQuick 2.4
-import Ubuntu.Components 1.3
+import Lomiri.Components 1.3
 import QtQuick.Layouts 1.1
 import GuitarTools 1.0
 import "components"
@@ -77,7 +77,7 @@ Page {
             font.bold: true
             font.pixelSize: units.gu(8)
             text: note
-            color: value >= -tolerance && value <= tolerance ? UbuntuColors.green : theme.palette.normal.baseText
+            color: value >= -tolerance && value <= tolerance ? LomiriColors.green : theme.palette.normal.baseText
         }
 
         Label {

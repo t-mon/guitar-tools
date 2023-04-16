@@ -19,7 +19,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 import QtQuick 2.4
-import Ubuntu.Components 1.3
+import Lomiri.Components 1.3
 import QtSystemInfo 5.0
 import GuitarTools 1.0
 
@@ -35,7 +35,7 @@ MainView {
 
     Component.onCompleted: {
         i18n.domain = "guitar-tools.t-mon"
-        Theme.name = Core.settings.darkThemeEnabled ? "Ubuntu.Components.Themes.SuruDark" : "Ubuntu.Components.Themes.Ambiance"
+        Theme.name = Core.settings.darkThemeEnabled ? "Lomiri.Components.Themes.SuruDark" : "Lomiri.Components.Themes.Ambiance"
     }
 
     ScreenSaver {
@@ -56,7 +56,7 @@ MainView {
 
     Connections {
         target: Core.settings
-        onDarkThemeEnabledChanged: Core.settings.darkThemeEnabled ? Theme.name = "Ubuntu.Components.Themes.SuruDark" : Theme.name = "Ubuntu.Components.Themes.Ambiance"
+        onDarkThemeEnabledChanged: Core.settings.darkThemeEnabled ? Theme.name = "Lomiri.Components.Themes.SuruDark" : Theme.name = "Lomiri.Components.Themes.Ambiance"
     }
 
     AdaptivePageLayout {

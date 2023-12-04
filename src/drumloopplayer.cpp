@@ -44,6 +44,7 @@ DrumLoopPlayer::DrumLoopPlayer(const double &volume, QObject *parent) :
     qDebug() << "SoundTouch library version" << SoundTouch::getVersionString();
 #endif
     connect(m_watcher, SIGNAL(finished()), this, SLOT(processFinished()));
+    qDebug() << "SoundTouch not available!";
 }
 
 DrumLoopPlayer::~DrumLoopPlayer()
@@ -75,12 +76,12 @@ int DrumLoopPlayer::originalBpm() const
 
 int DrumLoopPlayer::minBpm() const
 {
-    return m_measuredBpm - 11;
+	return 0.8*m_measuredBpm;
 }
 
 int DrumLoopPlayer::maxBpm() const
 {
-    return m_measuredBpm + 9;
+    return 1.2*m_measuredBpm;
 }
 
 void DrumLoopPlayer::stop()

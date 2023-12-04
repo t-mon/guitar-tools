@@ -20,10 +20,10 @@
 
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3
-import Ubuntu.Components.Pickers 1.3
+import Lomiri.Components 1.3
+import Lomiri.Components.Popups 1.3
+import Lomiri.Components.ListItems 1.3
+import Lomiri.Components.Pickers 1.3
 import GuitarTools 1.0
 
 Page {
@@ -257,7 +257,7 @@ Page {
                 // TRANSLATORS: Removes all notes in the compose tool
                 text: i18n.tr("Clear all notes")
                 Layout.fillWidth: true
-                color: UbuntuColors.red
+                color: LomiriColors.red
                 onClicked: PopupUtils.open(clearNotesComponent)
             }
         }
@@ -276,7 +276,7 @@ Page {
                 Button {
                     id: deleteButton
                     text: i18n.tr("Clear")
-                    color: UbuntuColors.red
+                    color: LomiriColors.red
                     onClicked: {
                         PopupUtils.close(clearNotesDialog)
                         Core.composeTool.clearNotes()
@@ -287,7 +287,7 @@ Page {
 
                 Button {
                     text: i18n.tr("Cancel")
-                    color: UbuntuColors.green
+                    color: LomiriColors.green
                     onClicked: PopupUtils.close(clearNotesDialog)
                 }
 

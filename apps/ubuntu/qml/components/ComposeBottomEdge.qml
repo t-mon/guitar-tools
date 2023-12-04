@@ -20,8 +20,8 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 import QtQuick 2.4
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Pickers 1.3
+import Lomiri.Components 1.3
+import Lomiri.Components.Pickers 1.3
 import QtQuick.Layouts 1.1
 import GuitarTools 1.0
 
@@ -110,7 +110,7 @@ Item {
             height: contentColumn.height + units.gu(4)
 
             Behavior on anchors.topMargin {
-                UbuntuNumberAnimation {}
+                LomiriNumberAnimation {}
             }
 
             color: theme.palette.normal.overlay
@@ -120,12 +120,12 @@ Item {
                 anchors { left: contentRect.left; top: contentRect.top; right: contentRect.right }
                 height: units.gu(2)
 
-                UbuntuShape {
+                LomiriShape {
                     anchors.centerIn: parent
                     height: units.gu(1)
                     width: units.gu(5)
                     radius: "medium"
-                    color: UbuntuColors.inkstone
+                    color: LomiriColors.inkstone
                 }
 
                 color: theme.palette.normal.overlaySecondaryText

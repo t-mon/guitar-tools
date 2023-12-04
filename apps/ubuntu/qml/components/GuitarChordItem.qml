@@ -19,7 +19,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 import QtQuick 2.4
-import Ubuntu.Components 1.3
+import Lomiri.Components 1.3
 import GuitarTools 1.0
 
 Item {
@@ -29,13 +29,13 @@ Item {
 
     property var chord: Core.guitarPlayerChords.get(index)
 
-    UbuntuShape {
+    LomiriShape {
         id: chrodShape
         anchors.fill: chordItem
         anchors.margins: units.gu(1)
         x: chordItem.x
         y: chordItem.y
-        color: index === root.selectedIndex ? UbuntuColors.green : theme.palette.normal.base
+        color: index === root.selectedIndex ? LomiriColors.green : theme.palette.normal.base
 
         Label {
             anchors.centerIn: parent
@@ -106,9 +106,9 @@ Item {
         }
     }
 
-    UbuntuShape {
+    LomiriShape {
         id: removeShape
-        color: UbuntuColors.lightGrey
+        color: LomiriColors.lightGrey
         anchors.left: chordItem.left
         anchors.top: chordItem.top
         width: chordsGridMouseArea.removeAreaWidth

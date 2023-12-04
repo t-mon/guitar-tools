@@ -21,8 +21,8 @@
 import QtQuick 2.4
 import QtMultimedia 5.4
 import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.3
+import Lomiri.Components 1.3
+import Lomiri.Components.ListItems 1.3
 import GuitarTools 1.0
 import "components"
 

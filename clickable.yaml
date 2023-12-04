@@ -1,0 +1,5 @@
+clickable_minimum_required: 8.0.1
+
+builder: qmake
+build_args: CONFIG+='ubuntu soundtouch'
+dependencies_target: libsoundtouch-dev

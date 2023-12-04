@@ -22,9 +22,9 @@ import QtQuick 2.4
 import QtMultimedia 5.4
 import Qt.labs.folderlistmodel 1.0
 import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3
+import Lomiri.Components 1.3
+import Lomiri.Components.Popups 1.3
+import Lomiri.Components.ListItems 1.3
 import GuitarTools 1.0
 
 Page {
@@ -161,7 +161,7 @@ Page {
             Button {
                 // TRANSLATORS: Delete button in the remove record dialog
                 text: i18n.tr("Delete")
-                color: UbuntuColors.red
+                color: LomiriColors.red
                 onClicked: {
                     Core.recorder.deleteRecordFile(root.fileNamePath);
                     PopupUtils.close(removeDialog)
@@ -195,7 +195,7 @@ Page {
             Button {
                 // TRANSLATORS: Rename button in the rename record dialog
                 text: i18n.tr("Rename")
-                color: UbuntuColors.green
+                color: LomiriColors.green
                 onClicked: {
                     Core.recorder.renameRecordFile(root.fileNamePath, fileNameTextField.text);
                     PopupUtils.close(renameDialog)

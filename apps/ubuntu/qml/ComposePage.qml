@@ -20,9 +20,9 @@
 
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3
+import Lomiri.Components 1.3
+import Lomiri.Components.Popups 1.3
+import Lomiri.Components.ListItems 1.3
 import GuitarTools 1.0
 import "components"
 
@@ -310,7 +310,7 @@ Page {
                                 }
                             }
 
-                            delegate: UbuntuShape {
+                            delegate: LomiriShape {
                                 id: noteShape
                                 width: gridView.cellWidth
                                 height: gridView.cellHeight
@@ -332,7 +332,7 @@ Page {
                                     return true
                                 }
 
-                                UbuntuShape {
+                                LomiriShape {
                                     id: innerNoteRectangle
                                     anchors.fill: parent
                                     anchors.margins: units.gu(0.8)
@@ -379,9 +379,9 @@ Page {
                                 Behavior on x { NumberAnimation { duration: 250; easing.type: Easing.OutBack } }
                                 Behavior on y { NumberAnimation { duration: 250; easing.type: Easing.OutBack } }
 
-                                UbuntuShape {
+                                LomiriShape {
                                     id: removeShape
-                                    color: UbuntuColors.lightGrey
+                                    color: LomiriColors.lightGrey
                                     anchors.left: noteShape.left
                                     anchors.top: noteShape.top
                                     width: removeRectangleWidth
@@ -495,16 +495,16 @@ Page {
                                 height: gridCellHeight
                             }
 
-                            UbuntuShape {
+                            LomiriShape {
                                 id: movingNoteShape
                                 width: gridView.cellWidth
                                 height: gridView.cellHeight
                                 z: 2
                                 radius: "large"
-                                color: UbuntuColors.blue
+                                color: LomiriColors.blue
                                 visible: false
 
-                                UbuntuShape {
+                                LomiriShape {
                                     id: movingiInnerNoteRectangle
                                     anchors.fill: parent
                                     anchors.margins: units.gu(0.8)
@@ -678,7 +678,7 @@ Page {
                             id: playMark
                             height: backgroundHeight
                             width: units.gu(0.3)
-                            color: UbuntuColors.red
+                            color: LomiriColors.red
                             y: 0
                             x: backgroundShape.width * Core.composeTool.positionPercentage - width / 2
                             z: 20
@@ -750,7 +750,7 @@ Page {
                 id: settingsButton
                 Layout.fillWidth: true
                 iconName: "camera-self-timer"
-                color: Core.composeTool.enableMetronome ? UbuntuColors.green : theme.palette.normal.base
+                color: Core.composeTool.enableMetronome ? LomiriColors.green : theme.palette.normal.base
                 onClicked: {
                     Core.composeTool.enableMetronome = !Core.composeTool.enableMetronome
                     Core.composeTool.save()
@@ -889,7 +889,7 @@ Page {
             Button {
                 // TRANSLATORS: Create new song button
                 text: i18n.tr("Create")
-                color: UbuntuColors.green
+                color: LomiriColors.green
                 onClicked: {
                     Core.composeTool.newSong(songNameTextField.text);
                     PopupUtils.close(newSongDialog)
@@ -922,7 +922,7 @@ Page {
             Button {
                 // TRANSLATORS: Save button in the 'Save as' dialog
                 text: i18n.tr("Save")
-                color: UbuntuColors.green
+                color: LomiriColors.green
                 onClicked: {
                     Core.composeTool.saveAs(songNameTextField.text);
                     PopupUtils.close(saveAsDialog)
@@ -943,7 +943,7 @@ Page {
 
             // TRANSLATORS: Title of the load song as dialog
             title: i18n.tr("Load song")
-            UbuntuListView {
+            LomiriListView {
                 id: songsListView
                 clip: true
                 model: Core.composeTool.songs
@@ -987,7 +987,7 @@ Page {
             Button {
                 // TRANSLATORS: Save button in the 'Save as' dialog
                 text: i18n.tr("Rename")
-                color: UbuntuColors.green
+                color: LomiriColors.green
                 onClicked: {
                     Core.composeTool.renameSong(songNameTextField.text);
                     PopupUtils.close(renameDialog)
@@ -1016,7 +1016,7 @@ Page {
             Button {
                 id: deleteButton
                 text: i18n.tr("Delete")
-                color: UbuntuColors.red
+                color: LomiriColors.red
                 onClicked: {
                     PopupUtils.close(removeDialog)
                     Core.composeTool.deleteSong(Core.composeTool.songName)
@@ -1027,7 +1027,7 @@ Page {
 
             Button {
                 text: i18n.tr("Cancel")
-                color: UbuntuColors.green
+                color: LomiriColors.green
                 onClicked: PopupUtils.close(removeDialog)
             }
         }

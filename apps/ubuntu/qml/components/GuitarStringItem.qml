@@ -21,9 +21,9 @@
 import QtQuick 2.4
 import QtMultimedia 5.4
 import QtQuick.Layouts 1.1
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3
+import Lomiri.Components 1.3
+import Lomiri.Components.Popups 1.3
+import Lomiri.Components.ListItems 1.3
 import GuitarTools 1.0
 
 Item {
@@ -63,7 +63,7 @@ Item {
         height: thickness
         color: {
             if (fret < 0 && Core.settings.markNotAssociatedStrings) {
-                return UbuntuColors.red
+                return LomiriColors.red
             } else {
                 return theme.palette.normal.baseText
             }
